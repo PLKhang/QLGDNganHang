@@ -1,5 +1,4 @@
-﻿using QLGDNganHang;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,64 +8,27 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace NganHang
+namespace QLGDNganHang
 {
     public partial class frmMain : Form
     {
+        private int childFormNumber = 0;
+
         public frmMain()
         {
             InitializeComponent();
-            this.IsMdiContainer = true;
         }
-        private Form CheckExists(Type ftype)
+        private bool ExistedForm(Type ftype)
         {
             foreach (Form f in this.MdiChildren)
                 if (f.GetType() == ftype)
-                    return f;   //nếu frmMain đã tồn tại thì trả về f, không thì trả về null.
-            return null;
+                    return true;   //nếu frmMain đã tồn tại thì trả về f, không thì trả về null.
+            return false;
         }
-        private void Form1_Load(object sender, EventArgs e)
+        private void btnLogin_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            btn_DangXuat.Enabled = btn_DK.Enabled = false;
-        }
-
-        private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void btn_GuiRut_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-
-        }
-
-        private void btn_ChuyenTien_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-
-        }
-
-        private void btnKhachHang_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-
-        }
-
-        private void btn_NhanVien_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-
-        }
-
-        private void btn_DangXuat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-
-        }
-
-        private void btn_TaoTK_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-
-        }
-
-        private void btn_DangNhap_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
+            rbnManage.Visible = rbnReport.Visible = rbnRegister.Visible = false;
+            btnLogout.Enabled = false;
 
         }
     }
