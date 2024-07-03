@@ -28,343 +28,269 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            DevExpress.Utils.SuperToolTip superToolTip3 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipItem toolTipItem3 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.SuperToolTip superToolTip4 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipItem toolTipItem4 = new DevExpress.Utils.ToolTipItem();
-            this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.lblUsername = new System.Windows.Forms.ToolStripStatusLabel();
-            this.lblName = new System.Windows.Forms.ToolStripStatusLabel();
-            this.lblRole = new System.Windows.Forms.ToolStripStatusLabel();
-            this.btnAccount = new DevExpress.XtraBars.Ribbon.RibbonControl();
+            this.ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.btnLogin = new DevExpress.XtraBars.BarButtonItem();
             this.btnLogout = new DevExpress.XtraBars.BarButtonItem();
             this.btnRegister = new DevExpress.XtraBars.BarButtonItem();
             this.btnEmployee = new DevExpress.XtraBars.BarButtonItem();
-            this.btnCustomer = new DevExpress.XtraBars.BarButtonItem();
-            this.btnSendWithdraw = new DevExpress.XtraBars.BarButtonItem();
+            this.btnCustomers = new DevExpress.XtraBars.BarButtonItem();
             this.btnTransfer = new DevExpress.XtraBars.BarButtonItem();
-            this.btnStatementReport = new DevExpress.XtraBars.BarButtonItem();
-            this.btnAccountReport = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
-            this.rbnAccount = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.rbnLogin = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.rbnRegister = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.rbnManage = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.rbnPeople = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.rbnTransaction = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.rbnReport = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.rbnPageGroupReport = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.rbnPageGroupAnalys = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.statusStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAccount)).BeginInit();
+            this.btnSendWithdraw = new DevExpress.XtraBars.BarButtonItem();
+            this.btnStatement = new DevExpress.XtraBars.BarButtonItem();
+            this.btnCustomerAnalys = new DevExpress.XtraBars.BarButtonItem();
+            this.btnBankAccountAnalys = new DevExpress.XtraBars.BarButtonItem();
+            this.rbnPAccount = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.rbnPGLog = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rbnPGRegister = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rbnPManage = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.rbnPGPeople = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rbnPGFeatures = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rbnPReport = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.rbnPGStatement = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rbnPGAccounts = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rbnPGCustomer = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
+            this.btn_DangNhap = new DevExpress.XtraBars.BarButtonItem();
+            ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             this.SuspendLayout();
             // 
-            // statusStrip
+            // ribbon
             // 
-            this.statusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lblUsername,
-            this.lblName,
-            this.lblRole});
-            this.statusStrip.Location = new System.Drawing.Point(0, 532);
-            this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusStrip.Size = new System.Drawing.Size(1049, 26);
-            this.statusStrip.TabIndex = 2;
-            this.statusStrip.Text = "StatusStrip";
-            // 
-            // lblUsername
-            // 
-            this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(41, 20);
-            this.lblUsername.Text = "User:";
-            // 
-            // lblName
-            // 
-            this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(57, 20);
-            this.lblName.Text = "Họ tên:";
-            // 
-            // lblRole
-            // 
-            this.lblRole.Name = "lblRole";
-            this.lblRole.Size = new System.Drawing.Size(42, 20);
-            this.lblRole.Text = "Role:";
-            // 
-            // btnAccount
-            // 
-            this.btnAccount.AutoSizeItems = true;
-            this.btnAccount.DrawGroupCaptions = DevExpress.Utils.DefaultBoolean.False;
-            this.btnAccount.ExpandCollapseItem.Id = 0;
-            this.btnAccount.Font = new System.Drawing.Font("Times New Roman", 10F);
-            this.btnAccount.GalleryAnimationLength = 0;
-            this.btnAccount.GroupAnimationLength = 0;
-            this.btnAccount.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.btnAccount.ExpandCollapseItem,
-            this.btnAccount.SearchEditItem,
+            this.ribbon.DrawGroupCaptions = DevExpress.Utils.DefaultBoolean.False;
+            this.ribbon.ExpandCollapseItem.Id = 0;
+            this.ribbon.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.ribbon.ExpandCollapseItem,
+            this.ribbon.SearchEditItem,
             this.btnLogin,
             this.btnLogout,
             this.btnRegister,
             this.btnEmployee,
-            this.btnCustomer,
-            this.btnSendWithdraw,
+            this.btnCustomers,
             this.btnTransfer,
-            this.btnStatementReport,
-            this.btnAccountReport,
-            this.barButtonItem1,
-            this.barButtonItem2});
-            this.btnAccount.Location = new System.Drawing.Point(0, 0);
-            this.btnAccount.MaxItemId = 12;
-            this.btnAccount.Name = "btnAccount";
-            this.btnAccount.PageAnimationLength = 0;
-            this.btnAccount.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
-            this.rbnAccount,
-            this.rbnManage,
-            this.rbnReport,
-            this.ribbonPage1});
-            this.btnAccount.Size = new System.Drawing.Size(1049, 162);
+            this.btnSendWithdraw,
+            this.btnStatement,
+            this.btnCustomerAnalys,
+            this.btnBankAccountAnalys});
+            this.ribbon.Location = new System.Drawing.Point(0, 0);
+            this.ribbon.MaxItemId = 11;
+            this.ribbon.Name = "ribbon";
+            this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
+            this.rbnPAccount,
+            this.rbnPManage,
+            this.rbnPReport});
+            this.ribbon.Size = new System.Drawing.Size(1203, 172);
+            this.ribbon.StatusBar = this.ribbonStatusBar;
             // 
             // btnLogin
             // 
-            this.btnLogin.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Left;
             this.btnLogin.Caption = "Login";
             this.btnLogin.Id = 1;
             this.btnLogin.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnLogin.ImageOptions.Image")));
             this.btnLogin.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnLogin.ImageOptions.LargeImage")));
             this.btnLogin.Name = "btnLogin";
-            toolTipItem3.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
-            toolTipItem3.Appearance.Options.UseFont = true;
-            toolTipItem3.Appearance.Options.UseTextOptions = true;
-            toolTipItem3.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            toolTipItem3.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            toolTipItem3.Text = "ss";
-            superToolTip3.Items.Add(toolTipItem3);
-            this.btnLogin.SuperTip = superToolTip3;
             this.btnLogin.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnLogin_ItemClick);
             // 
             // btnLogout
             // 
-            this.btnLogout.Caption = "Đăng xuất";
+            this.btnLogout.Caption = "Log out";
             this.btnLogout.Id = 2;
             this.btnLogout.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnLogout.ImageOptions.Image")));
             this.btnLogout.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnLogout.ImageOptions.LargeImage")));
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            toolTipItem4.Appearance.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            toolTipItem4.Appearance.Options.UseFont = true;
-            toolTipItem4.Text = "ss";
-            superToolTip4.Items.Add(toolTipItem4);
-            this.btnLogout.SuperTip = superToolTip4;
+            this.btnLogout.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnLogout_ItemClick);
             // 
             // btnRegister
             // 
-            this.btnRegister.Caption = "Đăng ký";
+            this.btnRegister.Caption = "Register";
             this.btnRegister.Id = 3;
             this.btnRegister.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnRegister.ImageOptions.Image")));
             this.btnRegister.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnRegister.ImageOptions.LargeImage")));
             this.btnRegister.Name = "btnRegister";
+            this.btnRegister.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRegister_ItemClick);
             // 
             // btnEmployee
             // 
-            this.btnEmployee.Caption = "Nhân viên";
+            this.btnEmployee.Caption = "Employees";
             this.btnEmployee.Id = 4;
             this.btnEmployee.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnEmployee.ImageOptions.Image")));
             this.btnEmployee.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnEmployee.ImageOptions.LargeImage")));
             this.btnEmployee.Name = "btnEmployee";
-            this.btnEmployee.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.btnEmployee.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnEmployee_ItemClick);
             // 
-            // btnCustomer
+            // btnCustomers
             // 
-            this.btnCustomer.Caption = "Khách hàng";
-            this.btnCustomer.Id = 5;
-            this.btnCustomer.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCustomer.ImageOptions.Image")));
-            this.btnCustomer.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnCustomer.ImageOptions.LargeImage")));
-            this.btnCustomer.Name = "btnCustomer";
-            this.btnCustomer.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            // 
-            // btnSendWithdraw
-            // 
-            this.btnSendWithdraw.Caption = "Gửi/Rút tiền";
-            this.btnSendWithdraw.Id = 6;
-            this.btnSendWithdraw.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSendWithdraw.ImageOptions.Image")));
-            this.btnSendWithdraw.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnSendWithdraw.ImageOptions.LargeImage")));
-            this.btnSendWithdraw.Name = "btnSendWithdraw";
+            this.btnCustomers.Caption = "Customers";
+            this.btnCustomers.Id = 5;
+            this.btnCustomers.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCustomers.ImageOptions.Image")));
+            this.btnCustomers.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnCustomers.ImageOptions.LargeImage")));
+            this.btnCustomers.Name = "btnCustomers";
+            this.btnCustomers.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnCustomers_ItemClick);
             // 
             // btnTransfer
             // 
-            this.btnTransfer.Caption = "Chuyển tiền";
-            this.btnTransfer.Id = 7;
+            this.btnTransfer.Caption = "Transfer";
+            this.btnTransfer.Id = 6;
             this.btnTransfer.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnTransfer.ImageOptions.Image")));
             this.btnTransfer.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnTransfer.ImageOptions.LargeImage")));
             this.btnTransfer.Name = "btnTransfer";
+            this.btnTransfer.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnTransfer_ItemClick);
             // 
-            // btnStatementReport
+            // btnSendWithdraw
             // 
-            this.btnStatementReport.Caption = " Sao kê\r\nTài khoản ngân hàng\r\n";
-            this.btnStatementReport.Id = 8;
-            this.btnStatementReport.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnStatementReport.ImageOptions.Image")));
-            this.btnStatementReport.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnStatementReport.ImageOptions.LargeImage")));
-            this.btnStatementReport.Name = "btnStatementReport";
+            this.btnSendWithdraw.Caption = "Send/Withdraw";
+            this.btnSendWithdraw.Id = 7;
+            this.btnSendWithdraw.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSendWithdraw.ImageOptions.Image")));
+            this.btnSendWithdraw.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnSendWithdraw.ImageOptions.LargeImage")));
+            this.btnSendWithdraw.Name = "btnSendWithdraw";
+            this.btnSendWithdraw.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSendWithdraw_ItemClick);
             // 
-            // btnAccountReport
+            // btnStatement
             // 
-            this.btnAccountReport.Caption = "Tài khoản ngân hàng mở";
-            this.btnAccountReport.Id = 9;
-            this.btnAccountReport.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAccountReport.ImageOptions.Image")));
-            this.btnAccountReport.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnAccountReport.ImageOptions.LargeImage")));
-            this.btnAccountReport.Name = "btnAccountReport";
+            this.btnStatement.Caption = "Account Statement";
+            this.btnStatement.Id = 8;
+            this.btnStatement.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnStatement.ImageOptions.Image")));
+            this.btnStatement.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnStatement.ImageOptions.LargeImage")));
+            this.btnStatement.Name = "btnStatement";
+            this.btnStatement.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnStatement_ItemClick);
             // 
-            // barButtonItem1
+            // btnCustomerAnalys
             // 
-            this.barButtonItem1.Caption = "Toàn bộ khách hàng";
-            this.barButtonItem1.Id = 10;
-            this.barButtonItem1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
-            this.barButtonItem1.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.LargeImage")));
-            this.barButtonItem1.Name = "barButtonItem1";
+            this.btnCustomerAnalys.Caption = "Customers Analys";
+            this.btnCustomerAnalys.Id = 9;
+            this.btnCustomerAnalys.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCustomerAnalys.ImageOptions.Image")));
+            this.btnCustomerAnalys.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnCustomerAnalys.ImageOptions.LargeImage")));
+            this.btnCustomerAnalys.Name = "btnCustomerAnalys";
+            this.btnCustomerAnalys.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnCustomerAnalys_ItemClick);
             // 
-            // barButtonItem2
+            // btnBankAccountAnalys
             // 
-            this.barButtonItem2.Caption = "barButtonItem2";
-            this.barButtonItem2.Id = 11;
-            this.barButtonItem2.Name = "barButtonItem2";
+            this.btnBankAccountAnalys.Caption = "BankAccounts Analys";
+            this.btnBankAccountAnalys.Id = 10;
+            this.btnBankAccountAnalys.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnBankAccountAnalys.ImageOptions.Image")));
+            this.btnBankAccountAnalys.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnBankAccountAnalys.ImageOptions.LargeImage")));
+            this.btnBankAccountAnalys.Name = "btnBankAccountAnalys";
+            this.btnBankAccountAnalys.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnBankAccountAnalys_ItemClick);
             // 
-            // rbnAccount
+            // rbnPAccount
             // 
-            this.rbnAccount.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.rbnLogin,
-            this.rbnRegister});
-            this.rbnAccount.MergeOrder = 0;
-            this.rbnAccount.Name = "rbnAccount";
-            this.rbnAccount.Text = "Tài khoản";
+            this.rbnPAccount.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.rbnPGLog,
+            this.rbnPGRegister});
+            this.rbnPAccount.Name = "rbnPAccount";
+            this.rbnPAccount.Text = "Accounts";
             // 
-            // rbnLogin
+            // rbnPGLog
             // 
-            this.rbnLogin.ItemLinks.Add(this.btnLogin, true);
-            this.rbnLogin.ItemLinks.Add(this.btnLogout);
-            this.rbnLogin.Name = "rbnLogin";
-            this.rbnLogin.Text = "ribbonPageGroup2";
+            this.rbnPGLog.ItemLinks.Add(this.btnLogin);
+            this.rbnPGLog.ItemLinks.Add(this.btnLogout);
+            this.rbnPGLog.Name = "rbnPGLog";
             // 
-            // rbnRegister
+            // rbnPGRegister
             // 
-            this.rbnRegister.AccessibleDescription = "Đăng ký tài khoản đăng nhập";
-            this.rbnRegister.ItemLinks.Add(this.btnRegister);
-            this.rbnRegister.Name = "rbnRegister";
-            this.rbnRegister.Text = "Đăng ký";
+            this.rbnPGRegister.ItemLinks.Add(this.btnRegister);
+            this.rbnPGRegister.Name = "rbnPGRegister";
             // 
-            // rbnManage
+            // rbnPManage
             // 
-            this.rbnManage.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.rbnPeople,
-            this.rbnTransaction});
-            this.rbnManage.MergeOrder = 0;
-            this.rbnManage.Name = "rbnManage";
-            this.rbnManage.Text = "Quản lý";
+            this.rbnPManage.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.rbnPGPeople,
+            this.rbnPGFeatures});
+            this.rbnPManage.Name = "rbnPManage";
+            this.rbnPManage.Text = "Manage";
             // 
-            // rbnPeople
+            // rbnPGPeople
             // 
-            this.rbnPeople.ItemLinks.Add(this.btnEmployee);
-            this.rbnPeople.ItemLinks.Add(this.btnCustomer);
-            this.rbnPeople.Name = "rbnPeople";
-            this.rbnPeople.Text = "Nhân sự";
+            this.rbnPGPeople.ItemLinks.Add(this.btnEmployee);
+            this.rbnPGPeople.ItemLinks.Add(this.btnCustomers);
+            this.rbnPGPeople.Name = "rbnPGPeople";
             // 
-            // rbnTransaction
+            // rbnPGFeatures
             // 
-            this.rbnTransaction.ItemLinks.Add(this.btnSendWithdraw);
-            this.rbnTransaction.ItemLinks.Add(this.btnTransfer);
-            this.rbnTransaction.Name = "rbnTransaction";
-            this.rbnTransaction.Text = "Giao dịch";
+            this.rbnPGFeatures.ItemLinks.Add(this.btnTransfer);
+            this.rbnPGFeatures.ItemLinks.Add(this.btnSendWithdraw);
+            this.rbnPGFeatures.Name = "rbnPGFeatures";
+            this.rbnPGFeatures.Text = "ribbonPageGroup1";
             // 
-            // rbnReport
+            // rbnPReport
             // 
-            this.rbnReport.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.rbnPageGroupReport,
-            this.rbnPageGroupAnalys});
-            this.rbnReport.MergeOrder = 0;
-            this.rbnReport.Name = "rbnReport";
-            this.rbnReport.Text = "Báo cáo";
+            this.rbnPReport.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.rbnPGStatement,
+            this.rbnPGAccounts,
+            this.rbnPGCustomer});
+            this.rbnPReport.Name = "rbnPReport";
+            this.rbnPReport.Text = "Reports";
             // 
-            // rbnPageGroupReport
+            // rbnPGStatement
             // 
-            this.rbnPageGroupReport.ItemLinks.Add(this.btnStatementReport);
-            this.rbnPageGroupReport.Name = "rbnPageGroupReport";
-            this.rbnPageGroupReport.Text = "Báo cáo";
+            this.rbnPGStatement.ItemLinks.Add(this.btnStatement);
+            this.rbnPGStatement.Name = "rbnPGStatement";
             // 
-            // rbnPageGroupAnalys
+            // rbnPGAccounts
             // 
-            this.rbnPageGroupAnalys.ItemLinks.Add(this.btnAccountReport);
-            this.rbnPageGroupAnalys.ItemLinks.Add(this.barButtonItem1);
-            this.rbnPageGroupAnalys.Name = "rbnPageGroupAnalys";
-            this.rbnPageGroupAnalys.Text = "Thống kê";
+            this.rbnPGAccounts.ItemLinks.Add(this.btnBankAccountAnalys);
+            this.rbnPGAccounts.Name = "rbnPGAccounts";
             // 
-            // ribbonPage1
+            // rbnPGCustomer
             // 
-            this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup1});
-            this.ribbonPage1.Name = "ribbonPage1";
-            this.ribbonPage1.Text = "ribbonPage1";
+            this.rbnPGCustomer.ItemLinks.Add(this.btnCustomerAnalys);
+            this.rbnPGCustomer.Name = "rbnPGCustomer";
             // 
-            // ribbonPageGroup1
+            // ribbonStatusBar
             // 
-            this.ribbonPageGroup1.Name = "ribbonPageGroup1";
-            this.ribbonPageGroup1.Text = "ribbonPageGroup1";
+            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 650);
+            this.ribbonStatusBar.Name = "ribbonStatusBar";
+            this.ribbonStatusBar.Ribbon = this.ribbon;
+            this.ribbonStatusBar.Size = new System.Drawing.Size(1203, 30);
+            // 
+            // btn_DangNhap
+            // 
+            this.btn_DangNhap.Caption = "Đăng Nhập";
+            this.btn_DangNhap.Id = 1;
+            this.btn_DangNhap.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btn_DangNhap.ImageOptions.SvgImage")));
+            this.btn_DangNhap.Name = "btn_DangNhap";
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(1049, 558);
-            this.Controls.Add(this.btnAccount);
-            this.Controls.Add(this.statusStrip);
-            this.IsMdiContainer = true;
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.ClientSize = new System.Drawing.Size(1203, 680);
+            this.Controls.Add(this.ribbonStatusBar);
+            this.Controls.Add(this.ribbon);
             this.Name = "frmMain";
-            this.Text = "frmMain";
-            this.statusStrip.ResumeLayout(false);
-            this.statusStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAccount)).EndInit();
+            this.Ribbon = this.ribbon;
+            this.StatusBar = this.ribbonStatusBar;
+            this.Text = "BANK\'S TRANSACTION MANAGER";
+            ((System.ComponentModel.ISupportInitialize)(this.ribbon)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
+
         #endregion
-        private System.Windows.Forms.StatusStrip statusStrip;
-        private System.Windows.Forms.ToolStripStatusLabel lblUsername;
-        private DevExpress.XtraBars.Ribbon.RibbonControl btnAccount;
-        private DevExpress.XtraBars.Ribbon.RibbonPage rbnAccount;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rbnLogin;
-        private DevExpress.XtraBars.Ribbon.RibbonPage rbnReport;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rbnPageGroupReport;
-        private DevExpress.XtraBars.Ribbon.RibbonPage rbnManage;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rbnPeople;
+
+        private DevExpress.XtraBars.Ribbon.RibbonControl ribbon;
+        private DevExpress.XtraBars.Ribbon.RibbonPage rbnPAccount;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rbnPGLog;
+        private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar;
+        private DevExpress.XtraBars.BarButtonItem btn_DangNhap;
         private DevExpress.XtraBars.BarButtonItem btnLogin;
         private DevExpress.XtraBars.BarButtonItem btnLogout;
         private DevExpress.XtraBars.BarButtonItem btnRegister;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rbnRegister;
-        private System.Windows.Forms.ToolTip toolTip;
-        private System.Windows.Forms.ToolStripStatusLabel lblName;
-        private System.Windows.Forms.ToolStripStatusLabel lblRole;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rbnPGRegister;
         private DevExpress.XtraBars.BarButtonItem btnEmployee;
-        private DevExpress.XtraBars.BarButtonItem btnCustomer;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rbnTransaction;
-        private DevExpress.XtraBars.BarButtonItem btnSendWithdraw;
+        private DevExpress.XtraBars.BarButtonItem btnCustomers;
         private DevExpress.XtraBars.BarButtonItem btnTransfer;
-        private DevExpress.XtraBars.BarButtonItem btnStatementReport;
-        private DevExpress.XtraBars.BarButtonItem btnAccountReport;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rbnPageGroupAnalys;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem2;
-        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
+        private DevExpress.XtraBars.BarButtonItem btnSendWithdraw;
+        private DevExpress.XtraBars.Ribbon.RibbonPage rbnPManage;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rbnPGPeople;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rbnPGFeatures;
+        private DevExpress.XtraBars.Ribbon.RibbonPage rbnPReport;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rbnPGStatement;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rbnPGAccounts;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rbnPGCustomer;
+        private DevExpress.XtraBars.BarButtonItem btnStatement;
+        private DevExpress.XtraBars.BarButtonItem btnCustomerAnalys;
+        private DevExpress.XtraBars.BarButtonItem btnBankAccountAnalys;
     }
 }
-
-
-

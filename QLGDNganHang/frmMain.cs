@@ -1,34 +1,132 @@
-﻿using System;
+﻿using DevExpress.XtraBars;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace QLGDNganHang
 {
-    public partial class frmMain : Form
+    public partial class frmMain : DevExpress.XtraBars.Ribbon.RibbonForm
     {
-        private int childFormNumber = 0;
-
         public frmMain()
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
+            this.IsMdiContainer = true;
+            btnLogin.PerformClick();
         }
-        private bool ExistedForm(Type ftype)
+
+        public void reloadForm(string role)
+        {
+            switch(role)
+            {
+                case "login":
+                    rbnPManage.Visible = rbnPReport.Visible = rbnPGRegister.Visible = false;
+                    btnLogout.Enabled = false; 
+                    break;
+                case "KhachHang":
+                    rbnPManage.Visible = rbnPGCustomer.Visible = rbnPGAccounts.Visible = rbnPGRegister.Visible = false;
+                    break;
+                case "NganHang":
+                    rbnPGFeatures.Visible = false;
+                    break;
+                case "ChiNhanh":
+                    break;
+                case "reset":
+                    rbnPManage.Visible = rbnPReport.Visible = rbnPGCustomer.Visible = rbnPGAccounts.Visible 
+                        = rbnPGFeatures.Visible = rbnPGRegister.Visible = true;
+                    btnLogout.Enabled = true; 
+                    break;
+                default:
+                    MessageBox.Show("Role sai", "Fail to load MainForm", MessageBoxButtons.OK);
+                    break;
+            }
+        }
+
+        private Form CheckExists(Type ftype)
         {
             foreach (Form f in this.MdiChildren)
                 if (f.GetType() == ftype)
-                    return true;   //nếu frmMain đã tồn tại thì trả về f, không thì trả về null.
-            return false;
+                    return f;
+            return null;
         }
-        private void btnLogin_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+
+        //-----------------Ribbon Page Accounts------------------------//
+        //------Ribbon Page Group Log In/Out------//
+        private void btnLogin_ItemClick(object sender, ItemClickEventArgs e)
         {
-            rbnManage.Visible = rbnReport.Visible = rbnRegister.Visible = false;
-            btnLogout.Enabled = false;
+            reloadForm("login");
+            Form form = this.CheckExists(typeof(frmLogin));
+            if (form != null)
+            {
+                form.Activate();
+            }
+            else
+            {
+                frmLogin f = new frmLogin();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
+
+        private void btnLogout_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Program.Logout();
+            btnLogin.PerformClick();
+        }
+
+        //------Ribbon Page Group Register  ------//
+        private void btnRegister_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
+
+        //-----------------Ribbon Page Manage  ------------------------//
+        //------Ribbon Page Group People    ------//
+        private void btnEmployee_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
+
+        private void btnCustomers_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
+
+        //------Ribbon Page Group Features  ------//
+        private void btnTransfer_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
+
+        private void btnSendWithdraw_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
+
+        //-----------------Ribbon Page Reports ------------------------//
+        //------Ribbon Page Group Statement ------//
+        private void btnStatement_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
+
+        //------Ribbon Page Group Accounts  ------//
+        private void btnBankAccountAnalys_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
+
+        //------Ribbon Page Group Customers ------//
+        private void btnCustomerAnalys_ItemClick(object sender, ItemClickEventArgs e)
+        {
 
         }
     }

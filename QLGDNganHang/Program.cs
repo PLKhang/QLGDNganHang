@@ -19,7 +19,7 @@ namespace QLGDNganHang
         public static SqlDataReader sqlDataReader = null;
         
         //Infomation of cuurent logined user
-        public static string mlogin = "";
+        public static string mLoginName = "";
         public static string mUsername = "";
         public static string mPassword = "";
         public static string mRole = "";
@@ -40,16 +40,35 @@ namespace QLGDNganHang
             }
             try
             {
-                connectionString = "Data Source=" + serverName + ";Initial Catalog=" + databaseName + ";User ID=" + mlogin + ";Password=" + mPassword;
+                connectionString = "Data Source=" + serverName + ";Initial Catalog=" + databaseName + ";User ID=" + mLoginName + ";Password=" + mPassword;
                 connection.ConnectionString = connectionString;
                 connection.Open();
                 return 1;
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi kết nối!\nServer: {serverName}\nDatabase: {databaseName}\nLogin name: {mlogin}\n" + ex.Message, "Không thể kết nối", MessageBoxButtons.OK);
+                MessageBox.Show($"Lỗi kết nối!\nServer: {serverName}\nDatabase: {databaseName}\nLogin name: {mLoginName}\n" + ex.Message, "Không thể kết nối", MessageBoxButtons.OK);
                 return 0;
             }
+        }
+        public static void Login(string svName, string dbName,string mLoginName, string mUsername, string mPassword, string mRole)
+        {
+            Program.serverName = svName;
+            Program.databaseName = dbName;
+            Program.mUsername = mLoginName;
+            Program.mLoginName = mUsername;
+            Program.mPassword = mPassword;
+            Program.mRole = mRole;
+        }
+
+        public static void Logout()
+        {
+            Program.serverName = "";
+            Program.databaseName = "";
+            Program.mUsername = "";
+            Program.mLoginName = "";
+            Program.mPassword = "";
+            Program.mRole = "";
         }
         public static DataTable ExecStoredProcedureReturnTable(string command)
         {
