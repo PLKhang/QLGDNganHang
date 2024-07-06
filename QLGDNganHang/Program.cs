@@ -8,6 +8,7 @@ using QLGDNganHang;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
+using DevExpress.XtraReports.UI;
 
 namespace QLGDNganHang
 {
@@ -69,11 +70,11 @@ namespace QLGDNganHang
             connection.Close();
             bds.DataSource = dt;
         }
-        public static void Login(string mLoginName, string mUsername, string mPassword, string mRole)
+        public static void Login(string mLoginName, string mUsername, string mName, string mRole)
         {
-            Program.mLoginName = mUsername;
-            Program.mUsername = mLoginName;
-            Program.mPassword = mPassword;
+            Program.mLoginName = mLoginName;
+            Program.mUsername = mUsername;
+            Program.mName = mName;
             Program.mRole = mRole;
         }
 
@@ -209,12 +210,51 @@ namespace QLGDNganHang
         }
         public static bool ValidateKeyPress(char e)
         {
-            if (!(char.IsDigit(e) || (char.IsLetter(e) && ((e >= 'A' && e <= 'Z') || (e >= 'a' && e <= 'z')))))
+            if (!(char.IsDigit(e) || char.IsControl(e) || (char.IsLetter(e) && ((e >= 'A' && e <= 'Z') || (e >= 'a' && e <= 'z')))))
             {
                 MessageBox.Show("Only letters and numbers are allowed.");
                 return false;
             }
             return true;
+        }
+
+        public static void ExportReport(XtraReport report, string format)
+        {
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                if (format == "PDF")
+                {
+                    saveFileDialog.Filter = "PDF files (*.pdf)|*.pdf";
+                    saveFileDialog.DefaultExt = "pdf";
+                }
+                else if (format == "Excel")
+                {
+                    saveFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
+                    saveFileDialog.DefaultExt = "xlsx";
+                }
+
+                // Hiển thị SaveFileDialog và kiểm tra nếu người dùng đã chọn vị trí và tên file
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        if (format == "PDF")
+                        {
+                            report.ExportToPdf(saveFileDialog.FileName);
+                            MessageBox.Show("Report exported to PDF successfully.", "Export", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else if (format == "Excel")
+                        {
+                            report.ExportToXlsx(saveFileDialog.FileName);
+                            MessageBox.Show("Report exported to Excel successfully.", "Export", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error exporting report: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
         /// <summary>
         /// The main entry point for the application.

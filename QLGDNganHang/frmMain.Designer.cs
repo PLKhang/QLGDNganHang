@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.btnLogin = new DevExpress.XtraBars.BarButtonItem();
@@ -56,15 +57,19 @@
             this.lblUsername = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblName = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblRole = new System.Windows.Forms.ToolStripStatusLabel();
+            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.btnPreviewCustomerReport = new DevExpress.XtraBars.BarButtonItem();
+            this.btnExportCustomerReport = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             this.sttStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbon
             // 
             this.ribbon.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ribbon.DrawGroupCaptions = DevExpress.Utils.DefaultBoolean.False;
-            this.ribbon.EmptyAreaImageOptions.ImagePadding = new System.Windows.Forms.Padding(46);
+            this.ribbon.EmptyAreaImageOptions.ImagePadding = new System.Windows.Forms.Padding(71);
             this.ribbon.ExpandCollapseItem.Id = 0;
             this.ribbon.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbon.ExpandCollapseItem,
@@ -78,12 +83,14 @@
             this.btnSendWithdraw,
             this.btnStatement,
             this.btnCustomerAnalys,
-            this.btnBankAccountAnalys});
+            this.btnBankAccountAnalys,
+            this.btnPreviewCustomerReport,
+            this.btnExportCustomerReport});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.ribbon.MaxItemId = 11;
+            this.ribbon.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.ribbon.MaxItemId = 13;
             this.ribbon.Name = "ribbon";
-            this.ribbon.OptionsMenuMinWidth = 515;
+            this.ribbon.OptionsMenuMinWidth = 805;
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.rbnPAccount,
             this.rbnPManage,
@@ -165,7 +172,10 @@
             // 
             // btnCustomerAnalys
             // 
+            this.btnCustomerAnalys.ActAsDropDown = true;
+            this.btnCustomerAnalys.ButtonStyle = DevExpress.XtraBars.BarButtonStyle.DropDown;
             this.btnCustomerAnalys.Caption = "Customers Analys";
+            this.btnCustomerAnalys.DropDownControl = this.popupMenu1;
             this.btnCustomerAnalys.Id = 9;
             this.btnCustomerAnalys.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCustomerAnalys.ImageOptions.Image")));
             this.btnCustomerAnalys.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnCustomerAnalys.ImageOptions.LargeImage")));
@@ -248,7 +258,7 @@
             // ribbonStatusBar
             // 
             this.ribbonStatusBar.Location = new System.Drawing.Point(0, 650);
-            this.ribbonStatusBar.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.ribbonStatusBar.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbon;
             this.ribbonStatusBar.Size = new System.Drawing.Size(1203, 30);
@@ -292,8 +302,34 @@
             this.lblRole.Size = new System.Drawing.Size(46, 20);
             this.lblRole.Text = "Role: ";
             // 
+            // popupMenu1
+            // 
+            this.popupMenu1.ItemLinks.Add(this.btnPreviewCustomerReport);
+            this.popupMenu1.ItemLinks.Add(this.btnExportCustomerReport);
+            this.popupMenu1.Name = "popupMenu1";
+            this.popupMenu1.Ribbon = this.ribbon;
+            // 
+            // btnPreviewCustomerReport
+            // 
+            this.btnPreviewCustomerReport.Caption = "Preview Report";
+            this.btnPreviewCustomerReport.Id = 11;
+            this.btnPreviewCustomerReport.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
+            this.btnPreviewCustomerReport.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.LargeImage")));
+            this.btnPreviewCustomerReport.Name = "btnPreviewCustomerReport";
+            this.btnPreviewCustomerReport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnPreviewCustomerReport_ItemClick);
+            // 
+            // btnExportCustomerReport
+            // 
+            this.btnExportCustomerReport.Caption = "Export PDF";
+            this.btnExportCustomerReport.Id = 12;
+            this.btnExportCustomerReport.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnExportCustomerReport.ImageOptions.Image")));
+            this.btnExportCustomerReport.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnExportCustomerReport.ImageOptions.LargeImage")));
+            this.btnExportCustomerReport.Name = "btnExportCustomerReport";
+            this.btnExportCustomerReport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExportCustomerReport_ItemClick);
+            // 
             // frmMain
             // 
+            this.ActiveGlowColor = System.Drawing.Color.Silver;
             this.Appearance.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.Appearance.Options.UseBackColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -302,6 +338,7 @@
             this.Controls.Add(this.sttStrip);
             this.Controls.Add(this.ribbonStatusBar);
             this.Controls.Add(this.ribbon);
+            this.IconOptions.Image = ((System.Drawing.Image)(resources.GetObject("frmMain.IconOptions.Image")));
             this.Name = "frmMain";
             this.Ribbon = this.ribbon;
             this.StatusBar = this.ribbonStatusBar;
@@ -309,6 +346,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).EndInit();
             this.sttStrip.ResumeLayout(false);
             this.sttStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -343,5 +381,8 @@
         public System.Windows.Forms.ToolStripStatusLabel lblUsername;
         public System.Windows.Forms.ToolStripStatusLabel lblName;
         public System.Windows.Forms.ToolStripStatusLabel lblRole;
+        private DevExpress.XtraBars.PopupMenu popupMenu1;
+        private DevExpress.XtraBars.BarButtonItem btnPreviewCustomerReport;
+        private DevExpress.XtraBars.BarButtonItem btnExportCustomerReport;
     }
 }

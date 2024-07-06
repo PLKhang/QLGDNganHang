@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraBars.ViewInfo;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,6 +25,10 @@ namespace QLGDNganHang
         {
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
+            this.ControlBox = false;
+            this.MinimizeBox = false;     // Ẩn nút Minimize
+            this.MaximizeBox = false;     // Ẩn nút Maximize
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
         private void frmRegister_Load(object sender, EventArgs e)
@@ -153,7 +158,12 @@ namespace QLGDNganHang
                     {
                         Program.CreateLoginToSystem(loginName, username, password, Program.mRole);
                         MessageBox.Show($"This login account has been created!\nLoginName: {loginName}\nUsername: {username}\n", "SUCCESS!", MessageBoxButtons.OK);
-                        this.Refresh();
+                        
+                        //Refresh form
+                        dtLoginName.Rows.Add(loginName);
+                        dt.Rows.RemoveAt(cbxUsername.SelectedIndex);
+                        cbxUsername_SelectedIndexChanged(sender, new EventArgs());
+                        txtLoginName.Text = txtPassword.Text = txtConfirmPassword.Text = "";
                     }
                     catch (Exception ex)
                     {

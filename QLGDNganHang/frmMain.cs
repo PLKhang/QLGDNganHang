@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraBars;
+using DevExpress.XtraReports.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -40,6 +41,8 @@ namespace QLGDNganHang
                     break;
                 case "NganHang":
                     rbnPGFeatures.Visible = false;
+                    rbnPManage.Visible = rbnPReport.Visible = rbnPGAccounts.Visible = rbnPGCustomer.Visible 
+                        = rbnPGRegister.Visible = true;
                     btnLogin.Enabled = false;
                     btnLogout.Enabled = true;
                     break;
@@ -128,7 +131,6 @@ namespace QLGDNganHang
         //------Ribbon Page Group Features  ------//
         private void btnTransfer_ItemClick(object sender, ItemClickEventArgs e)
         {
-
         }
 
         private void btnSendWithdraw_ItemClick(object sender, ItemClickEventArgs e)
@@ -140,19 +142,53 @@ namespace QLGDNganHang
         //------Ribbon Page Group Statement ------//
         private void btnStatement_ItemClick(object sender, ItemClickEventArgs e)
         {
-
+            Form form = this.CheckExists(typeof(frptAccountStatement));
+            if (form != null)
+            {
+                form.Activate();
+            }
+            else
+            {
+                frptAccountStatement f = new frptAccountStatement();
+                f.MdiParent = this;
+                f.Show();
+            }
         }
 
         //------Ribbon Page Group Accounts  ------//
         private void btnBankAccountAnalys_ItemClick(object sender, ItemClickEventArgs e)
         {
-
+            Form form = this.CheckExists(typeof(frptAccountsList));
+            if (form != null)
+            {
+                form.Activate();
+            }
+            else
+            {
+                frptAccountsList f = new frptAccountsList();
+                f.MdiParent = this;
+                f.Show();
+            }
         }
 
         //------Ribbon Page Group Customers ------//
         private void btnCustomerAnalys_ItemClick(object sender, ItemClickEventArgs e)
         {
+            
+        }
 
+        private void btnPreviewCustomerReport_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            XrptCustomersList rpt = new XrptCustomersList();
+
+            rpt.ShowPreviewDialog();
+        }
+
+        private void btnExportCustomerReport_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            XrptCustomersList rpt = new XrptCustomersList();
+
+            Program.ExportReport(rpt, "PDF");
         }
     }
 }

@@ -249,15 +249,21 @@
             // 
             // btnShowPassword
             // 
+            this.btnShowPassword.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnShowPassword.Appearance.BorderColor = System.Drawing.Color.Green;
+            this.btnShowPassword.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnShowPassword.Appearance.Options.UseBackColor = true;
             this.btnShowPassword.Appearance.Options.UseBorderColor = true;
+            this.btnShowPassword.Appearance.Options.UseForeColor = true;
+            this.btnShowPassword.AppearanceHovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnShowPassword.AppearanceHovered.Options.UseBackColor = true;
             this.btnShowPassword.AppearancePressed.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btnShowPassword.AppearancePressed.Options.UseBorderColor = true;
             this.btnShowPassword.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnShowPassword.ImageOptions.Image")));
             this.btnShowPassword.ImageOptions.ImageIndex = 0;
             this.btnShowPassword.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleRight;
             this.btnShowPassword.Location = new System.Drawing.Point(464, 349);
-            this.btnShowPassword.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnShowPassword.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.btnShowPassword.Name = "btnShowPassword";
             this.btnShowPassword.Size = new System.Drawing.Size(38, 26);
             this.btnShowPassword.TabIndex = 6;
