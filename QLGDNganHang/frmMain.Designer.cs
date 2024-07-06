@@ -52,12 +52,19 @@
             this.rbnPGCustomer = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.btn_DangNhap = new DevExpress.XtraBars.BarButtonItem();
+            this.sttStrip = new System.Windows.Forms.StatusStrip();
+            this.lblUsername = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblName = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblRole = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
+            this.sttStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // ribbon
             // 
+            this.ribbon.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ribbon.DrawGroupCaptions = DevExpress.Utils.DefaultBoolean.False;
+            this.ribbon.EmptyAreaImageOptions.ImagePadding = new System.Windows.Forms.Padding(46);
             this.ribbon.ExpandCollapseItem.Id = 0;
             this.ribbon.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbon.ExpandCollapseItem,
@@ -73,8 +80,10 @@
             this.btnCustomerAnalys,
             this.btnBankAccountAnalys});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
+            this.ribbon.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ribbon.MaxItemId = 11;
             this.ribbon.Name = "ribbon";
+            this.ribbon.OptionsMenuMinWidth = 515;
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.rbnPAccount,
             this.rbnPManage,
@@ -239,6 +248,7 @@
             // ribbonStatusBar
             // 
             this.ribbonStatusBar.Location = new System.Drawing.Point(0, 650);
+            this.ribbonStatusBar.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbon;
             this.ribbonStatusBar.Size = new System.Drawing.Size(1203, 30);
@@ -250,11 +260,46 @@
             this.btn_DangNhap.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btn_DangNhap.ImageOptions.SvgImage")));
             this.btn_DangNhap.Name = "btn_DangNhap";
             // 
+            // sttStrip
+            // 
+            this.sttStrip.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.sttStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.sttStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lblUsername,
+            this.lblName,
+            this.lblRole});
+            this.sttStrip.Location = new System.Drawing.Point(0, 624);
+            this.sttStrip.Name = "sttStrip";
+            this.sttStrip.Size = new System.Drawing.Size(1203, 26);
+            this.sttStrip.TabIndex = 2;
+            this.sttStrip.Text = "statusStrip1";
+            // 
+            // lblUsername
+            // 
+            this.lblUsername.Name = "lblUsername";
+            this.lblUsername.Size = new System.Drawing.Size(82, 20);
+            this.lblUsername.Text = "Username: ";
+            // 
+            // lblName
+            // 
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(80, 20);
+            this.lblName.Text = "Full name: ";
+            // 
+            // lblRole
+            // 
+            this.lblRole.Name = "lblRole";
+            this.lblRole.Size = new System.Drawing.Size(46, 20);
+            this.lblRole.Text = "Role: ";
+            // 
             // frmMain
             // 
+            this.Appearance.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.Appearance.Options.UseBackColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1203, 680);
+            this.Controls.Add(this.sttStrip);
             this.Controls.Add(this.ribbonStatusBar);
             this.Controls.Add(this.ribbon);
             this.Name = "frmMain";
@@ -262,6 +307,8 @@
             this.StatusBar = this.ribbonStatusBar;
             this.Text = "BANK\'S TRANSACTION MANAGER";
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).EndInit();
+            this.sttStrip.ResumeLayout(false);
+            this.sttStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -292,5 +339,9 @@
         private DevExpress.XtraBars.BarButtonItem btnStatement;
         private DevExpress.XtraBars.BarButtonItem btnCustomerAnalys;
         private DevExpress.XtraBars.BarButtonItem btnBankAccountAnalys;
+        public System.Windows.Forms.StatusStrip sttStrip;
+        public System.Windows.Forms.ToolStripStatusLabel lblUsername;
+        public System.Windows.Forms.ToolStripStatusLabel lblName;
+        public System.Windows.Forms.ToolStripStatusLabel lblRole;
     }
 }

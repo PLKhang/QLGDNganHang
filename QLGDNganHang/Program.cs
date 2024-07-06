@@ -7,11 +7,14 @@ using System.Windows.Forms;
 using QLGDNganHang;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 
 namespace QLGDNganHang
 {
     static class Program
     {
+        public static frmMain main;
+
         public static SqlConnection connection = new SqlConnection();
         public static string connectionString = "";
         public static string publisherConnection = "Data Source=KHANG;Initial Catalog=NGANHANG;User ID=sa;Password=abc;TrustServerCertificate=True";
@@ -26,7 +29,7 @@ namespace QLGDNganHang
         public static string mName = "";
 
         public static string serverName = "";
-        public static string databaseName = "";
+        public static string databaseName = "NGANHANG";
         public static string remoteLogin = "HTKN";
         public static string remotePassword = "123456";
 
@@ -42,21 +45,34 @@ namespace QLGDNganHang
             {
                 connectionString = "Data Source=" + serverName + ";Initial Catalog=" + databaseName + ";User ID=" + mLoginName + ";Password=" + mPassword;
                 connection.ConnectionString = connectionString;
+                Debug.WriteLine($"connection string: {connectionString}");
                 connection.Open();
                 return 1;
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi kết nối!\nServer: {serverName}\nDatabase: {databaseName}\nLogin name: {mLoginName}\n" + ex.Message, "Không thể kết nối", MessageBoxButtons.OK);
+                MessageBox.Show($"Lỗi kết nối! Kiểm tra lại Username và Password\nServer: {serverName}\nDatabase: {databaseName}\nLogin name: {mLoginName}\nPassword: {mPassword}\n" + ex.Message, "Không thể kết nối", MessageBoxButtons.OK);
+                //MessageBox.Show($"Connection string: {connection.ConnectionString}\n" + ex.Message, "Không thể kết nối", MessageBoxButtons.OK);
                 return 0;
             }
         }
-        public static void Login(string svName, string dbName,string mLoginName, string mUsername, string mPassword, string mRole)
+        public static void SelectBranchs()
         {
-            Program.serverName = svName;
-            Program.databaseName = dbName;
-            Program.mUsername = mLoginName;
+            if(connection != null && connection.State != ConnectionState.Closed)
+            {
+                connection.Close();
+            }
+
+            connection.ConnectionString = publisherConnection;
+            connection.Open();
+            DataTable dt = ExecStoredProcedureReturnTable("SELECT * FROM V_DS_PHANMANH");
+            connection.Close();
+            bds.DataSource = dt;
+        }
+        public static void Login(string mLoginName, string mUsername, string mPassword, string mRole)
+        {
             Program.mLoginName = mUsername;
+            Program.mUsername = mLoginName;
             Program.mPassword = mPassword;
             Program.mRole = mRole;
         }
@@ -64,11 +80,36 @@ namespace QLGDNganHang
         public static void Logout()
         {
             Program.serverName = "";
-            Program.databaseName = "";
-            Program.mUsername = "";
             Program.mLoginName = "";
+            Program.mUsername = "";
             Program.mPassword = "";
+            Program.mName = "";
             Program.mRole = "";
+
+            if (connection != null && connection.State != ConnectionState.Closed)
+            {
+                connection.Close();
+            }
+        }
+
+        public static SqlDataReader ExecStoredProcedureReturnDataReader(string command)
+        {
+            SqlDataReader r = null;
+            SqlCommand cmd = new SqlCommand(command, connection);
+            cmd.CommandType = CommandType.Text;
+            if (connection.State == ConnectionState.Closed)
+            {
+                connection.Open();
+            }
+            try
+            {
+                r = cmd.ExecuteReader();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("text\n" + ex.Message, ex.InnerException.ToString(), MessageBoxButtons.OKCancel);
+            }
+            return r;
         }
         public static DataTable ExecStoredProcedureReturnTable(string command)
         {
@@ -166,15 +207,26 @@ namespace QLGDNganHang
             result = Program.ExecStoredProcedureReturnInt("sp_XoaLogin", new SqlParameter("@USRNAME", username));
             return result;
         }
+        public static bool ValidateKeyPress(char e)
+        {
+            if (!(char.IsDigit(e) || (char.IsLetter(e) && ((e >= 'A' && e <= 'Z') || (e >= 'a' && e <= 'z')))))
+            {
+                MessageBox.Show("Only letters and numbers are allowed.");
+                return false;
+            }
+            return true;
+        }
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main()
         {
+            SelectBranchs();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMain());
+            main = new frmMain();
+            Application.Run(main);
         }
     }
 }

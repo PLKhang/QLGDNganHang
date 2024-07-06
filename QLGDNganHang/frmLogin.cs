@@ -16,6 +16,64 @@ namespace QLGDNganHang
         {
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
+            cbxBranchs.DataSource = Program.bds;
+            cbxBranchs.DisplayMember = "TENCN";
+            cbxBranchs.ValueMember = "TENSERVER";
+            cbxBranchs.SelectedIndex = 0;
+            cbxBranchs.DropDownStyle = ComboBoxStyle.DropDownList;
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            string loginName = Program.mLoginName = txtLoginName.Text;
+            string password = Program.mPassword = txtPassword.Text;
+
+            if (loginName.Trim() == "" || password.Trim() == "")
+            {
+                MessageBox.Show("You should enter your \'Login name\' and \'Password\' before clicking \'LOGIN\'","Login Fail!",MessageBoxButtons.OK);
+                return;
+            }
+
+            Program.serverName = cbxBranchs.SelectedValue.ToString();
+            if(Program.Connect() == 0)
+            {
+                return;
+            }
+
+            Program.sqlDataReader = Program.ExecStoredProcedureReturnDataReader($"Exec sp_LayThongTinLogin @TENLOGIN = {loginName}");
+            if (Program.sqlDataReader == null || !Program.sqlDataReader.HasRows)
+            {
+                MessageBox.Show("Your account has no access to this system", "Login Fail!", MessageBoxButtons.OK);
+                return;
+            }
+
+            try
+            {
+                Program.sqlDataReader.Read();
+                string username = Program.sqlDataReader.GetString(0);
+                string name = Program.sqlDataReader.GetString(1);
+                string role = Program.sqlDataReader.GetString(2);
+                Program.sqlDataReader.Close();
+
+                Program.Login(loginName, username, name, role);
+
+                Program.main.lblUsername.Text += username;
+                Program.main.lblName.Text += name;
+                Program.main.lblRole.Text += role;
+            } 
+            catch 
+            { 
+                MessageBox.Show("Your account has no access to this system", "Login Fail!", MessageBoxButtons.OK);
+                return;
+            }
+
+            Program.main.reloadForm(Program.mRole);
+            this.Close();
         }
     }
 }

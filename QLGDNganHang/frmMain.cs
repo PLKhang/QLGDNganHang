@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -33,15 +34,19 @@ namespace QLGDNganHang
                     break;
                 case "KhachHang":
                     rbnPManage.Visible = rbnPGCustomer.Visible = rbnPGAccounts.Visible = rbnPGRegister.Visible = false;
+                    rbnPReport.Visible = true;
+                    btnLogin.Enabled = false;
+                    btnLogout.Enabled = true;
                     break;
                 case "NganHang":
                     rbnPGFeatures.Visible = false;
+                    btnLogin.Enabled = false;
+                    btnLogout.Enabled = true;
                     break;
                 case "ChiNhanh":
-                    break;
-                case "reset":
-                    rbnPManage.Visible = rbnPReport.Visible = rbnPGCustomer.Visible = rbnPGAccounts.Visible 
-                        = rbnPGFeatures.Visible = rbnPGRegister.Visible = true;
+                    rbnPManage.Visible = rbnPReport.Visible = rbnPGCustomer.Visible = rbnPGAccounts.Visible
+                        = rbnPGFeatures.Visible = rbnPGRegister.Visible = true; 
+                    btnLogin.Enabled = false;
                     btnLogout.Enabled = true; 
                     break;
                 default:
@@ -78,14 +83,34 @@ namespace QLGDNganHang
 
         private void btnLogout_ItemClick(object sender, ItemClickEventArgs e)
         {
+            lblUsername.Text = "Username: ";
+            lblName.Text = "Full name: ";
+            lblRole.Text = "Role: ";
+
+            foreach (Form f in this.MdiChildren)
+            {
+                f.Close();
+            }
+
             Program.Logout();
+            btnLogin.Enabled = true;
             btnLogin.PerformClick();
         }
 
         //------Ribbon Page Group Register  ------//
         private void btnRegister_ItemClick(object sender, ItemClickEventArgs e)
         {
-
+            Form form = this.CheckExists(typeof(frmRegister));
+            if (form != null)
+            {
+                form.Activate();
+            }
+            else
+            {
+                frmRegister f = new frmRegister();
+                f.MdiParent = this;
+                f.Show();
+            }
         }
 
         //-----------------Ribbon Page Manage  ------------------------//
