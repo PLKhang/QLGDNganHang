@@ -120,12 +120,21 @@ namespace QLGDNganHang
         //------Ribbon Page Group People    ------//
         private void btnEmployee_ItemClick(object sender, ItemClickEventArgs e)
         {
-
+            Form form = this.CheckExists(typeof(frmEmployee));
+            if (form != null)
+            {
+                form.Activate();
+            }
+            else
+            {
+                frmEmployee f = new frmEmployee();
+                f.MdiParent = this;
+                f.Show();
+            }
         }
 
         private void btnCustomers_ItemClick(object sender, ItemClickEventArgs e)
         {
-
         }
 
         //------Ribbon Page Group Features  ------//

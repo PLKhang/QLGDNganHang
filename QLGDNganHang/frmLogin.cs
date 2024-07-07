@@ -16,6 +16,11 @@ namespace QLGDNganHang
         {
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
+            this.ControlBox = false;
+            this.MinimizeBox = false;     // Ẩn nút Minimize
+            this.MaximizeBox = false;     // Ẩn nút Maximize
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
             cbxBranchs.DataSource = Program.bds;
             cbxBranchs.DisplayMember = "TENCN";
             cbxBranchs.ValueMember = "TENSERVER";
