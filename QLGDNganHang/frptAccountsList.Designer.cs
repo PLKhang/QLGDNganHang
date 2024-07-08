@@ -180,6 +180,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frptAccountsList";
             this.Text = "LIST OF ACCOUNTS";
+            this.Load += new System.EventHandler(this.frptAccountsList_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

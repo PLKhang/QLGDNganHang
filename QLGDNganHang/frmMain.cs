@@ -135,6 +135,18 @@ namespace QLGDNganHang
 
         private void btnCustomers_ItemClick(object sender, ItemClickEventArgs e)
         {
+            Form form = this.CheckExists(typeof(frmCustomers));
+            if (form != null)
+            {
+                form.Activate();
+                //this.ActivateMdiChild(form);
+            }
+            else
+            {
+                frmCustomers f = new frmCustomers();
+                f.MdiParent = this;
+                f.Show();
+            }
         }
 
         //------Ribbon Page Group Features  ------//

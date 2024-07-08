@@ -24,15 +24,13 @@ namespace QLGDNganHang
         public frmRegister()
         {
             InitializeComponent();
-            this.WindowState = FormWindowState.Maximized;
-            this.ControlBox = false;
-            this.MinimizeBox = false;     // Ẩn nút Minimize
-            this.MaximizeBox = false;     // Ẩn nút Maximize
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
         private void frmRegister_Load(object sender, EventArgs e)
         {
+            this.WindowState = FormWindowState.Maximized;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
             dt = Program.ExecStoredProcedureReturnTable("SELECT * FROM V_EX_LoginName");
             dtLoginName = Program.ExecStoredProcedureReturnTable("SELECT * FROM DBO.V_LOGINNAME");
 

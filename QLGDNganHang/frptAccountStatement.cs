@@ -20,15 +20,13 @@ namespace QLGDNganHang
         public frptAccountStatement()
         {
             InitializeComponent();
-            this.WindowState = FormWindowState.Maximized;
-            this.ControlBox = false;
-            this.MinimizeBox = false;     // Ẩn nút Minimize
-            this.MaximizeBox = false;     // Ẩn nút Maximize
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
         private void frptAccountStatement_Load(object sender, EventArgs e)
         {
+            this.WindowState = FormWindowState.Maximized;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
             switch (Program.mRole)
             {
                 case "KhachHang":

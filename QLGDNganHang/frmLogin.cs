@@ -66,6 +66,7 @@ namespace QLGDNganHang
                 Program.sqlDataReader.Close();
 
                 Program.Login(loginName, username, name, role);
+                Program.currentBranch = cbxBranchs.SelectedIndex;
 
                 Program.main.lblUsername.Text += username;
                 Program.main.lblName.Text += name;

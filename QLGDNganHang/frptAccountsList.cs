@@ -21,10 +21,11 @@ namespace QLGDNganHang
         public frptAccountsList()
         {
             InitializeComponent();
+        }
+
+        private void frptAccountsList_Load(object sender, EventArgs e)
+        {
             this.WindowState = FormWindowState.Maximized;
-            this.ControlBox = false;
-            this.MinimizeBox = false;     // Ẩn nút Minimize
-            this.MaximizeBox = false;     // Ẩn nút Maximize
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
 
             cbxBranchs.SelectedIndex = 0;
