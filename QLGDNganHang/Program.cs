@@ -29,6 +29,7 @@ namespace QLGDNganHang
         public static string mRole = "";
         public static string mName = "";
 
+        public static int currentBranch = 0;
         public static string serverName = "";
         public static string databaseName = "NGANHANG";
         public static string remoteLogin = "HTKN";
@@ -38,7 +39,7 @@ namespace QLGDNganHang
 
         public static int Connect()
         {
-            if (connection != null && connection.State != ConnectionState.Open)
+            if (connection != null && connection.State == ConnectionState.Open)
             {
                 connection.Close();
             }
@@ -128,7 +129,10 @@ namespace QLGDNganHang
             {
                 MessageBox.Show("text\n" + ex.Message, ex.InnerException.ToString(), MessageBoxButtons.OKCancel);
             }
-            connection.Close();
+            finally
+            {
+                connection.Close();
+            }
             return dt;
         }
         public static int ExecStoredProcedureReturnInt(string spName, params SqlParameter[] parameters)
@@ -183,15 +187,23 @@ namespace QLGDNganHang
             try
             {
                 SqlDataReader reader = sqlCommand.ExecuteReader();
-                result = reader.GetString(0);
+                if (reader.Read())
+                {
+                    result = reader.GetString(0);
+                }
+                reader.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("text\n" + ex.Message, ex.InnerException.ToString(), MessageBoxButtons.OKCancel);
             }
-            connection.Close();
+            finally
+            {
+                connection.Close();
+            }
             return result;
         }
+
         public static int CreateLoginToSystem(string loginName, string username, string password, string role)
         {
             int result = 0;
