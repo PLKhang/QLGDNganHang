@@ -40,6 +40,9 @@
             this.btnSendWithdraw = new DevExpress.XtraBars.BarButtonItem();
             this.btnStatement = new DevExpress.XtraBars.BarButtonItem();
             this.btnCustomerAnalys = new DevExpress.XtraBars.BarButtonItem();
+            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.btnPreviewCustomerReport = new DevExpress.XtraBars.BarButtonItem();
+            this.btnExportCustomerReport = new DevExpress.XtraBars.BarButtonItem();
             this.btnBankAccountAnalys = new DevExpress.XtraBars.BarButtonItem();
             this.rbnPAccount = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rbnPGLog = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -57,12 +60,9 @@
             this.lblUsername = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblName = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblRole = new System.Windows.Forms.ToolStripStatusLabel();
-            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.btnPreviewCustomerReport = new DevExpress.XtraBars.BarButtonItem();
-            this.btnExportCustomerReport = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
-            this.sttStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
+            this.sttStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // ribbon
@@ -87,7 +87,7 @@
             this.btnPreviewCustomerReport,
             this.btnExportCustomerReport});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.ribbon.Margin = new System.Windows.Forms.Padding(8);
             this.ribbon.MaxItemId = 13;
             this.ribbon.Name = "ribbon";
             this.ribbon.OptionsMenuMinWidth = 805;
@@ -182,6 +182,31 @@
             this.btnCustomerAnalys.Name = "btnCustomerAnalys";
             this.btnCustomerAnalys.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnCustomerAnalys_ItemClick);
             // 
+            // popupMenu1
+            // 
+            this.popupMenu1.ItemLinks.Add(this.btnPreviewCustomerReport);
+            this.popupMenu1.ItemLinks.Add(this.btnExportCustomerReport);
+            this.popupMenu1.Name = "popupMenu1";
+            this.popupMenu1.Ribbon = this.ribbon;
+            // 
+            // btnPreviewCustomerReport
+            // 
+            this.btnPreviewCustomerReport.Caption = "Preview Report";
+            this.btnPreviewCustomerReport.Id = 11;
+            this.btnPreviewCustomerReport.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPreviewCustomerReport.ImageOptions.Image")));
+            this.btnPreviewCustomerReport.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnPreviewCustomerReport.ImageOptions.LargeImage")));
+            this.btnPreviewCustomerReport.Name = "btnPreviewCustomerReport";
+            this.btnPreviewCustomerReport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnPreviewCustomerReport_ItemClick);
+            // 
+            // btnExportCustomerReport
+            // 
+            this.btnExportCustomerReport.Caption = "Export PDF";
+            this.btnExportCustomerReport.Id = 12;
+            this.btnExportCustomerReport.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnExportCustomerReport.ImageOptions.Image")));
+            this.btnExportCustomerReport.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnExportCustomerReport.ImageOptions.LargeImage")));
+            this.btnExportCustomerReport.Name = "btnExportCustomerReport";
+            this.btnExportCustomerReport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExportCustomerReport_ItemClick);
+            // 
             // btnBankAccountAnalys
             // 
             this.btnBankAccountAnalys.Caption = "BankAccounts Analys";
@@ -258,7 +283,7 @@
             // ribbonStatusBar
             // 
             this.ribbonStatusBar.Location = new System.Drawing.Point(0, 650);
-            this.ribbonStatusBar.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.ribbonStatusBar.Margin = new System.Windows.Forms.Padding(8);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbon;
             this.ribbonStatusBar.Size = new System.Drawing.Size(1203, 30);
@@ -302,31 +327,6 @@
             this.lblRole.Size = new System.Drawing.Size(46, 20);
             this.lblRole.Text = "Role: ";
             // 
-            // popupMenu1
-            // 
-            this.popupMenu1.ItemLinks.Add(this.btnPreviewCustomerReport);
-            this.popupMenu1.ItemLinks.Add(this.btnExportCustomerReport);
-            this.popupMenu1.Name = "popupMenu1";
-            this.popupMenu1.Ribbon = this.ribbon;
-            // 
-            // btnPreviewCustomerReport
-            // 
-            this.btnPreviewCustomerReport.Caption = "Preview Report";
-            this.btnPreviewCustomerReport.Id = 11;
-            this.btnPreviewCustomerReport.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
-            this.btnPreviewCustomerReport.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.LargeImage")));
-            this.btnPreviewCustomerReport.Name = "btnPreviewCustomerReport";
-            this.btnPreviewCustomerReport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnPreviewCustomerReport_ItemClick);
-            // 
-            // btnExportCustomerReport
-            // 
-            this.btnExportCustomerReport.Caption = "Export PDF";
-            this.btnExportCustomerReport.Id = 12;
-            this.btnExportCustomerReport.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnExportCustomerReport.ImageOptions.Image")));
-            this.btnExportCustomerReport.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnExportCustomerReport.ImageOptions.LargeImage")));
-            this.btnExportCustomerReport.Name = "btnExportCustomerReport";
-            this.btnExportCustomerReport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExportCustomerReport_ItemClick);
-            // 
             // frmMain
             // 
             this.ActiveGlowColor = System.Drawing.Color.Silver;
@@ -344,9 +344,9 @@
             this.StatusBar = this.ribbonStatusBar;
             this.Text = "BANK\'S TRANSACTION MANAGER";
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).EndInit();
             this.sttStrip.ResumeLayout(false);
             this.sttStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -360,7 +360,6 @@
         private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar;
         private DevExpress.XtraBars.BarButtonItem btn_DangNhap;
         private DevExpress.XtraBars.BarButtonItem btnLogin;
-        private DevExpress.XtraBars.BarButtonItem btnLogout;
         private DevExpress.XtraBars.BarButtonItem btnRegister;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup rbnPGRegister;
         private DevExpress.XtraBars.BarButtonItem btnEmployee;
@@ -384,5 +383,6 @@
         private DevExpress.XtraBars.PopupMenu popupMenu1;
         private DevExpress.XtraBars.BarButtonItem btnPreviewCustomerReport;
         private DevExpress.XtraBars.BarButtonItem btnExportCustomerReport;
+        public DevExpress.XtraBars.BarButtonItem btnLogout;
     }
 }

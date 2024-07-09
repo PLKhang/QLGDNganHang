@@ -263,7 +263,7 @@
             this.btnShowPassword.ImageOptions.ImageIndex = 0;
             this.btnShowPassword.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleRight;
             this.btnShowPassword.Location = new System.Drawing.Point(464, 349);
-            this.btnShowPassword.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnShowPassword.Margin = new System.Windows.Forms.Padding(6);
             this.btnShowPassword.Name = "btnShowPassword";
             this.btnShowPassword.Size = new System.Drawing.Size(38, 26);
             this.btnShowPassword.TabIndex = 6;

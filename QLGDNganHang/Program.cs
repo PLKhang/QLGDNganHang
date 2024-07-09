@@ -99,20 +99,25 @@ namespace QLGDNganHang
             SqlDataReader r = null;
             SqlCommand cmd = new SqlCommand(command, connection);
             cmd.CommandType = CommandType.Text;
+
             if (connection.State == ConnectionState.Closed)
             {
                 connection.Open();
             }
+
             try
             {
                 r = cmd.ExecuteReader();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("text\n" + ex.Message, ex.InnerException.ToString(), MessageBoxButtons.OKCancel);
+                string innerExceptionMessage = ex.InnerException != null ? ex.InnerException.ToString() : "No inner exception";
+                MessageBox.Show("text\n" + ex.Message, innerExceptionMessage, MessageBoxButtons.OK);
             }
+
             return r;
         }
+
         public static DataTable ExecStoredProcedureReturnTable(string command)
         {
             DataTable dt = new DataTable();
@@ -127,7 +132,7 @@ namespace QLGDNganHang
             }
             catch (Exception ex)
             {
-                MessageBox.Show("text\n" + ex.Message, ex.InnerException.ToString(), MessageBoxButtons.OKCancel);
+                MessageBox.Show("text\n" + ex.Message, ex.InnerException.ToString(), MessageBoxButtons.OK);
             }
             finally
             {
@@ -166,7 +171,7 @@ namespace QLGDNganHang
             }
             catch (Exception ex)
             {
-                MessageBox.Show("text\n" + ex.Message, ex.InnerException.ToString(), MessageBoxButtons.OKCancel);
+                MessageBox.Show("text\n" + ex.Message, ex.InnerException.ToString(), MessageBoxButtons.OK);
             }
             finally
             {
@@ -193,9 +198,9 @@ namespace QLGDNganHang
                 }
                 reader.Close();
             }
-            catch (Exception ex)
+            catch (Exception ex)    
             {
-                MessageBox.Show("text\n" + ex.Message, ex.InnerException.ToString(), MessageBoxButtons.OKCancel);
+                MessageBox.Show("text\n" + ex.Message, ex.InnerException.ToString(), MessageBoxButtons.OK);
             }
             finally
             {

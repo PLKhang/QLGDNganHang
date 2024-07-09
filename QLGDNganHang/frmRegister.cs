@@ -17,28 +17,54 @@ namespace QLGDNganHang
         private string loginName;
         private string password;
         private string username;
+        private string specialUsername;
         private DataTable dt = new DataTable();
         private DataTable dtLoginName = new DataTable();
         private bool isShowingPassword = false;
         private bool checkLoginName = false, checkPassword = false, checkConfirmPassword = false;
+        private bool isSpecialAccountCreate = false;
         public frmRegister()
         {
             InitializeComponent();
         }
 
+        public frmRegister(string username)
+        {
+            InitializeComponent();
+
+            this.isSpecialAccountCreate = true;
+            this.specialUsername = username;
+            this.cbxUsername.Enabled = false;
+
+        }
         private void frmRegister_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            Debug.WriteLine("username: " + specialUsername);
 
             dt = Program.ExecStoredProcedureReturnTable("SELECT * FROM V_EX_LoginName");
             dtLoginName = Program.ExecStoredProcedureReturnTable("SELECT * FROM DBO.V_LOGINNAME");
 
+            int index = 0;
             cbxUsername.DataSource = dt;
             cbxUsername.DisplayMember = "MANV";
             cbxUsername.ValueMember = "MANV";
-            cbxUsername.SelectedIndex = 0;
             cbxUsername.DropDownStyle = ComboBoxStyle.DropDownList;
+            if (isSpecialAccountCreate)
+            {
+                int i = 0;
+                foreach (DataRow row in dt.Rows)
+                {
+                    if (row["MANV"].ToString() == specialUsername)
+                    {
+                        index = i;
+                        break;
+                    }
+                    i++; 
+                }
+            }
+            cbxUsername.SelectedIndex = index;
 
             txtRole.Text = Program.mRole;
 
@@ -162,6 +188,10 @@ namespace QLGDNganHang
                         dt.Rows.RemoveAt(cbxUsername.SelectedIndex);
                         cbxUsername_SelectedIndexChanged(sender, new EventArgs());
                         txtLoginName.Text = txtPassword.Text = txtConfirmPassword.Text = "";
+                        if (isSpecialAccountCreate)
+                        {
+                            btnExit.PerformClick();
+                        }
                     }
                     catch (Exception ex)
                     {
