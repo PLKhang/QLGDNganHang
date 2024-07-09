@@ -1,6 +1,7 @@
 ﻿using DevExpress.CodeParser;
 using DevExpress.Data.Helpers;
 using DevExpress.Pdf.Native.BouncyCastle.Utilities;
+using DevExpress.Utils.MVVM.Services;
 using DevExpress.XtraEditors.Controls;
 using System;
 using System.Collections.Generic;
@@ -18,13 +19,17 @@ namespace QLGDNganHang
 {
     public partial class frmEmployee : Form
     {
+        private SqlConnection tempConnection = new SqlConnection();
         private DataTable dt;
+        private DataTable dt_login;
         private int currentBranch = Program.currentBranch;
+        private int currentRow = 0; // cbxBranch -> servername
         private string currentLogin = Program.mLoginName;
         private string currentPassword = Program.mPassword;
-        private int currentRow = 0;
         private bool clickReload = false;
         private bool isEditInfo = false;
+        private bool isEditLoginInfo = false;
+        private bool checkPassword = false, checkNewPassword = false, checkConfirmPassword = false;
         private string sortedColumnName;
         private System.Windows.Forms.SortOrder sortedOrder;
         public frmEmployee()
@@ -36,10 +41,15 @@ namespace QLGDNganHang
         {
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.unenableEditInfo();
-            /*if (Program.mRole == "ChiNhanh")
+            this.unenableLoginInfo();
+            if (Program.mRole == "ChiNhanh")
             {
-                cbxBranch.Enabled = false;
-            }*/
+                cbxBranch.Enabled = btnLoad.Enabled = false;
+            }
+            else
+            {
+                this.roleNganHang();
+            }
 
             dt = Program.ExecStoredProcedureReturnTable("select MANV, HO, TEN, CMND, PHAI, SODT, DIACHI, TRANGTHAIXOA as TTX from dbo.NHANVIEN");
             data.AutoGenerateColumns = false;
@@ -51,33 +61,67 @@ namespace QLGDNganHang
             cbxBranch.SelectedIndex = currentBranch;
             cbxBranch.DropDownStyle = ComboBoxStyle.DropDownList;
 
+            List<string> gender = new List<string>() { "Nam", "Nữ" };
+            cbxGender.DataSource = gender;
+            cbxGender.DropDownStyle = ComboBoxStyle.DropDownList;
+
             loadDataGridView();
+        }
+
+        public int TryConnect(string loginName, string password)
+        {
+            if (tempConnection != null && tempConnection.State == ConnectionState.Open)
+            {
+                tempConnection.Close();
+            }
+            try
+            {
+                string connectionString = "Data Source=" + Program.serverName + ";Initial Catalog=" + Program.databaseName + ";User ID=" + loginName + ";Password=" + password;
+                tempConnection.ConnectionString = connectionString;
+                tempConnection.Open();
+                return 1;
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
+        private void roleNganHang()
+        {
+            btnAdd.Enabled = btnDelete.Enabled = btnUndoDelete.Enabled = btnEdit.Enabled
+                = btnTransfer.Enabled = btnLoginInfo.Enabled 
+                = btnUndo.Enabled = false;
         }
 
         private void unenableEditInfo()
         {
             txtFirstName.ReadOnly = txtLastName.ReadOnly = txtID.ReadOnly
-                = txtCMND.ReadOnly = txtPhone.ReadOnly = txtAddress.ReadOnly = true; 
+                = txtCMND.ReadOnly = txtPhone.ReadOnly = txtAddress.ReadOnly = true;
+            btnAdd.Enabled = btnDelete.Enabled = btnUndoDelete.Enabled = btnEdit.Enabled
+                = btnTransfer.Enabled = btnReload.Enabled = btnLoginInfo.Enabled = true;
 
             cbxGender.Enabled = false;
 
             btnCancel.Visible = btnSave.Visible = false;
             data.Enabled = true;
+
+            this.isEditInfo = false;
         }
 
         private void enableEditInfo()
         {
             txtFirstName.ReadOnly = txtLastName.ReadOnly 
                 = txtCMND.ReadOnly = txtPhone.ReadOnly = txtAddress.ReadOnly = false;
+            btnAdd.Enabled = btnDelete.Enabled = btnUndoDelete.Enabled = btnEdit.Enabled
+                = btnTransfer.Enabled = btnReload.Enabled = btnLoginInfo.Enabled = false;
 
             cbxGender.Enabled = true;
-            List<string> gender = new List<string>() { "Nam", "Nữ" };
-            cbxGender.DataSource = gender;
-            cbxGender.SelectedIndex = 0;
-            cbxGender.DropDownStyle = ComboBoxStyle.DropDownList;
 
             btnCancel.Visible = btnSave.Visible = true;
             data.Enabled = false;
+
+            this.isEditInfo = true;
         }
 
         private void deletePanelInfo()
@@ -85,6 +129,38 @@ namespace QLGDNganHang
             txtCMND.Text = txtFirstName.Text = txtLastName.Text = txtPhone.Text = txtAddress.Text = cbxGender.Text = "";
             txtStatus.Text = "ACTIVE";
             txtStatus.BackColor = Color.LightGreen;
+        }
+
+        private void enableLoginInfo()
+        {
+            btnAdd.Enabled = btnDelete.Enabled = btnUndoDelete.Enabled = btnEdit.Enabled
+                = btnTransfer.Enabled = btnReload.Enabled = btnLoginInfo.Enabled = false;
+            lblStatus.Visible = lblID.Visible = lblFname.Visible = lblLname.Visible
+                = lblCMND.Visible = lblGender.Visible = lblAddress.Visible = lblPhone.Visible = false;
+            lblLoginName.Visible = lblID1.Visible = lblUsername.Visible = lblNote.Visible
+                = lblCrrPw.Visible = lblNewPw.Visible = lblConfirmNewPw.Visible = true;
+            txtFirstName.Visible = txtLastName.Visible = txtStatus.Visible = txtID.Visible
+                = txtCMND.Visible = txtPhone.Visible = txtAddress.Visible = cbxGender.Visible = false;
+            txtLoginName.Visible = txtUsername.Visible = txtID1.Visible
+                = txtNewPw.Visible = txtCurrentPw.Visible = txtConfirmNewPw.Visible = true;
+            btnChangePassword.Visible = btnDeleteLogin.Visible = btnCancelPnlLoginInfo.Visible = true;
+            this.isEditLoginInfo = true;
+        }
+
+        private void unenableLoginInfo()
+        {
+            btnAdd.Enabled = btnDelete.Enabled = btnUndoDelete.Enabled = btnEdit.Enabled
+                = btnTransfer.Enabled = btnReload.Enabled = btnLoginInfo.Enabled = true;
+            lblStatus.Visible = lblID.Visible = lblFname.Visible = lblLname.Visible
+                = lblCMND.Visible = lblGender.Visible = lblAddress.Visible = lblPhone.Visible = true;
+            lblLoginName.Visible = lblID1.Visible = lblUsername.Visible = lblNote.Visible
+                = lblCrrPw.Visible = lblNewPw.Visible = lblConfirmNewPw.Visible = false;
+            txtFirstName.Visible = txtLastName.Visible = txtStatus.Visible = txtID.Visible
+                = txtCMND.Visible = txtPhone.Visible = txtAddress.Visible = cbxGender.Visible = true;
+            txtLoginName.Visible = txtUsername.Visible = txtID1.Visible
+                = txtNewPw.Visible = txtCurrentPw.Visible = txtConfirmNewPw.Visible = false;
+            btnChangePassword.Visible = btnDeleteLogin.Visible = btnCancelPnlLoginInfo.Visible = false;
+            this.isEditLoginInfo = false;
         }
 
         private void loadInfomation(DataGridViewRow row)
@@ -111,7 +187,49 @@ namespace QLGDNganHang
             }
         }
 
-        //manv(15,mid), ho (30, left), ten(15, left), CMND(15, mid), phai(10, mid), sdt(15, mid) -> 100%
+        private void loadLoginInfo(DataGridViewRow row)
+        {
+            if (row == null || row.Cells.Count < 8)
+                return;
+            string username = row.Cells["MANV"].Value?.ToString();
+            try
+            {
+                DataRow foundRow = null;
+                foreach (DataRow currentRow in dt_login.Rows)
+                {
+                    if (currentRow["UserName"].ToString() == username)
+                    {
+                        foundRow = currentRow;
+                        break;
+                    }
+                }
+                if (foundRow != null)
+                {
+                    txtLoginName.Text = foundRow[0].ToString();
+                    txtID1.Text = txtUsername.Text = username;
+                }
+                else
+                {
+                    txtID1.Text = txtUsername.Text = txtLoginName.Text = "";
+                    string notification = $"Employee ID {username} doesn't have a login account yet!\nDo you want to create one?";
+                    
+                    if (row.Cells["TTX"].Value?.ToString() == "1")
+                    {
+                        MessageBox.Show("INACTIVE employee don't have login account!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    }
+                    else if (MessageBox.Show(notification, "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                    {
+                        frmRegister form = new frmRegister(username);
+                        form.ShowDialog();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+        //manv(15,mid), ho (25, left), ten(15, left), CMND(15, mid), phai(10, mid), sdt(15, mid), ttx(5, mid) -> 100%
         private void loadDataGridView()
         {
             int panelWidth = data.Width - 40;
@@ -196,7 +314,6 @@ namespace QLGDNganHang
             try
             {
                 dt = Program.ExecStoredProcedureReturnTable("select MANV, HO, TEN, CMND, PHAI, SODT, DIACHI, TRANGTHAIXOA as TTX from dbo.NHANVIEN");
-
                 data.DataSource = dt;
 
             }
@@ -219,7 +336,6 @@ namespace QLGDNganHang
             this.deletePanelInfo();
             
             txtID.Text = Program.ExecStoredProcedureReturnString("sp_TaoMANV");
-            Debug.WriteLine(txtID.Text);
         }
 
         private void btnDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -251,7 +367,7 @@ namespace QLGDNganHang
                                 }
                                 catch (Exception ex)
                                 {
-                                    MessageBox.Show("Can not delete login of this employee!\nError exporting report: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    MessageBox.Show("Can not delete login of this employee!\nError : " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             btnReload.PerformClick();
                             break;
@@ -268,7 +384,7 @@ namespace QLGDNganHang
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error exporting report: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -308,7 +424,7 @@ namespace QLGDNganHang
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error exporting report: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -321,6 +437,9 @@ namespace QLGDNganHang
 
         private void btnLoginInfo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            this.enableLoginInfo();
+
+            dt_login = Program.ExecStoredProcedureReturnTable("Select * from dbo.V_AllLoginName");
 
         }
 
@@ -346,7 +465,7 @@ namespace QLGDNganHang
                     switch (result)
                     {
                         case 0:
-                            MessageBox.Show($"This employee's status have set to \'ACTIVE\'!\nEmployee ID: {ID}", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show($"This employee's status have set to \'INACTIVE\'!\nEmployee ID: {ID}", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             if (Program.ExecStoredProcedureReturnInt("sp_Existed_Username", new SqlParameter("Username", ID)) == 1)
                                 try
                                 {
@@ -371,7 +490,7 @@ namespace QLGDNganHang
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error exporting report: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 this.btnReload.PerformClick();
             }
@@ -395,7 +514,6 @@ namespace QLGDNganHang
                 Program.mPassword = currentPassword;
             }
             Program.serverName = cbxBranch.SelectedValue.ToString();
-            Program.Connect();
             if (Program.Connect() == 1)
             {
                 btnReload.PerformClick();
@@ -407,7 +525,14 @@ namespace QLGDNganHang
             if (data.SelectedRows.Count > 0)
             {
                 DataGridViewRow row = data.SelectedRows[0];
-                this.loadInfomation(row);
+                if (this.isEditLoginInfo)
+                {
+                    this.loadLoginInfo(row);
+                }
+                else
+                {
+                    this.loadInfomation(row);
+                }
                 
                 if (!this.clickReload)
                 this.currentRow = data.Rows.IndexOf(row);
@@ -477,7 +602,11 @@ namespace QLGDNganHang
             string gender = cbxGender.Text;
             string CMND = txtCMND.Text;
             string notification = $"Do you want to add this employee?\nEmployeeID: {ID}\nName: {lastName + " " + firstName}\n";
-            if (MessageBox.Show(notification, "Confirm!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+            if (isEditInfo)
+            {
+                updateEmployeeInfo(ID, firstName, lastName, phoneNumber, address, gender, CMND);
+            }
+            else if (MessageBox.Show(notification, "Confirm!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
             {
                 try
                 {
@@ -503,12 +632,13 @@ namespace QLGDNganHang
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error exporting report: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             this.unenableEditInfo();
             btnReload.PerformClick();
         }
+        
         private void updateEmployeeInfo(string ID, string firstName, string lastName, string phoneNumber, string address, string gender, string CMND)
         {
             this.btnSave.Text = "SAVE";
@@ -543,11 +673,144 @@ namespace QLGDNganHang
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error exporting report: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            this.enableEditInfo();
-            this.btnReload.PerformClick();
+        }
+
+        private void btnChangePassword_Click(object sender, EventArgs e)
+        {
+            string loginName = txtLoginName.Text;
+            string currentPassword = txtCurrentPw.Text;
+            string newPassword = txtNewPw.Text;
+            string confirmPassword = txtConfirmNewPw.Text;
+            
+            if (this.TryConnect(loginName, currentPassword) == 1)
+            {
+                tempConnection.Close();
+                Program.mLoginName = currentLogin;
+                Program.mPassword = this.currentPassword;
+                if (Program.Connect() == 1)
+                {
+                    btnReload.PerformClick();
+                }
+                string notification = $"Are you sure to change this account's password?\nLogin name: {loginName}";
+                if (MessageBox.Show(notification, "Confirm!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                {
+                    Program.ExecStoredProcedureReturnDataReader($"EXEC ChangePassword '{loginName}', '{newPassword}'");
+                    if (txtUsername.Text == Program.mUsername)
+                    {
+                        MessageBox.Show("Your password have been changed!\nPlease login again!");
+                        Program.main.btnLogout.PerformClick();
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Your current password is incorrect", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnDeleteLogin_Click(object sender, EventArgs e)
+        {
+            string username = txtID1.Text;
+            Debug.WriteLine("Username: " + username + "Connection string: " + Program.connectionString);
+            if (txtUsername.Text == "")
+            {
+                return;
+            }
+            if (username == Program.mUsername)
+            {
+                MessageBox.Show("You can not delete your login account!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (MessageBox.Show($"Delete login account of Employee ID {username}?", "Confirm!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+            {
+                try
+                {
+                    Program.ExecStoredProcedureReturnDataReader($"EXEC sp_XoaLogin @USRNAME = {username}");
+                    MessageBox.Show("Login account have been deleted!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DataRow foundRow = null;
+                    foreach (DataRow currentRow in dt_login.Rows)
+                    {
+                        if (currentRow["UserName"].ToString() == username)
+                        {
+                            foundRow = currentRow;
+                            break;
+                        }
+                    }
+                    dt_login.Rows.Remove(foundRow);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Can not delete login: \n" + ex.Message, "Fail!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void btnCancelPnlLoginInfo_Click(object sender, EventArgs e)
+        {
+            this.unenableLoginInfo();
+        }
+
+        private void txtCurrentPw_TextChanged(object sender, EventArgs e)
+        {
+            if (txtCurrentPw.Text.Length == 0)
+            {
+                lblPasswordError.ForeColor = Color.Red;
+                lblPasswordError.Text = "❎";
+                checkPassword = false;
+            }
+            else
+            {
+                lblPasswordError.ForeColor = Color.Green;
+                lblPasswordError.Text = "✅";
+                checkPassword = true;
+            }
+        }
+
+        private void txtNewPw_TextChanged(object sender, EventArgs e)
+        {
+            if (txtCurrentPw.Text.Length == 0)
+            {
+                lblNewPasswordError.ForeColor = Color.Red;
+                lblNewPasswordError.Text = "❎";
+                checkNewPassword = false;
+            }
+            else
+            {
+                lblNewPasswordError.ForeColor = Color.Green;
+                lblNewPasswordError.Text = "✅";
+                checkNewPassword = true;
+            }
+        }
+
+        private void txtConfirmNewPw_TextChanged(object sender, EventArgs e)
+        {
+            if (txtConfirmNewPw.Text.Length == 0)
+            {
+                lblConfirmPasswordError.ForeColor = Color.Red;
+                lblConfirmPasswordError.Text = "❎";
+                checkConfirmPassword = false;
+            }
+            else if (txtConfirmNewPw.Text != txtNewPw.Text)
+            {
+                lblConfirmPasswordError.ForeColor = Color.Red;
+                lblConfirmPasswordError.Text = "❎";
+                checkConfirmPassword = false;
+            }
+            else
+            {
+                lblConfirmPasswordError.ForeColor = Color.Green;
+                lblConfirmPasswordError.Text = "✅";
+                checkConfirmPassword = true;
+            }
+        }
+
+        private void txtCurrentPw_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Program.ValidateKeyPress(e.KeyChar))
+            { e.Handled = true; }
         }
     }
 }
