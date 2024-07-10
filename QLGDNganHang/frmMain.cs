@@ -152,6 +152,18 @@ namespace QLGDNganHang
         //------Ribbon Page Group Features  ------//
         private void btnTransfer_ItemClick(object sender, ItemClickEventArgs e)
         {
+            Form form = this.CheckExists(typeof(frmTransfer));
+            if (form != null)
+            {
+                form.Activate();
+                //this.ActivateMdiChild(form);
+            }
+            else
+            {
+                frmTransfer f = new frmTransfer();
+                f.MdiParent = this;
+                f.Show();
+            }
         }
 
         private void btnSendWithdraw_ItemClick(object sender, ItemClickEventArgs e)

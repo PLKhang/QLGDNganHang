@@ -23,7 +23,7 @@ namespace QLGDNganHang
         private DataTable dt;
         private DataTable dt_login;
         private int currentBranch = Program.currentBranch;
-        private int currentRow = 0; // cbxBranch -> servername
+        private int currentRow = 0; // reload datagridview
         private string currentLogin = Program.mLoginName;
         private string currentPassword = Program.mPassword;
         private bool clickReload = false;
@@ -234,6 +234,27 @@ namespace QLGDNganHang
         {
             int panelWidth = data.Width - 40;
             data.Columns.Clear();
+
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.data.ColumnHeadersHeight = 35;
+
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.data.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.data.DefaultCellStyle = dataGridViewCellStyle2;
 
             // Tạo cột cho MANV
             DataGridViewTextBoxColumn idColumn = new DataGridViewTextBoxColumn();
@@ -684,6 +705,10 @@ namespace QLGDNganHang
             string currentPassword = txtCurrentPw.Text;
             string newPassword = txtNewPw.Text;
             string confirmPassword = txtConfirmNewPw.Text;
+            if (!(checkPassword && checkNewPassword && checkConfirmPassword))
+            {
+                MessageBox.Show("Complete all password to continue!", "Fail!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             
             if (this.TryConnect(loginName, currentPassword) == 1)
             {

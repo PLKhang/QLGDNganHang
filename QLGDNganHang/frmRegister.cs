@@ -20,7 +20,7 @@ namespace QLGDNganHang
         private string specialUsername;
         private DataTable dt = new DataTable();
         private DataTable dtLoginName = new DataTable();
-        private bool isShowingPassword = false;
+        private bool isShowingPassword = true;
         private bool checkLoginName = false, checkPassword = false, checkConfirmPassword = false;
         private bool isSpecialAccountCreate = false;
         public frmRegister()

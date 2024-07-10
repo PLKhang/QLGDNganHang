@@ -6,6 +6,7 @@ namespace QLGDNganHang
 {
     partial class frmEmployee
     {
+        public System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -34,8 +35,23 @@ namespace QLGDNganHang
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEmployee));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlEmployeeInfo = new DevExpress.XtraEditors.PanelControl();
+            this.txtLoginName = new System.Windows.Forms.TextBox();
+            this.btnCancelPnlLoginInfo = new System.Windows.Forms.Button();
+            this.btnDeleteLogin = new System.Windows.Forms.Button();
+            this.btnChangePassword = new System.Windows.Forms.Button();
+            this.lblCrrPw = new System.Windows.Forms.Label();
+            this.lblNote = new System.Windows.Forms.Label();
+            this.lblLoginName = new System.Windows.Forms.Label();
+            this.lblConfirmNewPw = new System.Windows.Forms.Label();
+            this.txtConfirmNewPw = new System.Windows.Forms.TextBox();
+            this.lblNewPw = new System.Windows.Forms.Label();
+            this.txtCurrentPw = new System.Windows.Forms.TextBox();
+            this.txtNewPw = new System.Windows.Forms.TextBox();
+            this.lblID1 = new System.Windows.Forms.Label();
+            this.lblUsername = new System.Windows.Forms.Label();
+            this.txtID1 = new System.Windows.Forms.TextBox();
+            this.txtUsername = new System.Windows.Forms.TextBox();
             this.txtStatus = new System.Windows.Forms.TextBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
@@ -43,6 +59,9 @@ namespace QLGDNganHang
             this.txtAddress = new System.Windows.Forms.RichTextBox();
             this.lblGender = new System.Windows.Forms.Label();
             this.lblAddress = new System.Windows.Forms.Label();
+            this.lblConfirmPasswordError = new System.Windows.Forms.Label();
+            this.lblNewPasswordError = new System.Windows.Forms.Label();
+            this.lblPasswordError = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
             this.lblPhone = new System.Windows.Forms.Label();
             this.txtPhone = new System.Windows.Forms.TextBox();
@@ -74,25 +93,6 @@ namespace QLGDNganHang
             this.label1 = new System.Windows.Forms.Label();
             this.btnLoad = new System.Windows.Forms.Button();
             this.data = new System.Windows.Forms.DataGridView();
-            this.txtLoginName = new System.Windows.Forms.TextBox();
-            this.btnCancelPnlLoginInfo = new System.Windows.Forms.Button();
-            this.btnDeleteLogin = new System.Windows.Forms.Button();
-            this.btnChangePassword = new System.Windows.Forms.Button();
-            this.lblCrrPw = new System.Windows.Forms.Label();
-            this.lblNote = new System.Windows.Forms.Label();
-            this.lblLoginName = new System.Windows.Forms.Label();
-            this.lblConfirmNewPw = new System.Windows.Forms.Label();
-            this.txtConfirmNewPw = new System.Windows.Forms.TextBox();
-            this.lblNewPw = new System.Windows.Forms.Label();
-            this.txtCurrentPw = new System.Windows.Forms.TextBox();
-            this.txtNewPw = new System.Windows.Forms.TextBox();
-            this.lblID1 = new System.Windows.Forms.Label();
-            this.lblUsername = new System.Windows.Forms.Label();
-            this.txtID1 = new System.Windows.Forms.TextBox();
-            this.txtUsername = new System.Windows.Forms.TextBox();
-            this.lblPasswordError = new System.Windows.Forms.Label();
-            this.lblConfirmPasswordError = new System.Windows.Forms.Label();
-            this.lblNewPasswordError = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pnlEmployeeInfo)).BeginInit();
             this.pnlEmployeeInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
@@ -146,6 +146,173 @@ namespace QLGDNganHang
             this.pnlEmployeeInfo.Name = "pnlEmployeeInfo";
             this.pnlEmployeeInfo.Size = new System.Drawing.Size(616, 688);
             this.pnlEmployeeInfo.TabIndex = 1;
+            // 
+            // txtLoginName
+            // 
+            this.txtLoginName.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtLoginName.Location = new System.Drawing.Point(207, 87);
+            this.txtLoginName.Name = "txtLoginName";
+            this.txtLoginName.ReadOnly = true;
+            this.txtLoginName.Size = new System.Drawing.Size(327, 28);
+            this.txtLoginName.TabIndex = 40;
+            // 
+            // btnCancelPnlLoginInfo
+            // 
+            this.btnCancelPnlLoginInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnCancelPnlLoginInfo.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.btnCancelPnlLoginInfo.Location = new System.Drawing.Point(417, 501);
+            this.btnCancelPnlLoginInfo.Name = "btnCancelPnlLoginInfo";
+            this.btnCancelPnlLoginInfo.Size = new System.Drawing.Size(117, 47);
+            this.btnCancelPnlLoginInfo.TabIndex = 39;
+            this.btnCancelPnlLoginInfo.Text = "CANCEL";
+            this.btnCancelPnlLoginInfo.UseVisualStyleBackColor = false;
+            this.btnCancelPnlLoginInfo.Click += new System.EventHandler(this.btnCancelPnlLoginInfo_Click);
+            // 
+            // btnDeleteLogin
+            // 
+            this.btnDeleteLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnDeleteLogin.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.btnDeleteLogin.Location = new System.Drawing.Point(271, 501);
+            this.btnDeleteLogin.Name = "btnDeleteLogin";
+            this.btnDeleteLogin.Size = new System.Drawing.Size(117, 47);
+            this.btnDeleteLogin.TabIndex = 37;
+            this.btnDeleteLogin.Text = "DELETE";
+            this.btnDeleteLogin.UseVisualStyleBackColor = false;
+            this.btnDeleteLogin.Click += new System.EventHandler(this.btnDeleteLogin_Click);
+            // 
+            // btnChangePassword
+            // 
+            this.btnChangePassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnChangePassword.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.btnChangePassword.Location = new System.Drawing.Point(28, 501);
+            this.btnChangePassword.Name = "btnChangePassword";
+            this.btnChangePassword.Size = new System.Drawing.Size(144, 47);
+            this.btnChangePassword.TabIndex = 38;
+            this.btnChangePassword.Text = "SAVE CHANGE";
+            this.btnChangePassword.UseVisualStyleBackColor = false;
+            this.btnChangePassword.Click += new System.EventHandler(this.btnChangePassword_Click);
+            // 
+            // lblCrrPw
+            // 
+            this.lblCrrPw.AutoSize = true;
+            this.lblCrrPw.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.lblCrrPw.Location = new System.Drawing.Point(25, 282);
+            this.lblCrrPw.Name = "lblCrrPw";
+            this.lblCrrPw.Size = new System.Drawing.Size(147, 21);
+            this.lblCrrPw.TabIndex = 34;
+            this.lblCrrPw.Text = "Current password:";
+            // 
+            // lblNote
+            // 
+            this.lblNote.AutoSize = true;
+            this.lblNote.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.lblNote.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.lblNote.Location = new System.Drawing.Point(25, 19);
+            this.lblNote.Name = "lblNote";
+            this.lblNote.Size = new System.Drawing.Size(567, 21);
+            this.lblNote.TabIndex = 35;
+            this.lblNote.Text = "YOU CAN ONLY CHANGE PASSWORD OR DELETE LOGIN ACCOUNT HERE!";
+            // 
+            // lblLoginName
+            // 
+            this.lblLoginName.AutoSize = true;
+            this.lblLoginName.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.lblLoginName.Location = new System.Drawing.Point(64, 87);
+            this.lblLoginName.Name = "lblLoginName";
+            this.lblLoginName.Size = new System.Drawing.Size(101, 21);
+            this.lblLoginName.TabIndex = 36;
+            this.lblLoginName.Text = "Login name:";
+            // 
+            // lblConfirmNewPw
+            // 
+            this.lblConfirmNewPw.AutoSize = true;
+            this.lblConfirmNewPw.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.lblConfirmNewPw.Location = new System.Drawing.Point(23, 389);
+            this.lblConfirmNewPw.Name = "lblConfirmNewPw";
+            this.lblConfirmNewPw.Size = new System.Drawing.Size(149, 21);
+            this.lblConfirmNewPw.TabIndex = 32;
+            this.lblConfirmNewPw.Text = "Confirm password:";
+            // 
+            // txtConfirmNewPw
+            // 
+            this.txtConfirmNewPw.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtConfirmNewPw.Location = new System.Drawing.Point(207, 389);
+            this.txtConfirmNewPw.Name = "txtConfirmNewPw";
+            this.txtConfirmNewPw.Size = new System.Drawing.Size(327, 28);
+            this.txtConfirmNewPw.TabIndex = 26;
+            this.txtConfirmNewPw.UseSystemPasswordChar = true;
+            this.txtConfirmNewPw.TextChanged += new System.EventHandler(this.txtConfirmNewPw_TextChanged);
+            this.txtConfirmNewPw.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCurrentPw_KeyPress);
+            // 
+            // lblNewPw
+            // 
+            this.lblNewPw.AutoSize = true;
+            this.lblNewPw.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.lblNewPw.Location = new System.Drawing.Point(47, 334);
+            this.lblNewPw.Name = "lblNewPw";
+            this.lblNewPw.Size = new System.Drawing.Size(125, 21);
+            this.lblNewPw.TabIndex = 33;
+            this.lblNewPw.Text = "New password:";
+            // 
+            // txtCurrentPw
+            // 
+            this.txtCurrentPw.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtCurrentPw.Location = new System.Drawing.Point(207, 282);
+            this.txtCurrentPw.Name = "txtCurrentPw";
+            this.txtCurrentPw.Size = new System.Drawing.Size(327, 28);
+            this.txtCurrentPw.TabIndex = 27;
+            this.txtCurrentPw.UseSystemPasswordChar = true;
+            this.txtCurrentPw.TextChanged += new System.EventHandler(this.txtCurrentPw_TextChanged);
+            this.txtCurrentPw.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCurrentPw_KeyPress);
+            // 
+            // txtNewPw
+            // 
+            this.txtNewPw.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtNewPw.Location = new System.Drawing.Point(207, 334);
+            this.txtNewPw.Name = "txtNewPw";
+            this.txtNewPw.Size = new System.Drawing.Size(327, 28);
+            this.txtNewPw.TabIndex = 28;
+            this.txtNewPw.UseSystemPasswordChar = true;
+            this.txtNewPw.TextChanged += new System.EventHandler(this.txtNewPw_TextChanged);
+            this.txtNewPw.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCurrentPw_KeyPress);
+            // 
+            // lblID1
+            // 
+            this.lblID1.AutoSize = true;
+            this.lblID1.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.lblID1.Location = new System.Drawing.Point(54, 137);
+            this.lblID1.Name = "lblID1";
+            this.lblID1.Size = new System.Drawing.Size(111, 21);
+            this.lblID1.TabIndex = 31;
+            this.lblID1.Text = "Employee ID:";
+            // 
+            // lblUsername
+            // 
+            this.lblUsername.AutoSize = true;
+            this.lblUsername.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.lblUsername.Location = new System.Drawing.Point(74, 189);
+            this.lblUsername.Name = "lblUsername";
+            this.lblUsername.Size = new System.Drawing.Size(91, 21);
+            this.lblUsername.TabIndex = 30;
+            this.lblUsername.Text = "Username:";
+            // 
+            // txtID1
+            // 
+            this.txtID1.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtID1.Location = new System.Drawing.Point(207, 137);
+            this.txtID1.Name = "txtID1";
+            this.txtID1.ReadOnly = true;
+            this.txtID1.Size = new System.Drawing.Size(327, 28);
+            this.txtID1.TabIndex = 29;
+            // 
+            // txtUsername
+            // 
+            this.txtUsername.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtUsername.Location = new System.Drawing.Point(207, 189);
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.ReadOnly = true;
+            this.txtUsername.Size = new System.Drawing.Size(327, 28);
+            this.txtUsername.TabIndex = 25;
             // 
             // txtStatus
             // 
@@ -217,6 +384,33 @@ namespace QLGDNganHang
             this.lblAddress.Size = new System.Drawing.Size(76, 21);
             this.lblAddress.TabIndex = 1;
             this.lblAddress.Text = "Address:";
+            // 
+            // lblConfirmPasswordError
+            // 
+            this.lblConfirmPasswordError.AutoSize = true;
+            this.lblConfirmPasswordError.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.lblConfirmPasswordError.Location = new System.Drawing.Point(541, 392);
+            this.lblConfirmPasswordError.Name = "lblConfirmPasswordError";
+            this.lblConfirmPasswordError.Size = new System.Drawing.Size(0, 21);
+            this.lblConfirmPasswordError.TabIndex = 1;
+            // 
+            // lblNewPasswordError
+            // 
+            this.lblNewPasswordError.AutoSize = true;
+            this.lblNewPasswordError.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.lblNewPasswordError.Location = new System.Drawing.Point(541, 337);
+            this.lblNewPasswordError.Name = "lblNewPasswordError";
+            this.lblNewPasswordError.Size = new System.Drawing.Size(0, 21);
+            this.lblNewPasswordError.TabIndex = 1;
+            // 
+            // lblPasswordError
+            // 
+            this.lblPasswordError.AutoSize = true;
+            this.lblPasswordError.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.lblPasswordError.Location = new System.Drawing.Point(540, 285);
+            this.lblPasswordError.Name = "lblPasswordError";
+            this.lblPasswordError.Size = new System.Drawing.Size(0, 21);
+            this.lblPasswordError.TabIndex = 1;
             // 
             // lblStatus
             // 
@@ -557,218 +751,19 @@ namespace QLGDNganHang
             this.data.AllowUserToDeleteRows = false;
             this.data.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.data.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.data.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.data.ColumnHeadersHeight = 35;
             this.data.Dock = System.Windows.Forms.DockStyle.Fill;
             this.data.Location = new System.Drawing.Point(0, 157);
             this.data.MultiSelect = false;
             this.data.Name = "data";
             this.data.ReadOnly = true;
-            this.data.RowHeadersWidth = 51;
+            this.data.RowHeadersWidth = 40;
             this.data.RowTemplate.Height = 24;
             this.data.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.data.Size = new System.Drawing.Size(635, 571);
             this.data.TabIndex = 13;
             this.data.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.data_CellFormatting);
             this.data.SelectionChanged += new System.EventHandler(this.data_SelectionChanged);
-            // 
-            // txtLoginName
-            // 
-            this.txtLoginName.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtLoginName.Location = new System.Drawing.Point(207, 87);
-            this.txtLoginName.Name = "txtLoginName";
-            this.txtLoginName.ReadOnly = true;
-            this.txtLoginName.Size = new System.Drawing.Size(327, 28);
-            this.txtLoginName.TabIndex = 40;
-            // 
-            // btnCancelPnlLoginInfo
-            // 
-            this.btnCancelPnlLoginInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btnCancelPnlLoginInfo.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.btnCancelPnlLoginInfo.Location = new System.Drawing.Point(417, 501);
-            this.btnCancelPnlLoginInfo.Name = "btnCancelPnlLoginInfo";
-            this.btnCancelPnlLoginInfo.Size = new System.Drawing.Size(117, 47);
-            this.btnCancelPnlLoginInfo.TabIndex = 39;
-            this.btnCancelPnlLoginInfo.Text = "CANCEL";
-            this.btnCancelPnlLoginInfo.UseVisualStyleBackColor = false;
-            this.btnCancelPnlLoginInfo.Click += new System.EventHandler(this.btnCancelPnlLoginInfo_Click);
-            // 
-            // btnDeleteLogin
-            // 
-            this.btnDeleteLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btnDeleteLogin.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.btnDeleteLogin.Location = new System.Drawing.Point(271, 501);
-            this.btnDeleteLogin.Name = "btnDeleteLogin";
-            this.btnDeleteLogin.Size = new System.Drawing.Size(117, 47);
-            this.btnDeleteLogin.TabIndex = 37;
-            this.btnDeleteLogin.Text = "DELETE";
-            this.btnDeleteLogin.UseVisualStyleBackColor = false;
-            this.btnDeleteLogin.Click += new System.EventHandler(this.btnDeleteLogin_Click);
-            // 
-            // btnChangePassword
-            // 
-            this.btnChangePassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnChangePassword.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.btnChangePassword.Location = new System.Drawing.Point(28, 501);
-            this.btnChangePassword.Name = "btnChangePassword";
-            this.btnChangePassword.Size = new System.Drawing.Size(144, 47);
-            this.btnChangePassword.TabIndex = 38;
-            this.btnChangePassword.Text = "SAVE CHANGE";
-            this.btnChangePassword.UseVisualStyleBackColor = false;
-            this.btnChangePassword.Click += new System.EventHandler(this.btnChangePassword_Click);
-            // 
-            // lblCrrPw
-            // 
-            this.lblCrrPw.AutoSize = true;
-            this.lblCrrPw.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.lblCrrPw.Location = new System.Drawing.Point(25, 282);
-            this.lblCrrPw.Name = "lblCrrPw";
-            this.lblCrrPw.Size = new System.Drawing.Size(147, 21);
-            this.lblCrrPw.TabIndex = 34;
-            this.lblCrrPw.Text = "Current password:";
-            // 
-            // lblNote
-            // 
-            this.lblNote.AutoSize = true;
-            this.lblNote.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.lblNote.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.lblNote.Location = new System.Drawing.Point(25, 19);
-            this.lblNote.Name = "lblNote";
-            this.lblNote.Size = new System.Drawing.Size(567, 21);
-            this.lblNote.TabIndex = 35;
-            this.lblNote.Text = "YOU CAN ONLY CHANGE PASSWORD OR DELETE LOGIN ACCOUNT HERE!";
-            // 
-            // lblLoginName
-            // 
-            this.lblLoginName.AutoSize = true;
-            this.lblLoginName.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.lblLoginName.Location = new System.Drawing.Point(64, 87);
-            this.lblLoginName.Name = "lblLoginName";
-            this.lblLoginName.Size = new System.Drawing.Size(101, 21);
-            this.lblLoginName.TabIndex = 36;
-            this.lblLoginName.Text = "Login name:";
-            // 
-            // lblConfirmNewPw
-            // 
-            this.lblConfirmNewPw.AutoSize = true;
-            this.lblConfirmNewPw.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.lblConfirmNewPw.Location = new System.Drawing.Point(23, 389);
-            this.lblConfirmNewPw.Name = "lblConfirmNewPw";
-            this.lblConfirmNewPw.Size = new System.Drawing.Size(149, 21);
-            this.lblConfirmNewPw.TabIndex = 32;
-            this.lblConfirmNewPw.Text = "Confirm password:";
-            // 
-            // txtConfirmNewPw
-            // 
-            this.txtConfirmNewPw.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtConfirmNewPw.Location = new System.Drawing.Point(207, 389);
-            this.txtConfirmNewPw.Name = "txtConfirmNewPw";
-            this.txtConfirmNewPw.Size = new System.Drawing.Size(327, 28);
-            this.txtConfirmNewPw.TabIndex = 26;
-            this.txtConfirmNewPw.TextChanged += new System.EventHandler(this.txtConfirmNewPw_TextChanged);
-            this.txtConfirmNewPw.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCurrentPw_KeyPress);
-            // 
-            // lblNewPw
-            // 
-            this.lblNewPw.AutoSize = true;
-            this.lblNewPw.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.lblNewPw.Location = new System.Drawing.Point(47, 334);
-            this.lblNewPw.Name = "lblNewPw";
-            this.lblNewPw.Size = new System.Drawing.Size(125, 21);
-            this.lblNewPw.TabIndex = 33;
-            this.lblNewPw.Text = "New password:";
-            // 
-            // txtCurrentPw
-            // 
-            this.txtCurrentPw.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCurrentPw.Location = new System.Drawing.Point(207, 282);
-            this.txtCurrentPw.Name = "txtCurrentPw";
-            this.txtCurrentPw.Size = new System.Drawing.Size(327, 28);
-            this.txtCurrentPw.TabIndex = 27;
-            this.txtCurrentPw.TextChanged += new System.EventHandler(this.txtCurrentPw_TextChanged);
-            this.txtCurrentPw.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCurrentPw_KeyPress);
-            // 
-            // txtNewPw
-            // 
-            this.txtNewPw.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtNewPw.Location = new System.Drawing.Point(207, 334);
-            this.txtNewPw.Name = "txtNewPw";
-            this.txtNewPw.Size = new System.Drawing.Size(327, 28);
-            this.txtNewPw.TabIndex = 28;
-            this.txtNewPw.TextChanged += new System.EventHandler(this.txtNewPw_TextChanged);
-            this.txtNewPw.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCurrentPw_KeyPress);
-            // 
-            // lblID1
-            // 
-            this.lblID1.AutoSize = true;
-            this.lblID1.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.lblID1.Location = new System.Drawing.Point(54, 137);
-            this.lblID1.Name = "lblID1";
-            this.lblID1.Size = new System.Drawing.Size(111, 21);
-            this.lblID1.TabIndex = 31;
-            this.lblID1.Text = "Employee ID:";
-            // 
-            // lblUsername
-            // 
-            this.lblUsername.AutoSize = true;
-            this.lblUsername.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.lblUsername.Location = new System.Drawing.Point(74, 189);
-            this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(91, 21);
-            this.lblUsername.TabIndex = 30;
-            this.lblUsername.Text = "Username:";
-            // 
-            // txtID1
-            // 
-            this.txtID1.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtID1.Location = new System.Drawing.Point(207, 137);
-            this.txtID1.Name = "txtID1";
-            this.txtID1.ReadOnly = true;
-            this.txtID1.Size = new System.Drawing.Size(327, 28);
-            this.txtID1.TabIndex = 29;
-            // 
-            // txtUsername
-            // 
-            this.txtUsername.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtUsername.Location = new System.Drawing.Point(207, 189);
-            this.txtUsername.Name = "txtUsername";
-            this.txtUsername.ReadOnly = true;
-            this.txtUsername.Size = new System.Drawing.Size(327, 28);
-            this.txtUsername.TabIndex = 25;
-            // 
-            // lblPasswordError
-            // 
-            this.lblPasswordError.AutoSize = true;
-            this.lblPasswordError.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.lblPasswordError.Location = new System.Drawing.Point(540, 285);
-            this.lblPasswordError.Name = "lblPasswordError";
-            this.lblPasswordError.Size = new System.Drawing.Size(0, 21);
-            this.lblPasswordError.TabIndex = 1;
-            // 
-            // lblConfirmPasswordError
-            // 
-            this.lblConfirmPasswordError.AutoSize = true;
-            this.lblConfirmPasswordError.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.lblConfirmPasswordError.Location = new System.Drawing.Point(541, 392);
-            this.lblConfirmPasswordError.Name = "lblConfirmPasswordError";
-            this.lblConfirmPasswordError.Size = new System.Drawing.Size(0, 21);
-            this.lblConfirmPasswordError.TabIndex = 1;
-            // 
-            // lblNewPasswordError
-            // 
-            this.lblNewPasswordError.AutoSize = true;
-            this.lblNewPasswordError.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.lblNewPasswordError.Location = new System.Drawing.Point(541, 337);
-            this.lblNewPasswordError.Name = "lblNewPasswordError";
-            this.lblNewPasswordError.Size = new System.Drawing.Size(0, 21);
-            this.lblNewPasswordError.TabIndex = 1;
             // 
             // frmEmployee
             // 
