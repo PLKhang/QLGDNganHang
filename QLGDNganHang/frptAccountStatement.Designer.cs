@@ -90,6 +90,9 @@
             // 
             // cbxAccountID
             // 
+            this.cbxAccountID.AllowDrop = true;
+            this.cbxAccountID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbxAccountID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbxAccountID.FormattingEnabled = true;
             this.cbxAccountID.Location = new System.Drawing.Point(176, 107);
             this.cbxAccountID.Name = "cbxAccountID";

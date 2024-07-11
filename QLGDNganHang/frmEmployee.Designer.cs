@@ -714,6 +714,9 @@ namespace QLGDNganHang
             // 
             // cbxBranch
             // 
+            this.cbxBranch.AllowDrop = true;
+            this.cbxBranch.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbxBranch.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbxBranch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxBranch.FormattingEnabled = true;
             this.cbxBranch.Location = new System.Drawing.Point(80, 55);
@@ -764,6 +767,7 @@ namespace QLGDNganHang
             this.data.TabIndex = 13;
             this.data.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.data_CellFormatting);
             this.data.SelectionChanged += new System.EventHandler(this.data_SelectionChanged);
+            this.data.Click += new System.EventHandler(this.data_SelectionChanged);
             // 
             // frmEmployee
             // 

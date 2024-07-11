@@ -168,7 +168,18 @@ namespace QLGDNganHang
 
         private void btnSendWithdraw_ItemClick(object sender, ItemClickEventArgs e)
         {
-
+            Form form = this.CheckExists(typeof(frmTransaction));
+            if (form != null)
+            {
+                form.Activate();
+                //this.ActivateMdiChild(form);
+            }
+            else
+            {
+                frmTransaction f = new frmTransaction();
+                f.MdiParent = this;
+                f.Show();
+            }
         }
 
         //-----------------Ribbon Page Reports ------------------------//

@@ -82,6 +82,9 @@
             // 
             // cbxUsername
             // 
+            this.cbxUsername.AllowDrop = true;
+            this.cbxUsername.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbxUsername.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbxUsername.FormattingEnabled = true;
             this.cbxUsername.Location = new System.Drawing.Point(221, 93);
             this.cbxUsername.Name = "cbxUsername";

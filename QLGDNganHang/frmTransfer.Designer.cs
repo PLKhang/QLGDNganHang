@@ -513,6 +513,7 @@
             // 
             this.cbxCustomer.AllowDrop = true;
             this.cbxCustomer.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbxCustomer.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbxCustomer.FormattingEnabled = true;
             this.cbxCustomer.Location = new System.Drawing.Point(223, 94);
             this.cbxCustomer.Name = "cbxCustomer";
@@ -576,6 +577,7 @@
             this.data.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.data.Size = new System.Drawing.Size(744, 619);
             this.data.TabIndex = 6;
+            this.data.SelectionChanged += new System.EventHandler(this.data_SelectionChanged);
             this.data.Click += new System.EventHandler(this.data_SelectionChanged);
             // 
             // frmTransfer

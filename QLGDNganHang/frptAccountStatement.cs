@@ -65,7 +65,7 @@ namespace QLGDNganHang
             if (!checkForm())
                 return;
 
-            rpt = new XrptAccountStatement(pickerStartDate.Value, pickerEndDate.Value, cbxAccountID.Text, txtCMND.Text, txtName.Text);
+            rpt = new XrptAccountStatement(pickerStartDate.Value, pickerEndDate.Value.AddDays(1), cbxAccountID.Text, txtCMND.Text, txtName.Text);
 
             rpt.ShowPreviewDialog();
         }

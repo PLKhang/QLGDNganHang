@@ -67,6 +67,7 @@ namespace QLGDNganHang
 
                 Program.Login(loginName, username, name, role);
                 Program.currentBranch = cbxBranchs.SelectedIndex;
+                Program.branchID = Program.ExecStoredProcedureReturnString("Select MACN from dbo.CHINHANH");
 
                 Program.main.lblUsername.Text += username;
                 Program.main.lblName.Text += name;

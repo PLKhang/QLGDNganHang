@@ -25,6 +25,22 @@ namespace QLGDNganHang
             InitializeComponent();
         }
 
+        public frmTransfer(string account)
+        {
+            InitializeComponent();
+
+            state = 2;
+            foreach (DataGridViewRow row in data.Rows)
+            {
+                if (row.Cells["SOTK"].Value.ToString() == account)
+                {
+                    loadSendInformation(row);
+                    break;
+                }
+            }
+            loadDataTable(account);
+        }
+
         private void frmTransfer_Load(object sender, EventArgs e)
         {
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -38,7 +54,6 @@ namespace QLGDNganHang
             cbxCustomer.DataSource = dtCustomer;
             cbxCustomer.DisplayMember = "CMND";
             cbxCustomer.ValueMember = "CMND";
-            cbxCustomer.Text = "";
 
             btnShowAll.PerformClick();
         }
@@ -51,6 +66,10 @@ namespace QLGDNganHang
                 {
                     this.Close();
                 }
+            }
+            else
+            {
+                this.Close();
             }
         }
 
