@@ -30,6 +30,7 @@ namespace QLGDNganHang
         public static string mName = "";
 
         public static int currentBranch = 0;
+        public static string branchID = "";
         public static string serverName = "";
         public static string databaseName = "NGANHANG";
         public static string remoteLogin = "HTKN";
