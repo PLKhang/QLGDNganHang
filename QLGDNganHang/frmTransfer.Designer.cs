@@ -30,16 +30,18 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTransfer));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnSendInfo = new System.Windows.Forms.Button();
+            this.btnReceiveInfo = new System.Windows.Forms.Button();
             this.btnConfirm = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.txtAmount = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtRecieveAccount = new System.Windows.Forms.TextBox();
+            this.txtReceiveAccount = new System.Windows.Forms.TextBox();
             this.txtBalance = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtSendAccount = new System.Windows.Forms.TextBox();
@@ -47,9 +49,9 @@
             this.label7 = new System.Windows.Forms.Label();
             this.txtEmployeeID = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.txtRecieveName = new System.Windows.Forms.TextBox();
+            this.txtReceiveName = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.txtRecieveCMND = new System.Windows.Forms.TextBox();
+            this.txtReceiveCMND = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.txtSendCMND = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -57,7 +59,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.barControl = new DevExpress.XtraBars.Bar();
-            this.btnAdd = new DevExpress.XtraBars.BarButtonItem();
             this.btnReload = new DevExpress.XtraBars.BarButtonItem();
             this.btnUndo = new DevExpress.XtraBars.BarButtonItem();
             this.btnExit = new DevExpress.XtraBars.BarButtonItem();
@@ -65,6 +66,7 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.btnAdd = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnShowAll = new System.Windows.Forms.Button();
@@ -72,8 +74,6 @@
             this.lblNotification = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.data = new System.Windows.Forms.DataGridView();
-            this.btnRecieveInfo = new System.Windows.Forms.Button();
-            this.btnSendInfo = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
@@ -84,14 +84,14 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.btnSendInfo);
-            this.panel1.Controls.Add(this.btnRecieveInfo);
+            this.panel1.Controls.Add(this.btnReceiveInfo);
             this.panel1.Controls.Add(this.btnConfirm);
             this.panel1.Controls.Add(this.btnClear);
             this.panel1.Controls.Add(this.txtAmount);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.txtRecieveAccount);
+            this.panel1.Controls.Add(this.txtReceiveAccount);
             this.panel1.Controls.Add(this.txtBalance);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.txtSendAccount);
@@ -99,9 +99,9 @@
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.txtEmployeeID);
             this.panel1.Controls.Add(this.label10);
-            this.panel1.Controls.Add(this.txtRecieveName);
+            this.panel1.Controls.Add(this.txtReceiveName);
             this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.txtRecieveCMND);
+            this.panel1.Controls.Add(this.txtReceiveCMND);
             this.panel1.Controls.Add(this.label13);
             this.panel1.Controls.Add(this.txtSendCMND);
             this.panel1.Controls.Add(this.label12);
@@ -114,6 +114,28 @@
             this.panel1.Size = new System.Drawing.Size(714, 763);
             this.panel1.TabIndex = 0;
             // 
+            // btnSendInfo
+            // 
+            this.btnSendInfo.BackColor = System.Drawing.Color.White;
+            this.btnSendInfo.Location = new System.Drawing.Point(477, 40);
+            this.btnSendInfo.Name = "btnSendInfo";
+            this.btnSendInfo.Size = new System.Drawing.Size(120, 41);
+            this.btnSendInfo.TabIndex = 4;
+            this.btnSendInfo.Text = "CHOOSE";
+            this.btnSendInfo.UseVisualStyleBackColor = false;
+            this.btnSendInfo.Click += new System.EventHandler(this.btnSendInfo_Click);
+            // 
+            // btnReceiveInfo
+            // 
+            this.btnReceiveInfo.BackColor = System.Drawing.Color.White;
+            this.btnReceiveInfo.Location = new System.Drawing.Point(477, 309);
+            this.btnReceiveInfo.Name = "btnReceiveInfo";
+            this.btnReceiveInfo.Size = new System.Drawing.Size(120, 41);
+            this.btnReceiveInfo.TabIndex = 4;
+            this.btnReceiveInfo.Text = "CHOOSE";
+            this.btnReceiveInfo.UseVisualStyleBackColor = false;
+            this.btnReceiveInfo.Click += new System.EventHandler(this.btnReceiveInfo_Click);
+            // 
             // btnConfirm
             // 
             this.btnConfirm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
@@ -123,6 +145,7 @@
             this.btnConfirm.TabIndex = 4;
             this.btnConfirm.Text = "CONFIRM";
             this.btnConfirm.UseVisualStyleBackColor = false;
+            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
             // btnClear
             // 
@@ -133,6 +156,7 @@
             this.btnClear.TabIndex = 3;
             this.btnClear.Text = "CLEAR";
             this.btnClear.UseVisualStyleBackColor = false;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // txtAmount
             // 
@@ -166,7 +190,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(550, 41);
             this.label6.TabIndex = 0;
-            this.label6.Text = "         RECIEVE INFORMATION";
+            this.label6.Text = "         RECEIVE INFORMATION";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label5
@@ -190,14 +214,14 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "Amount:";
             // 
-            // txtRecieveAccount
+            // txtReceiveAccount
             // 
-            this.txtRecieveAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRecieveAccount.Location = new System.Drawing.Point(224, 456);
-            this.txtRecieveAccount.Name = "txtRecieveAccount";
-            this.txtRecieveAccount.ReadOnly = true;
-            this.txtRecieveAccount.Size = new System.Drawing.Size(373, 28);
-            this.txtRecieveAccount.TabIndex = 1;
+            this.txtReceiveAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtReceiveAccount.Location = new System.Drawing.Point(224, 456);
+            this.txtReceiveAccount.Name = "txtReceiveAccount";
+            this.txtReceiveAccount.ReadOnly = true;
+            this.txtReceiveAccount.Size = new System.Drawing.Size(373, 28);
+            this.txtReceiveAccount.TabIndex = 1;
             // 
             // txtBalance
             // 
@@ -266,14 +290,14 @@
             this.label10.TabIndex = 0;
             this.label10.Text = "Employee ID:";
             // 
-            // txtRecieveName
+            // txtReceiveName
             // 
-            this.txtRecieveName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRecieveName.Location = new System.Drawing.Point(224, 412);
-            this.txtRecieveName.Name = "txtRecieveName";
-            this.txtRecieveName.ReadOnly = true;
-            this.txtRecieveName.Size = new System.Drawing.Size(373, 28);
-            this.txtRecieveName.TabIndex = 1;
+            this.txtReceiveName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtReceiveName.Location = new System.Drawing.Point(224, 412);
+            this.txtReceiveName.Name = "txtReceiveName";
+            this.txtReceiveName.ReadOnly = true;
+            this.txtReceiveName.Size = new System.Drawing.Size(373, 28);
+            this.txtReceiveName.TabIndex = 1;
             // 
             // label8
             // 
@@ -285,14 +309,14 @@
             this.label8.TabIndex = 0;
             this.label8.Text = "Name:";
             // 
-            // txtRecieveCMND
+            // txtReceiveCMND
             // 
-            this.txtRecieveCMND.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRecieveCMND.Location = new System.Drawing.Point(224, 364);
-            this.txtRecieveCMND.Name = "txtRecieveCMND";
-            this.txtRecieveCMND.ReadOnly = true;
-            this.txtRecieveCMND.Size = new System.Drawing.Size(373, 28);
-            this.txtRecieveCMND.TabIndex = 1;
+            this.txtReceiveCMND.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtReceiveCMND.Location = new System.Drawing.Point(224, 364);
+            this.txtReceiveCMND.Name = "txtReceiveCMND";
+            this.txtReceiveCMND.ReadOnly = true;
+            this.txtReceiveCMND.Size = new System.Drawing.Size(373, 28);
+            this.txtReceiveCMND.TabIndex = 1;
             // 
             // label13
             // 
@@ -376,23 +400,12 @@
             this.barControl.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.barControl.FloatLocation = new System.Drawing.Point(77, 361);
             this.barControl.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnAdd, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnReload, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnUndo, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnExit, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
             this.barControl.Offset = 3;
             this.barControl.OptionsBar.MinHeight = 40;
             this.barControl.Text = "Tools";
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Border = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.btnAdd.Caption = "ADD";
-            this.btnAdd.Id = 0;
-            this.btnAdd.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.ImageOptions.Image")));
-            this.btnAdd.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnAdd.ImageOptions.LargeImage")));
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(60, 0);
             // 
             // btnReload
             // 
@@ -402,6 +415,7 @@
             this.btnReload.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnReload.ImageOptions.Image")));
             this.btnReload.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnReload.ImageOptions.LargeImage")));
             this.btnReload.Name = "btnReload";
+            this.btnReload.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnReload_ItemClick);
             // 
             // btnUndo
             // 
@@ -455,6 +469,16 @@
             this.barDockControlRight.Manager = this.barManager1;
             this.barDockControlRight.Size = new System.Drawing.Size(0, 763);
             // 
+            // btnAdd
+            // 
+            this.btnAdd.Border = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.btnAdd.Caption = "ADD";
+            this.btnAdd.Id = 0;
+            this.btnAdd.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.ImageOptions.Image")));
+            this.btnAdd.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnAdd.ImageOptions.LargeImage")));
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(60, 0);
+            // 
             // barButtonItem1
             // 
             this.barButtonItem1.Caption = "barButtonItem1";
@@ -504,7 +528,7 @@
             this.lblNotification.Name = "lblNotification";
             this.lblNotification.Size = new System.Drawing.Size(699, 41);
             this.lblNotification.TabIndex = 0;
-            this.lblNotification.Text = "CHOOSE SEND ACCOUNT";
+            this.lblNotification.Text = "PRESS \"CHOOSE\" SEND ACCOUNT";
             this.lblNotification.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2
@@ -524,23 +548,23 @@
             this.data.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.data.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.data.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.data.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.data.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.data.ColumnHeadersHeight = 35;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.data.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.data.DefaultCellStyle = dataGridViewCellStyle2;
             this.data.Dock = System.Windows.Forms.DockStyle.Fill;
             this.data.GridColor = System.Drawing.SystemColors.ButtonFace;
             this.data.Location = new System.Drawing.Point(0, 184);
@@ -552,27 +576,7 @@
             this.data.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.data.Size = new System.Drawing.Size(744, 619);
             this.data.TabIndex = 6;
-            this.data.SelectionChanged += new System.EventHandler(this.data_SelectionChanged);
-            // 
-            // btnRecieveInfo
-            // 
-            this.btnRecieveInfo.BackColor = System.Drawing.Color.White;
-            this.btnRecieveInfo.Location = new System.Drawing.Point(477, 309);
-            this.btnRecieveInfo.Name = "btnRecieveInfo";
-            this.btnRecieveInfo.Size = new System.Drawing.Size(120, 41);
-            this.btnRecieveInfo.TabIndex = 4;
-            this.btnRecieveInfo.Text = "CHOOSE";
-            this.btnRecieveInfo.UseVisualStyleBackColor = false;
-            // 
-            // btnSendInfo
-            // 
-            this.btnSendInfo.BackColor = System.Drawing.Color.White;
-            this.btnSendInfo.Location = new System.Drawing.Point(477, 40);
-            this.btnSendInfo.Name = "btnSendInfo";
-            this.btnSendInfo.Size = new System.Drawing.Size(120, 41);
-            this.btnSendInfo.TabIndex = 4;
-            this.btnSendInfo.Text = "CHOOSE";
-            this.btnSendInfo.UseVisualStyleBackColor = false;
+            this.data.Click += new System.EventHandler(this.data_SelectionChanged);
             // 
             // frmTransfer
             // 
@@ -627,15 +631,15 @@
         private System.Windows.Forms.Label lblNotification;
         private System.Windows.Forms.Button btnConfirm;
         private System.Windows.Forms.Button btnClear;
-        private System.Windows.Forms.TextBox txtRecieveAccount;
+        private System.Windows.Forms.TextBox txtReceiveAccount;
         private System.Windows.Forms.TextBox txtSendAccount;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtEmployeeID;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtRecieveName;
+        private System.Windows.Forms.TextBox txtReceiveName;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txtRecieveCMND;
+        private System.Windows.Forms.TextBox txtReceiveCMND;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtSendCMND;
         private System.Windows.Forms.Label label12;
@@ -644,6 +648,6 @@
         private System.Windows.Forms.TextBox txtBalance;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnSendInfo;
-        private System.Windows.Forms.Button btnRecieveInfo;
+        private System.Windows.Forms.Button btnReceiveInfo;
     }
 }
