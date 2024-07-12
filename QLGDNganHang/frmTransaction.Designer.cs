@@ -78,6 +78,7 @@
             // btnConfirm
             // 
             this.btnConfirm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnConfirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirm.Location = new System.Drawing.Point(329, 580);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(120, 52);
@@ -89,6 +90,7 @@
             // btnClear
             // 
             this.btnClear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClear.Location = new System.Drawing.Point(477, 580);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(120, 52);
@@ -135,10 +137,10 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(88, 527);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(90, 527);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(83, 22);
+            this.label3.Size = new System.Drawing.Size(76, 22);
             this.label3.TabIndex = 0;
             this.label3.Text = "Amount:";
             // 
@@ -185,13 +187,13 @@
             // 
             // barControl
             // 
-            this.barControl.BarAppearance.Disabled.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.barControl.BarAppearance.Disabled.Font = new System.Drawing.Font("Tahoma", 11F);
             this.barControl.BarAppearance.Disabled.Options.UseFont = true;
-            this.barControl.BarAppearance.Hovered.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.barControl.BarAppearance.Hovered.Font = new System.Drawing.Font("Tahoma", 11F);
             this.barControl.BarAppearance.Hovered.Options.UseFont = true;
-            this.barControl.BarAppearance.Normal.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.barControl.BarAppearance.Normal.Font = new System.Drawing.Font("Tahoma", 11F);
             this.barControl.BarAppearance.Normal.Options.UseFont = true;
-            this.barControl.BarAppearance.Pressed.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.barControl.BarAppearance.Pressed.Font = new System.Drawing.Font("Tahoma", 11F);
             this.barControl.BarAppearance.Pressed.Options.UseFont = true;
             this.barControl.BarName = "Tools";
             this.barControl.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Top;
@@ -301,17 +303,17 @@
             // txtEmployeeID
             // 
             this.txtEmployeeID.Enabled = false;
-            this.txtEmployeeID.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEmployeeID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEmployeeID.Location = new System.Drawing.Point(224, 778);
             this.txtEmployeeID.Name = "txtEmployeeID";
-            this.txtEmployeeID.Size = new System.Drawing.Size(373, 28);
+            this.txtEmployeeID.Size = new System.Drawing.Size(373, 30);
             this.txtEmployeeID.TabIndex = 1;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(55, 781);
+            this.label10.Location = new System.Drawing.Point(70, 783);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(116, 22);
             this.label10.TabIndex = 0;
@@ -330,7 +332,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(102, 110);
+            this.label12.Location = new System.Drawing.Point(90, 110);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(68, 22);
             this.label12.TabIndex = 0;
@@ -349,7 +351,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(108, 159);
+            this.label1.Location = new System.Drawing.Point(90, 159);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(62, 22);
             this.label1.TabIndex = 0;
@@ -377,7 +379,7 @@
             this.panel1.Controls.Add(this.txtName);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel1.Location = new System.Drawing.Point(858, 40);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(697, 835);
@@ -386,8 +388,8 @@
             // cbxType
             // 
             this.cbxType.AllowDrop = true;
-            this.cbxType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cbxType.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.cbxType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxType.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxType.FormattingEnabled = true;
             this.cbxType.Items.AddRange(new object[] {
             "Send money",
@@ -422,10 +424,10 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(110, 465);
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(90, 464);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(61, 22);
+            this.label8.Size = new System.Drawing.Size(56, 22);
             this.label8.TabIndex = 0;
             this.label8.Text = "Type:";
             // 
@@ -433,7 +435,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(20, 96);
+            this.label2.Location = new System.Drawing.Point(20, 100);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(163, 22);
             this.label2.TabIndex = 0;
@@ -442,7 +444,7 @@
             // lblNotification
             // 
             this.lblNotification.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.lblNotification.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNotification.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNotification.Location = new System.Drawing.Point(20, 40);
             this.lblNotification.Name = "lblNotification";
             this.lblNotification.Size = new System.Drawing.Size(699, 41);
@@ -455,9 +457,10 @@
             this.cbxCustomer.AllowDrop = true;
             this.cbxCustomer.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbxCustomer.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cbxCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.cbxCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxCustomer.FormattingEnabled = true;
-            this.cbxCustomer.Location = new System.Drawing.Point(223, 94);
+            this.cbxCustomer.Location = new System.Drawing.Point(223, 96);
+            this.cbxCustomer.MaxLength = 10;
             this.cbxCustomer.Name = "cbxCustomer";
             this.cbxCustomer.Size = new System.Drawing.Size(295, 30);
             this.cbxCustomer.TabIndex = 0;
@@ -466,9 +469,10 @@
             // btnShowAll
             // 
             this.btnShowAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnShowAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnShowAll.Location = new System.Drawing.Point(558, 90);
             this.btnShowAll.Name = "btnShowAll";
-            this.btnShowAll.Size = new System.Drawing.Size(161, 34);
+            this.btnShowAll.Size = new System.Drawing.Size(161, 42);
             this.btnShowAll.TabIndex = 4;
             this.btnShowAll.Text = "SHOW ALL";
             this.btnShowAll.UseVisualStyleBackColor = false;

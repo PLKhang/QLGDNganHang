@@ -220,7 +220,11 @@ namespace QLGDNganHang
                     else if (MessageBox.Show(notification, "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                     {
                         frmRegister form = new frmRegister(username);
-                        form.ShowDialog();
+
+                        if (form.ShowDialog() == DialogResult.Cancel)
+                        {
+                            dt_login = Program.ExecStoredProcedureReturnTable("Select * from dbo.V_AllLoginName");
+                        }
                     }
                 }
             }
@@ -780,6 +784,7 @@ namespace QLGDNganHang
 
         private void txtCurrentPw_TextChanged(object sender, EventArgs e)
         {
+
             if (txtCurrentPw.Text.Length == 0)
             {
                 lblPasswordError.ForeColor = Color.Red;
@@ -796,7 +801,25 @@ namespace QLGDNganHang
 
         private void txtNewPw_TextChanged(object sender, EventArgs e)
         {
-            if (txtCurrentPw.Text.Length == 0)
+            if (txtConfirmNewPw.Text.Length == 0)
+            {
+                lblConfirmPasswordError.ForeColor = Color.Red;
+                lblConfirmPasswordError.Text = "❎";
+                checkConfirmPassword = false;
+            }
+            else if (txtConfirmNewPw.Text != txtNewPw.Text)
+            {
+                lblConfirmPasswordError.ForeColor = Color.Red;
+                lblConfirmPasswordError.Text = "❎";
+                checkConfirmPassword = false;
+            }
+            else
+            {
+                lblConfirmPasswordError.ForeColor = Color.Green;
+                lblConfirmPasswordError.Text = "✅";
+                checkConfirmPassword = true;
+            }
+            if (txtNewPw.Text.Length == 0)
             {
                 lblNewPasswordError.ForeColor = Color.Red;
                 lblNewPasswordError.Text = "❎";
@@ -812,6 +835,18 @@ namespace QLGDNganHang
 
         private void txtConfirmNewPw_TextChanged(object sender, EventArgs e)
         {
+            if (txtNewPw.Text.Length == 0)
+            {
+                lblNewPasswordError.ForeColor = Color.Red;
+                lblNewPasswordError.Text = "❎";
+                checkNewPassword = false;
+            }
+            else
+            {
+                lblNewPasswordError.ForeColor = Color.Green;
+                lblNewPasswordError.Text = "✅";
+                checkNewPassword = true;
+            }
             if (txtConfirmNewPw.Text.Length == 0)
             {
                 lblConfirmPasswordError.ForeColor = Color.Red;

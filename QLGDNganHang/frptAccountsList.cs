@@ -28,8 +28,14 @@ namespace QLGDNganHang
             this.WindowState = FormWindowState.Maximized;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
 
-            cbxBranchs.SelectedIndex = 0;
+            cbxBranchs.SelectedIndex = Program.currentBranch;
             cbxBranchs.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            if (Program.mRole == "ChiNhanh")
+            {
+                cbxBranchs.Enabled = false;
+                checkAllBranch.Checked = checkAllBranch.Enabled = false;
+            }
         }
 
         private bool checkForm()

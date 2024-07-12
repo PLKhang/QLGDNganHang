@@ -20,6 +20,8 @@ namespace QLGDNganHang
         private DataTable dtAccountOrigin = new DataTable();
         private DataTable dtAccount = new DataTable();
 
+        private string specialAccount = "";
+        private bool isSpecialTransaction = false;
         public frmTransfer()
         {
             InitializeComponent();
@@ -28,17 +30,18 @@ namespace QLGDNganHang
         public frmTransfer(string account)
         {
             InitializeComponent();
-
-            state = 2;
-            foreach (DataGridViewRow row in data.Rows)
-            {
-                if (row.Cells["SOTK"].Value.ToString() == account)
-                {
-                    loadSendInformation(row);
-                    break;
-                }
-            }
-            loadDataTable(account);
+            this.specialAccount = account;
+            state = 1;
+            isSpecialTransaction = true;
+            //foreach (DataGridViewRow row in data.Rows)
+            //{
+            //    if (row.Cells["SOTK"].Value.ToString() == account)
+            //    {
+            //        loadSendInformation(row);
+            //        break;
+            //    }
+            //}
+            //loadDataTable(account);
         }
 
         private void frmTransfer_Load(object sender, EventArgs e)
@@ -54,8 +57,24 @@ namespace QLGDNganHang
             cbxCustomer.DataSource = dtCustomer;
             cbxCustomer.DisplayMember = "CMND";
             cbxCustomer.ValueMember = "CMND";
+            cbxCustomer.Text = "";
 
-            btnShowAll.PerformClick();
+            loadDataTable();
+
+            if (isSpecialTransaction)
+            {
+                foreach (DataGridViewRow row in data.Rows)
+                {
+                    if (row.Cells["SOTK"].Value.ToString() == specialAccount)
+                    {
+                        loadSendInformation(row);
+                        state = 2;
+
+                        loadDataTable(specialAccount);
+                        break;
+                    }
+                }
+            }
         }
 
         private void btnExit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -65,11 +84,13 @@ namespace QLGDNganHang
                 if (MessageBox.Show("Do you want to exit?\nYour incomplete transaction will be deleted!", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                 {
                     this.Close();
+                    this.DialogResult = DialogResult.Cancel;
                 }
             }
             else
             {
                 this.Close();
+                this.DialogResult = DialogResult.Cancel;
             }
         }
 
@@ -156,7 +177,7 @@ namespace QLGDNganHang
 
             DataRow[] filteredRows = dtAccountOrigin.Select(filterExpression);
             dtAccount = dtAccountOrigin.Clone();
-            Debug.WriteLine("Numof row: " + filteredRows.Length);
+            
             foreach (DataRow row in filteredRows)
             {
                 dtAccount.ImportRow(row);

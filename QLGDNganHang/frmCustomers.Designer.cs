@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCustomers));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.barControl = new DevExpress.XtraBars.Bar();
@@ -65,6 +65,22 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtCMND = new System.Windows.Forms.TextBox();
             this.pnlInfo = new DevExpress.XtraEditors.PanelControl();
+            this.pnlLogin = new System.Windows.Forms.Panel();
+            this.lblLoginNameError = new System.Windows.Forms.Label();
+            this.lblConfirmPasswordError = new System.Windows.Forms.Label();
+            this.lblNewPasswordError = new System.Windows.Forms.Label();
+            this.lblPasswordError = new System.Windows.Forms.Label();
+            this.txtLoginName = new System.Windows.Forms.TextBox();
+            this.btnCancelLogin = new System.Windows.Forms.Button();
+            this.btnSaveLogin = new System.Windows.Forms.Button();
+            this.lblCrrPw = new System.Windows.Forms.Label();
+            this.lblLoginNote = new System.Windows.Forms.Label();
+            this.lblLoginName = new System.Windows.Forms.Label();
+            this.lblConfirmNewPw = new System.Windows.Forms.Label();
+            this.txtConfirmNewPw = new System.Windows.Forms.TextBox();
+            this.lblNewPw = new System.Windows.Forms.Label();
+            this.txtCurrentPw = new System.Windows.Forms.TextBox();
+            this.txtNewPw = new System.Windows.Forms.TextBox();
             this.pickerDateIssue = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.pnlAccount = new System.Windows.Forms.Panel();
@@ -79,6 +95,7 @@
             this.btnExitAccount = new DevExpress.XtraEditors.SimpleButton();
             this.btnReloadAccount = new DevExpress.XtraEditors.SimpleButton();
             this.btnDeleteAccount = new DevExpress.XtraEditors.SimpleButton();
+            this.btnStatement = new DevExpress.XtraEditors.SimpleButton();
             this.btnTransaction = new DevExpress.XtraEditors.SimpleButton();
             this.btnTransfer = new DevExpress.XtraEditors.SimpleButton();
             this.btnAddAccount = new DevExpress.XtraEditors.SimpleButton();
@@ -88,6 +105,7 @@
             this.pnlControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlInfo)).BeginInit();
             this.pnlInfo.SuspendLayout();
+            this.pnlLogin.SuspendLayout();
             this.pnlAccount.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataAccount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBalance)).BeginInit();
@@ -345,6 +363,7 @@
             // 
             this.txtPhone.Font = new System.Drawing.Font("Tahoma", 11F);
             this.txtPhone.Location = new System.Drawing.Point(240, 342);
+            this.txtPhone.MaxLength = 10;
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(327, 30);
             this.txtPhone.TabIndex = 0;
@@ -373,6 +392,7 @@
             // 
             this.txtLastName.Font = new System.Drawing.Font("Tahoma", 11F);
             this.txtLastName.Location = new System.Drawing.Point(240, 107);
+            this.txtLastName.MaxLength = 15;
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(327, 30);
             this.txtLastName.TabIndex = 0;
@@ -391,6 +411,7 @@
             // 
             this.txtFirstName.Font = new System.Drawing.Font("Tahoma", 11F);
             this.txtFirstName.Location = new System.Drawing.Point(240, 61);
+            this.txtFirstName.MaxLength = 50;
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(327, 30);
             this.txtFirstName.TabIndex = 0;
@@ -428,6 +449,7 @@
             this.cbxCMND.FormattingEnabled = true;
             this.cbxCMND.Location = new System.Drawing.Point(124, 32);
             this.cbxCMND.Margin = new System.Windows.Forms.Padding(6);
+            this.cbxCMND.MaxLength = 10;
             this.cbxCMND.Name = "cbxCMND";
             this.cbxCMND.Size = new System.Drawing.Size(243, 28);
             this.cbxCMND.Sorted = true;
@@ -459,6 +481,7 @@
             // 
             this.txtCMND.Font = new System.Drawing.Font("Tahoma", 11F);
             this.txtCMND.Location = new System.Drawing.Point(240, 161);
+            this.txtCMND.MaxLength = 10;
             this.txtCMND.Name = "txtCMND";
             this.txtCMND.Size = new System.Drawing.Size(327, 30);
             this.txtCMND.TabIndex = 0;
@@ -467,6 +490,7 @@
             // 
             this.pnlInfo.Appearance.BorderColor = System.Drawing.Color.White;
             this.pnlInfo.Appearance.Options.UseBorderColor = true;
+            this.pnlInfo.Controls.Add(this.pnlLogin);
             this.pnlInfo.Controls.Add(this.pickerDateIssue);
             this.pnlInfo.Controls.Add(this.label6);
             this.pnlInfo.Controls.Add(this.label5);
@@ -490,6 +514,184 @@
             this.pnlInfo.Name = "pnlInfo";
             this.pnlInfo.Size = new System.Drawing.Size(723, 819);
             this.pnlInfo.TabIndex = 14;
+            // 
+            // pnlLogin
+            // 
+            this.pnlLogin.Controls.Add(this.lblLoginNameError);
+            this.pnlLogin.Controls.Add(this.lblConfirmPasswordError);
+            this.pnlLogin.Controls.Add(this.lblNewPasswordError);
+            this.pnlLogin.Controls.Add(this.lblPasswordError);
+            this.pnlLogin.Controls.Add(this.txtLoginName);
+            this.pnlLogin.Controls.Add(this.btnCancelLogin);
+            this.pnlLogin.Controls.Add(this.btnSaveLogin);
+            this.pnlLogin.Controls.Add(this.lblCrrPw);
+            this.pnlLogin.Controls.Add(this.lblLoginNote);
+            this.pnlLogin.Controls.Add(this.lblLoginName);
+            this.pnlLogin.Controls.Add(this.lblConfirmNewPw);
+            this.pnlLogin.Controls.Add(this.txtConfirmNewPw);
+            this.pnlLogin.Controls.Add(this.lblNewPw);
+            this.pnlLogin.Controls.Add(this.txtCurrentPw);
+            this.pnlLogin.Controls.Add(this.txtNewPw);
+            this.pnlLogin.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlLogin.Location = new System.Drawing.Point(2, 268);
+            this.pnlLogin.Name = "pnlLogin";
+            this.pnlLogin.Size = new System.Drawing.Size(719, 549);
+            this.pnlLogin.TabIndex = 2;
+            // 
+            // lblLoginNameError
+            // 
+            this.lblLoginNameError.AutoSize = true;
+            this.lblLoginNameError.Location = new System.Drawing.Point(243, 172);
+            this.lblLoginNameError.Name = "lblLoginNameError";
+            this.lblLoginNameError.Size = new System.Drawing.Size(0, 16);
+            this.lblLoginNameError.TabIndex = 51;
+            // 
+            // lblConfirmPasswordError
+            // 
+            this.lblConfirmPasswordError.AutoSize = true;
+            this.lblConfirmPasswordError.Location = new System.Drawing.Point(571, 361);
+            this.lblConfirmPasswordError.Name = "lblConfirmPasswordError";
+            this.lblConfirmPasswordError.Size = new System.Drawing.Size(0, 16);
+            this.lblConfirmPasswordError.TabIndex = 51;
+            // 
+            // lblNewPasswordError
+            // 
+            this.lblNewPasswordError.AutoSize = true;
+            this.lblNewPasswordError.Location = new System.Drawing.Point(571, 306);
+            this.lblNewPasswordError.Name = "lblNewPasswordError";
+            this.lblNewPasswordError.Size = new System.Drawing.Size(0, 16);
+            this.lblNewPasswordError.TabIndex = 51;
+            // 
+            // lblPasswordError
+            // 
+            this.lblPasswordError.AutoSize = true;
+            this.lblPasswordError.Location = new System.Drawing.Point(571, 254);
+            this.lblPasswordError.Name = "lblPasswordError";
+            this.lblPasswordError.Size = new System.Drawing.Size(0, 16);
+            this.lblPasswordError.TabIndex = 51;
+            // 
+            // txtLoginName
+            // 
+            this.txtLoginName.Font = new System.Drawing.Font("Tahoma", 11F);
+            this.txtLoginName.Location = new System.Drawing.Point(238, 131);
+            this.txtLoginName.MaxLength = 50;
+            this.txtLoginName.Name = "txtLoginName";
+            this.txtLoginName.ReadOnly = true;
+            this.txtLoginName.Size = new System.Drawing.Size(327, 30);
+            this.txtLoginName.TabIndex = 50;
+            this.txtLoginName.TextChanged += new System.EventHandler(this.txtLoginName_TextChanged);
+            this.txtLoginName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCurrentPw_KeyPress);
+            // 
+            // btnCancelLogin
+            // 
+            this.btnCancelLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnCancelLogin.Font = new System.Drawing.Font("Tahoma", 11F);
+            this.btnCancelLogin.Location = new System.Drawing.Point(448, 424);
+            this.btnCancelLogin.Name = "btnCancelLogin";
+            this.btnCancelLogin.Size = new System.Drawing.Size(117, 47);
+            this.btnCancelLogin.TabIndex = 49;
+            this.btnCancelLogin.Text = "CANCEL";
+            this.btnCancelLogin.UseVisualStyleBackColor = false;
+            this.btnCancelLogin.Click += new System.EventHandler(this.btnCancelLogin_Click);
+            // 
+            // btnSaveLogin
+            // 
+            this.btnSaveLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnSaveLogin.Font = new System.Drawing.Font("Tahoma", 11F);
+            this.btnSaveLogin.Location = new System.Drawing.Point(275, 424);
+            this.btnSaveLogin.Name = "btnSaveLogin";
+            this.btnSaveLogin.Size = new System.Drawing.Size(144, 47);
+            this.btnSaveLogin.TabIndex = 48;
+            this.btnSaveLogin.Text = "SAVE CHANGE";
+            this.btnSaveLogin.UseVisualStyleBackColor = false;
+            this.btnSaveLogin.Click += new System.EventHandler(this.btnSaveLogin_Click);
+            // 
+            // lblCrrPw
+            // 
+            this.lblCrrPw.AutoSize = true;
+            this.lblCrrPw.Font = new System.Drawing.Font("Tahoma", 11F);
+            this.lblCrrPw.Location = new System.Drawing.Point(45, 249);
+            this.lblCrrPw.Name = "lblCrrPw";
+            this.lblCrrPw.Size = new System.Drawing.Size(165, 23);
+            this.lblCrrPw.TabIndex = 46;
+            this.lblCrrPw.Text = "Current password:";
+            // 
+            // lblLoginNote
+            // 
+            this.lblLoginNote.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.lblLoginNote.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.lblLoginNote.Location = new System.Drawing.Point(47, 53);
+            this.lblLoginNote.Name = "lblLoginNote";
+            this.lblLoginNote.Size = new System.Drawing.Size(518, 47);
+            this.lblLoginNote.TabIndex = 47;
+            this.lblLoginNote.Text = "CHANGE PASSWORD FOR LOGIN ACCOUNT";
+            this.lblLoginNote.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblLoginName
+            // 
+            this.lblLoginName.AutoSize = true;
+            this.lblLoginName.Font = new System.Drawing.Font("Tahoma", 11F);
+            this.lblLoginName.Location = new System.Drawing.Point(47, 134);
+            this.lblLoginName.Name = "lblLoginName";
+            this.lblLoginName.Size = new System.Drawing.Size(115, 23);
+            this.lblLoginName.TabIndex = 47;
+            this.lblLoginName.Text = "Login name:";
+            // 
+            // lblConfirmNewPw
+            // 
+            this.lblConfirmNewPw.AutoSize = true;
+            this.lblConfirmNewPw.Font = new System.Drawing.Font("Tahoma", 11F);
+            this.lblConfirmNewPw.Location = new System.Drawing.Point(43, 356);
+            this.lblConfirmNewPw.Name = "lblConfirmNewPw";
+            this.lblConfirmNewPw.Size = new System.Drawing.Size(167, 23);
+            this.lblConfirmNewPw.TabIndex = 44;
+            this.lblConfirmNewPw.Text = "Confirm password:";
+            // 
+            // txtConfirmNewPw
+            // 
+            this.txtConfirmNewPw.Font = new System.Drawing.Font("Tahoma", 11F);
+            this.txtConfirmNewPw.Location = new System.Drawing.Point(238, 353);
+            this.txtConfirmNewPw.MaxLength = 50;
+            this.txtConfirmNewPw.Name = "txtConfirmNewPw";
+            this.txtConfirmNewPw.Size = new System.Drawing.Size(327, 30);
+            this.txtConfirmNewPw.TabIndex = 41;
+            this.txtConfirmNewPw.UseSystemPasswordChar = true;
+            this.txtConfirmNewPw.TextChanged += new System.EventHandler(this.txtConfirmNewPw_TextChanged);
+            this.txtConfirmNewPw.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCurrentPw_KeyPress);
+            // 
+            // lblNewPw
+            // 
+            this.lblNewPw.AutoSize = true;
+            this.lblNewPw.Font = new System.Drawing.Font("Tahoma", 11F);
+            this.lblNewPw.Location = new System.Drawing.Point(45, 301);
+            this.lblNewPw.Name = "lblNewPw";
+            this.lblNewPw.Size = new System.Drawing.Size(139, 23);
+            this.lblNewPw.TabIndex = 45;
+            this.lblNewPw.Text = "New password:";
+            // 
+            // txtCurrentPw
+            // 
+            this.txtCurrentPw.Font = new System.Drawing.Font("Tahoma", 11F);
+            this.txtCurrentPw.Location = new System.Drawing.Point(238, 246);
+            this.txtCurrentPw.MaxLength = 50;
+            this.txtCurrentPw.Name = "txtCurrentPw";
+            this.txtCurrentPw.Size = new System.Drawing.Size(327, 30);
+            this.txtCurrentPw.TabIndex = 42;
+            this.txtCurrentPw.UseSystemPasswordChar = true;
+            this.txtCurrentPw.TextChanged += new System.EventHandler(this.txtCurrentPw_TextChanged);
+            this.txtCurrentPw.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCurrentPw_KeyPress);
+            // 
+            // txtNewPw
+            // 
+            this.txtNewPw.Font = new System.Drawing.Font("Tahoma", 11F);
+            this.txtNewPw.Location = new System.Drawing.Point(238, 298);
+            this.txtNewPw.MaxLength = 50;
+            this.txtNewPw.Name = "txtNewPw";
+            this.txtNewPw.Size = new System.Drawing.Size(327, 30);
+            this.txtNewPw.TabIndex = 43;
+            this.txtNewPw.UseSystemPasswordChar = true;
+            this.txtNewPw.TextChanged += new System.EventHandler(this.txtNewPw_TextChanged);
+            this.txtNewPw.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCurrentPw_KeyPress);
             // 
             // pickerDateIssue
             // 
@@ -546,7 +748,6 @@
             this.dataAccount.Size = new System.Drawing.Size(723, 303);
             this.dataAccount.TabIndex = 2;
             this.dataAccount.SelectionChanged += new System.EventHandler(this.dataAccount_Click);
-            this.dataAccount.Click += new System.EventHandler(this.dataAccount_Click);
             // 
             // btnSaveAccount
             // 
@@ -626,6 +827,7 @@
             this.pnlAccountCtrl.Controls.Add(this.btnExitAccount);
             this.pnlAccountCtrl.Controls.Add(this.btnReloadAccount);
             this.pnlAccountCtrl.Controls.Add(this.btnDeleteAccount);
+            this.pnlAccountCtrl.Controls.Add(this.btnStatement);
             this.pnlAccountCtrl.Controls.Add(this.btnTransaction);
             this.pnlAccountCtrl.Controls.Add(this.btnTransfer);
             this.pnlAccountCtrl.Controls.Add(this.btnAddAccount);
@@ -646,7 +848,7 @@
             this.btnExitAccount.AutoWidthInLayoutControl = true;
             this.btnExitAccount.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnExitAccount.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnExitAccount.ImageOptions.Image")));
-            this.btnExitAccount.Location = new System.Drawing.Point(515, 0);
+            this.btnExitAccount.Location = new System.Drawing.Point(634, 0);
             this.btnExitAccount.Name = "btnExitAccount";
             this.btnExitAccount.Size = new System.Drawing.Size(70, 45);
             this.btnExitAccount.TabIndex = 0;
@@ -663,7 +865,7 @@
             this.btnReloadAccount.AutoWidthInLayoutControl = true;
             this.btnReloadAccount.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnReloadAccount.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnReloadAccount.ImageOptions.Image")));
-            this.btnReloadAccount.Location = new System.Drawing.Point(422, 0);
+            this.btnReloadAccount.Location = new System.Drawing.Point(541, 0);
             this.btnReloadAccount.Name = "btnReloadAccount";
             this.btnReloadAccount.Size = new System.Drawing.Size(93, 45);
             this.btnReloadAccount.TabIndex = 1;
@@ -680,12 +882,29 @@
             this.btnDeleteAccount.AutoWidthInLayoutControl = true;
             this.btnDeleteAccount.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnDeleteAccount.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteAccount.ImageOptions.Image")));
-            this.btnDeleteAccount.Location = new System.Drawing.Point(331, 0);
+            this.btnDeleteAccount.Location = new System.Drawing.Point(450, 0);
             this.btnDeleteAccount.Name = "btnDeleteAccount";
             this.btnDeleteAccount.Size = new System.Drawing.Size(91, 45);
             this.btnDeleteAccount.TabIndex = 0;
             this.btnDeleteAccount.Text = "Delete";
             this.btnDeleteAccount.Click += new System.EventHandler(this.btnDeleteAccount_Click);
+            // 
+            // btnStatement
+            // 
+            this.btnStatement.Appearance.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnStatement.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.btnStatement.Appearance.Options.UseBackColor = true;
+            this.btnStatement.Appearance.Options.UseFont = true;
+            this.btnStatement.AutoSize = true;
+            this.btnStatement.AutoWidthInLayoutControl = true;
+            this.btnStatement.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnStatement.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnStatement.ImageOptions.Image")));
+            this.btnStatement.Location = new System.Drawing.Point(331, 0);
+            this.btnStatement.Name = "btnStatement";
+            this.btnStatement.Size = new System.Drawing.Size(119, 45);
+            this.btnStatement.TabIndex = 2;
+            this.btnStatement.Text = "Statement";
+            this.btnStatement.Click += new System.EventHandler(this.btnStatement_Click);
             // 
             // btnTransaction
             // 
@@ -744,14 +963,14 @@
             this.data.AllowUserToDeleteRows = false;
             this.data.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.data.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.data.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.data.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.data.ColumnHeadersHeight = 35;
             this.data.Dock = System.Windows.Forms.DockStyle.Fill;
             this.data.Location = new System.Drawing.Point(0, 116);
@@ -763,7 +982,6 @@
             this.data.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.data.Size = new System.Drawing.Size(632, 743);
             this.data.TabIndex = 16;
-            this.data.SelectionChanged += new System.EventHandler(this.data_Click);
             this.data.Click += new System.EventHandler(this.data_Click);
             // 
             // frmCustomers
@@ -792,6 +1010,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pnlInfo)).EndInit();
             this.pnlInfo.ResumeLayout(false);
             this.pnlInfo.PerformLayout();
+            this.pnlLogin.ResumeLayout(false);
+            this.pnlLogin.PerformLayout();
             this.pnlAccount.ResumeLayout(false);
             this.pnlAccount.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataAccount)).EndInit();
@@ -858,5 +1078,22 @@
         private DevExpress.XtraEditors.SimpleButton btnTransfer;
         private DevExpress.XtraEditors.SimpleButton btnReloadAccount;
         private System.Windows.Forms.DateTimePicker pickerDateIssue;
+        private System.Windows.Forms.Panel pnlLogin;
+        private System.Windows.Forms.TextBox txtLoginName;
+        private System.Windows.Forms.Button btnCancelLogin;
+        private System.Windows.Forms.Button btnSaveLogin;
+        private System.Windows.Forms.Label lblCrrPw;
+        private System.Windows.Forms.Label lblLoginName;
+        private System.Windows.Forms.Label lblConfirmNewPw;
+        private System.Windows.Forms.TextBox txtConfirmNewPw;
+        private System.Windows.Forms.Label lblNewPw;
+        private System.Windows.Forms.TextBox txtCurrentPw;
+        private System.Windows.Forms.TextBox txtNewPw;
+        private System.Windows.Forms.Label lblLoginNote;
+        private System.Windows.Forms.Label lblConfirmPasswordError;
+        private System.Windows.Forms.Label lblNewPasswordError;
+        private System.Windows.Forms.Label lblPasswordError;
+        private System.Windows.Forms.Label lblLoginNameError;
+        private DevExpress.XtraEditors.SimpleButton btnStatement;
     }
 }

@@ -149,18 +149,18 @@ namespace QLGDNganHang
             // 
             // txtLoginName
             // 
-            this.txtLoginName.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtLoginName.Location = new System.Drawing.Point(207, 87);
+            this.txtLoginName.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLoginName.Location = new System.Drawing.Point(207, 98);
             this.txtLoginName.Name = "txtLoginName";
             this.txtLoginName.ReadOnly = true;
-            this.txtLoginName.Size = new System.Drawing.Size(327, 28);
+            this.txtLoginName.Size = new System.Drawing.Size(327, 29);
             this.txtLoginName.TabIndex = 40;
             // 
             // btnCancelPnlLoginInfo
             // 
             this.btnCancelPnlLoginInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnCancelPnlLoginInfo.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.btnCancelPnlLoginInfo.Location = new System.Drawing.Point(417, 501);
+            this.btnCancelPnlLoginInfo.Location = new System.Drawing.Point(417, 566);
             this.btnCancelPnlLoginInfo.Name = "btnCancelPnlLoginInfo";
             this.btnCancelPnlLoginInfo.Size = new System.Drawing.Size(117, 47);
             this.btnCancelPnlLoginInfo.TabIndex = 39;
@@ -172,7 +172,7 @@ namespace QLGDNganHang
             // 
             this.btnDeleteLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnDeleteLogin.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.btnDeleteLogin.Location = new System.Drawing.Point(271, 501);
+            this.btnDeleteLogin.Location = new System.Drawing.Point(266, 566);
             this.btnDeleteLogin.Name = "btnDeleteLogin";
             this.btnDeleteLogin.Size = new System.Drawing.Size(117, 47);
             this.btnDeleteLogin.TabIndex = 37;
@@ -184,7 +184,7 @@ namespace QLGDNganHang
             // 
             this.btnChangePassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnChangePassword.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.btnChangePassword.Location = new System.Drawing.Point(28, 501);
+            this.btnChangePassword.Location = new System.Drawing.Point(29, 566);
             this.btnChangePassword.Name = "btnChangePassword";
             this.btnChangePassword.Size = new System.Drawing.Size(144, 47);
             this.btnChangePassword.TabIndex = 38;
@@ -195,10 +195,10 @@ namespace QLGDNganHang
             // lblCrrPw
             // 
             this.lblCrrPw.AutoSize = true;
-            this.lblCrrPw.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.lblCrrPw.Location = new System.Drawing.Point(25, 282);
+            this.lblCrrPw.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCrrPw.Location = new System.Drawing.Point(25, 327);
             this.lblCrrPw.Name = "lblCrrPw";
-            this.lblCrrPw.Size = new System.Drawing.Size(147, 21);
+            this.lblCrrPw.Size = new System.Drawing.Size(154, 22);
             this.lblCrrPw.TabIndex = 34;
             this.lblCrrPw.Text = "Current password:";
             // 
@@ -206,7 +206,7 @@ namespace QLGDNganHang
             // 
             this.lblNote.AutoSize = true;
             this.lblNote.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.lblNote.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.lblNote.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNote.Location = new System.Drawing.Point(25, 19);
             this.lblNote.Name = "lblNote";
             this.lblNote.Size = new System.Drawing.Size(567, 21);
@@ -216,29 +216,30 @@ namespace QLGDNganHang
             // lblLoginName
             // 
             this.lblLoginName.AutoSize = true;
-            this.lblLoginName.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.lblLoginName.Location = new System.Drawing.Point(64, 87);
+            this.lblLoginName.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLoginName.Location = new System.Drawing.Point(25, 101);
             this.lblLoginName.Name = "lblLoginName";
-            this.lblLoginName.Size = new System.Drawing.Size(101, 21);
+            this.lblLoginName.Size = new System.Drawing.Size(108, 22);
             this.lblLoginName.TabIndex = 36;
             this.lblLoginName.Text = "Login name:";
             // 
             // lblConfirmNewPw
             // 
             this.lblConfirmNewPw.AutoSize = true;
-            this.lblConfirmNewPw.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.lblConfirmNewPw.Location = new System.Drawing.Point(23, 389);
+            this.lblConfirmNewPw.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblConfirmNewPw.Location = new System.Drawing.Point(25, 433);
             this.lblConfirmNewPw.Name = "lblConfirmNewPw";
-            this.lblConfirmNewPw.Size = new System.Drawing.Size(149, 21);
+            this.lblConfirmNewPw.Size = new System.Drawing.Size(158, 22);
             this.lblConfirmNewPw.TabIndex = 32;
             this.lblConfirmNewPw.Text = "Confirm password:";
             // 
             // txtConfirmNewPw
             // 
-            this.txtConfirmNewPw.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtConfirmNewPw.Location = new System.Drawing.Point(207, 389);
+            this.txtConfirmNewPw.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtConfirmNewPw.Location = new System.Drawing.Point(207, 430);
+            this.txtConfirmNewPw.MaxLength = 50;
             this.txtConfirmNewPw.Name = "txtConfirmNewPw";
-            this.txtConfirmNewPw.Size = new System.Drawing.Size(327, 28);
+            this.txtConfirmNewPw.Size = new System.Drawing.Size(327, 29);
             this.txtConfirmNewPw.TabIndex = 26;
             this.txtConfirmNewPw.UseSystemPasswordChar = true;
             this.txtConfirmNewPw.TextChanged += new System.EventHandler(this.txtConfirmNewPw_TextChanged);
@@ -247,19 +248,20 @@ namespace QLGDNganHang
             // lblNewPw
             // 
             this.lblNewPw.AutoSize = true;
-            this.lblNewPw.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.lblNewPw.Location = new System.Drawing.Point(47, 334);
+            this.lblNewPw.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNewPw.Location = new System.Drawing.Point(25, 378);
             this.lblNewPw.Name = "lblNewPw";
-            this.lblNewPw.Size = new System.Drawing.Size(125, 21);
+            this.lblNewPw.Size = new System.Drawing.Size(130, 22);
             this.lblNewPw.TabIndex = 33;
             this.lblNewPw.Text = "New password:";
             // 
             // txtCurrentPw
             // 
-            this.txtCurrentPw.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCurrentPw.Location = new System.Drawing.Point(207, 282);
+            this.txtCurrentPw.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCurrentPw.Location = new System.Drawing.Point(207, 324);
+            this.txtCurrentPw.MaxLength = 50;
             this.txtCurrentPw.Name = "txtCurrentPw";
-            this.txtCurrentPw.Size = new System.Drawing.Size(327, 28);
+            this.txtCurrentPw.Size = new System.Drawing.Size(327, 29);
             this.txtCurrentPw.TabIndex = 27;
             this.txtCurrentPw.UseSystemPasswordChar = true;
             this.txtCurrentPw.TextChanged += new System.EventHandler(this.txtCurrentPw_TextChanged);
@@ -267,10 +269,11 @@ namespace QLGDNganHang
             // 
             // txtNewPw
             // 
-            this.txtNewPw.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtNewPw.Location = new System.Drawing.Point(207, 334);
+            this.txtNewPw.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNewPw.Location = new System.Drawing.Point(207, 375);
+            this.txtNewPw.MaxLength = 50;
             this.txtNewPw.Name = "txtNewPw";
-            this.txtNewPw.Size = new System.Drawing.Size(327, 28);
+            this.txtNewPw.Size = new System.Drawing.Size(327, 29);
             this.txtNewPw.TabIndex = 28;
             this.txtNewPw.UseSystemPasswordChar = true;
             this.txtNewPw.TextChanged += new System.EventHandler(this.txtNewPw_TextChanged);
@@ -279,55 +282,55 @@ namespace QLGDNganHang
             // lblID1
             // 
             this.lblID1.AutoSize = true;
-            this.lblID1.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.lblID1.Location = new System.Drawing.Point(54, 137);
+            this.lblID1.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblID1.Location = new System.Drawing.Point(25, 158);
             this.lblID1.Name = "lblID1";
-            this.lblID1.Size = new System.Drawing.Size(111, 21);
+            this.lblID1.Size = new System.Drawing.Size(117, 22);
             this.lblID1.TabIndex = 31;
             this.lblID1.Text = "Employee ID:";
             // 
             // lblUsername
             // 
             this.lblUsername.AutoSize = true;
-            this.lblUsername.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.lblUsername.Location = new System.Drawing.Point(74, 189);
+            this.lblUsername.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsername.Location = new System.Drawing.Point(25, 216);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(91, 21);
+            this.lblUsername.Size = new System.Drawing.Size(94, 22);
             this.lblUsername.TabIndex = 30;
             this.lblUsername.Text = "Username:";
             // 
             // txtID1
             // 
-            this.txtID1.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtID1.Location = new System.Drawing.Point(207, 137);
+            this.txtID1.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtID1.Location = new System.Drawing.Point(208, 155);
             this.txtID1.Name = "txtID1";
             this.txtID1.ReadOnly = true;
-            this.txtID1.Size = new System.Drawing.Size(327, 28);
+            this.txtID1.Size = new System.Drawing.Size(327, 29);
             this.txtID1.TabIndex = 29;
             // 
             // txtUsername
             // 
-            this.txtUsername.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtUsername.Location = new System.Drawing.Point(207, 189);
+            this.txtUsername.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUsername.Location = new System.Drawing.Point(207, 213);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.ReadOnly = true;
-            this.txtUsername.Size = new System.Drawing.Size(327, 28);
+            this.txtUsername.Size = new System.Drawing.Size(327, 29);
             this.txtUsername.TabIndex = 25;
             // 
             // txtStatus
             // 
-            this.txtStatus.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtStatus.Location = new System.Drawing.Point(176, 61);
+            this.txtStatus.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStatus.Location = new System.Drawing.Point(207, 68);
             this.txtStatus.Name = "txtStatus";
             this.txtStatus.ReadOnly = true;
-            this.txtStatus.Size = new System.Drawing.Size(327, 28);
+            this.txtStatus.Size = new System.Drawing.Size(327, 29);
             this.txtStatus.TabIndex = 5;
             // 
             // btnCancel
             // 
             this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnCancel.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.btnCancel.Location = new System.Drawing.Point(386, 546);
+            this.btnCancel.Location = new System.Drawing.Point(417, 607);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(117, 47);
             this.btnCancel.TabIndex = 4;
@@ -339,7 +342,7 @@ namespace QLGDNganHang
             // 
             this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnSave.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.btnSave.Location = new System.Drawing.Point(240, 546);
+            this.btnSave.Location = new System.Drawing.Point(266, 607);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(117, 47);
             this.btnSave.TabIndex = 4;
@@ -349,17 +352,18 @@ namespace QLGDNganHang
             // 
             // cbxGender
             // 
-            this.cbxGender.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.cbxGender.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxGender.FormattingEnabled = true;
-            this.cbxGender.Location = new System.Drawing.Point(176, 310);
+            this.cbxGender.Location = new System.Drawing.Point(207, 347);
             this.cbxGender.Name = "cbxGender";
-            this.cbxGender.Size = new System.Drawing.Size(327, 29);
+            this.cbxGender.Size = new System.Drawing.Size(327, 30);
             this.cbxGender.TabIndex = 3;
             // 
             // txtAddress
             // 
-            this.txtAddress.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtAddress.Location = new System.Drawing.Point(176, 416);
+            this.txtAddress.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAddress.Location = new System.Drawing.Point(207, 455);
+            this.txtAddress.MaxLength = 100;
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(327, 90);
             this.txtAddress.TabIndex = 2;
@@ -368,148 +372,152 @@ namespace QLGDNganHang
             // lblGender
             // 
             this.lblGender.AutoSize = true;
-            this.lblGender.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.lblGender.Location = new System.Drawing.Point(66, 310);
+            this.lblGender.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGender.Location = new System.Drawing.Point(25, 350);
             this.lblGender.Name = "lblGender";
-            this.lblGender.Size = new System.Drawing.Size(69, 21);
+            this.lblGender.Size = new System.Drawing.Size(72, 22);
             this.lblGender.TabIndex = 1;
             this.lblGender.Text = "Gender:";
             // 
             // lblAddress
             // 
             this.lblAddress.AutoSize = true;
-            this.lblAddress.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.lblAddress.Location = new System.Drawing.Point(59, 416);
+            this.lblAddress.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAddress.Location = new System.Drawing.Point(25, 458);
             this.lblAddress.Name = "lblAddress";
-            this.lblAddress.Size = new System.Drawing.Size(76, 21);
+            this.lblAddress.Size = new System.Drawing.Size(78, 22);
             this.lblAddress.TabIndex = 1;
             this.lblAddress.Text = "Address:";
             // 
             // lblConfirmPasswordError
             // 
             this.lblConfirmPasswordError.AutoSize = true;
-            this.lblConfirmPasswordError.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.lblConfirmPasswordError.Location = new System.Drawing.Point(541, 392);
+            this.lblConfirmPasswordError.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblConfirmPasswordError.Location = new System.Drawing.Point(541, 413);
             this.lblConfirmPasswordError.Name = "lblConfirmPasswordError";
-            this.lblConfirmPasswordError.Size = new System.Drawing.Size(0, 21);
+            this.lblConfirmPasswordError.Size = new System.Drawing.Size(0, 22);
             this.lblConfirmPasswordError.TabIndex = 1;
             // 
             // lblNewPasswordError
             // 
             this.lblNewPasswordError.AutoSize = true;
-            this.lblNewPasswordError.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.lblNewPasswordError.Location = new System.Drawing.Point(541, 337);
+            this.lblNewPasswordError.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNewPasswordError.Location = new System.Drawing.Point(541, 358);
             this.lblNewPasswordError.Name = "lblNewPasswordError";
-            this.lblNewPasswordError.Size = new System.Drawing.Size(0, 21);
+            this.lblNewPasswordError.Size = new System.Drawing.Size(0, 22);
             this.lblNewPasswordError.TabIndex = 1;
             // 
             // lblPasswordError
             // 
             this.lblPasswordError.AutoSize = true;
-            this.lblPasswordError.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.lblPasswordError.Location = new System.Drawing.Point(540, 285);
+            this.lblPasswordError.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPasswordError.Location = new System.Drawing.Point(540, 306);
             this.lblPasswordError.Name = "lblPasswordError";
-            this.lblPasswordError.Size = new System.Drawing.Size(0, 21);
+            this.lblPasswordError.Size = new System.Drawing.Size(0, 22);
             this.lblPasswordError.TabIndex = 1;
             // 
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.lblStatus.Location = new System.Drawing.Point(72, 61);
+            this.lblStatus.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.Location = new System.Drawing.Point(25, 71);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(63, 21);
+            this.lblStatus.Size = new System.Drawing.Size(65, 22);
             this.lblStatus.TabIndex = 1;
             this.lblStatus.Text = "Status:";
             // 
             // lblPhone
             // 
             this.lblPhone.AutoSize = true;
-            this.lblPhone.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.lblPhone.Location = new System.Drawing.Point(13, 361);
+            this.lblPhone.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPhone.Location = new System.Drawing.Point(25, 406);
             this.lblPhone.Name = "lblPhone";
-            this.lblPhone.Size = new System.Drawing.Size(122, 21);
+            this.lblPhone.Size = new System.Drawing.Size(131, 22);
             this.lblPhone.TabIndex = 1;
             this.lblPhone.Text = "Phone number:";
             // 
             // txtPhone
             // 
-            this.txtPhone.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtPhone.Location = new System.Drawing.Point(176, 361);
+            this.txtPhone.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPhone.Location = new System.Drawing.Point(208, 403);
+            this.txtPhone.MaxLength = 10;
             this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(327, 28);
+            this.txtPhone.Size = new System.Drawing.Size(327, 29);
             this.txtPhone.TabIndex = 0;
             // 
             // lblID
             // 
             this.lblID.AutoSize = true;
-            this.lblID.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.lblID.Location = new System.Drawing.Point(24, 111);
+            this.lblID.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblID.Location = new System.Drawing.Point(25, 130);
             this.lblID.Name = "lblID";
-            this.lblID.Size = new System.Drawing.Size(111, 21);
+            this.lblID.Size = new System.Drawing.Size(117, 22);
             this.lblID.TabIndex = 1;
             this.lblID.Text = "Employee ID:";
             // 
             // lblCMND
             // 
             this.lblCMND.AutoSize = true;
-            this.lblCMND.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.lblCMND.Location = new System.Drawing.Point(73, 161);
+            this.lblCMND.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCMND.Location = new System.Drawing.Point(25, 187);
             this.lblCMND.Name = "lblCMND";
-            this.lblCMND.Size = new System.Drawing.Size(62, 21);
+            this.lblCMND.Size = new System.Drawing.Size(65, 22);
             this.lblCMND.TabIndex = 1;
             this.lblCMND.Text = "CMND:";
             // 
             // txtLastName
             // 
-            this.txtLastName.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtLastName.Location = new System.Drawing.Point(176, 258);
+            this.txtLastName.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLastName.Location = new System.Drawing.Point(208, 296);
+            this.txtLastName.MaxLength = 15;
             this.txtLastName.Name = "txtLastName";
-            this.txtLastName.Size = new System.Drawing.Size(327, 28);
+            this.txtLastName.Size = new System.Drawing.Size(327, 29);
             this.txtLastName.TabIndex = 0;
             // 
             // lblLname
             // 
             this.lblLname.AutoSize = true;
-            this.lblLname.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.lblLname.Location = new System.Drawing.Point(42, 258);
+            this.lblLname.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLname.Location = new System.Drawing.Point(25, 299);
             this.lblLname.Name = "lblLname";
-            this.lblLname.Size = new System.Drawing.Size(93, 21);
+            this.lblLname.Size = new System.Drawing.Size(97, 22);
             this.lblLname.TabIndex = 1;
             this.lblLname.Text = "Last name:";
             // 
             // txtFirstName
             // 
-            this.txtFirstName.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtFirstName.Location = new System.Drawing.Point(176, 213);
+            this.txtFirstName.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFirstName.Location = new System.Drawing.Point(207, 240);
+            this.txtFirstName.MaxLength = 50;
             this.txtFirstName.Name = "txtFirstName";
-            this.txtFirstName.Size = new System.Drawing.Size(327, 28);
+            this.txtFirstName.Size = new System.Drawing.Size(327, 29);
             this.txtFirstName.TabIndex = 0;
             // 
             // lblFname
             // 
             this.lblFname.AutoSize = true;
-            this.lblFname.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.lblFname.Location = new System.Drawing.Point(40, 213);
+            this.lblFname.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFname.Location = new System.Drawing.Point(25, 243);
             this.lblFname.Name = "lblFname";
-            this.lblFname.Size = new System.Drawing.Size(95, 21);
+            this.lblFname.Size = new System.Drawing.Size(98, 22);
             this.lblFname.TabIndex = 1;
             this.lblFname.Text = "First name:";
             // 
             // txtID
             // 
-            this.txtID.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtID.Location = new System.Drawing.Point(176, 111);
+            this.txtID.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtID.Location = new System.Drawing.Point(207, 127);
             this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(327, 28);
+            this.txtID.Size = new System.Drawing.Size(327, 29);
             this.txtID.TabIndex = 0;
             // 
             // txtCMND
             // 
-            this.txtCMND.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCMND.Location = new System.Drawing.Point(176, 161);
+            this.txtCMND.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCMND.Location = new System.Drawing.Point(207, 184);
+            this.txtCMND.MaxLength = 10;
             this.txtCMND.Name = "txtCMND";
-            this.txtCMND.Size = new System.Drawing.Size(327, 28);
+            this.txtCMND.Size = new System.Drawing.Size(327, 29);
             this.txtCMND.TabIndex = 0;
             // 
             // barManager1
@@ -536,17 +544,17 @@ namespace QLGDNganHang
             // 
             // barControl
             // 
-            this.barControl.BarAppearance.Disabled.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.barControl.BarAppearance.Disabled.Font = new System.Drawing.Font("Tahoma", 10F);
             this.barControl.BarAppearance.Disabled.Options.UseFont = true;
             this.barControl.BarAppearance.Disabled.Options.UseTextOptions = true;
             this.barControl.BarAppearance.Disabled.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.barControl.BarAppearance.Disabled.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.barControl.BarAppearance.Hovered.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.barControl.BarAppearance.Hovered.Font = new System.Drawing.Font("Tahoma", 10F);
             this.barControl.BarAppearance.Hovered.Options.UseFont = true;
-            this.barControl.BarAppearance.Normal.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.barControl.BarAppearance.Normal.Font = new System.Drawing.Font("Tahoma", 10F);
             this.barControl.BarAppearance.Normal.Options.UseFont = true;
             this.barControl.BarAppearance.Pressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.barControl.BarAppearance.Pressed.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.barControl.BarAppearance.Pressed.Font = new System.Drawing.Font("Tahoma", 10F);
             this.barControl.BarAppearance.Pressed.Options.UseBackColor = true;
             this.barControl.BarAppearance.Pressed.Options.UseFont = true;
             this.barControl.BarName = "Tools";
@@ -717,32 +725,33 @@ namespace QLGDNganHang
             this.cbxBranch.AllowDrop = true;
             this.cbxBranch.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbxBranch.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cbxBranch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxBranch.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxBranch.FormattingEnabled = true;
-            this.cbxBranch.Location = new System.Drawing.Point(80, 55);
+            this.cbxBranch.Location = new System.Drawing.Point(123, 54);
             this.cbxBranch.Margin = new System.Windows.Forms.Padding(6);
+            this.cbxBranch.MaxLength = 10;
             this.cbxBranch.Name = "cbxBranch";
-            this.cbxBranch.Size = new System.Drawing.Size(228, 26);
+            this.cbxBranch.Size = new System.Drawing.Size(264, 30);
             this.cbxBranch.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(9, 61);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(15, 60);
             this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 18);
+            this.label1.Size = new System.Drawing.Size(72, 22);
             this.label1.TabIndex = 0;
             this.label1.Text = "Branch:";
             // 
             // btnLoad
             // 
             this.btnLoad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.btnLoad.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.btnLoad.Location = new System.Drawing.Point(331, 53);
+            this.btnLoad.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLoad.Location = new System.Drawing.Point(396, 51);
             this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(112, 28);
+            this.btnLoad.Size = new System.Drawing.Size(114, 36);
             this.btnLoad.TabIndex = 4;
             this.btnLoad.Text = "LOAD";
             this.btnLoad.UseVisualStyleBackColor = false;

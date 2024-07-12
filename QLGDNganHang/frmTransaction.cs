@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,7 +18,16 @@ namespace QLGDNganHang
         private DataTable dtCustomer = new DataTable();
         private DataTable dtAccountOrigin = new DataTable();
         private DataTable dtAccount = new DataTable();
+
+        private bool clickReload = false;
+        private int currentRow = 0;
+        private string sortedColumnName;
+        private System.Windows.Forms.SortOrder sortedOrder;
         private string type = "GT";
+
+        private bool isSpecialTransaction = false;
+        private string specialAccount = "";
+        private bool allowCbxCustomer = false;
         public frmTransaction()
         {
             InitializeComponent();
@@ -26,15 +36,8 @@ namespace QLGDNganHang
         {
             InitializeComponent();
 
-            foreach (DataGridViewRow row in data.Rows)
-            {
-                if (row.Cells["SOTK"].Value.ToString() == account)
-                {
-                    loadInformation(row);
-                    break;
-                }
-            }
-            loadDataTable(account);
+            specialAccount = account;
+            isSpecialTransaction = true;
         }
         private void frmTransaction_Load(object sender, EventArgs e)
         {
@@ -49,11 +52,27 @@ namespace QLGDNganHang
             cbxCustomer.DataSource = dtCustomer;
             cbxCustomer.DisplayMember = "CMND";
             cbxCustomer.ValueMember = "CMND";
+            cbxCustomer.Text = "";
 
             cbxType.SelectedIndex = 0;
             cbxType.DropDownStyle = ComboBoxStyle.DropDownList;
 
-            btnShowAll.PerformClick();
+            loadDataTable();
+
+            if (isSpecialTransaction)
+            {
+                foreach (DataGridViewRow row in data.Rows)
+                {
+                    if (row.Cells["SOTK"].Value.ToString() == specialAccount)
+                    {
+                        loadInformation(row);
+
+                        break;
+                    }
+                }
+            }
+
+            allowCbxCustomer = true;
         }
 
         private void loadInformation(DataGridViewRow row)
@@ -174,6 +193,10 @@ namespace QLGDNganHang
 
         private void cbxCustomer_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (!allowCbxCustomer)
+            {
+                return;
+            }
             string CMND = cbxCustomer.Text;
             loadDataTable(CMND);
         }
@@ -186,6 +209,9 @@ namespace QLGDNganHang
                 row = data.SelectedRows[0];
             }
             loadInformation(row);
+
+            if (!this.clickReload)
+                this.currentRow = data.Rows.IndexOf(row);
         }
 
         private void cbxType_SelectedIndexChanged(object sender, EventArgs e)
@@ -212,7 +238,7 @@ namespace QLGDNganHang
             long sendBalance = Convert.ToInt64(txtBalance.Text.Replace(" VND", "").Replace(",", ""));
             long amount = Convert.ToInt64(txtAmount.Text.Replace(",", ""));
 
-            if (sendBalance < amount)
+            if (type == "RT" && sendBalance < amount)
             {
                 MessageBox.Show("The transaction account balance is insufficient!");
                 return;
@@ -253,14 +279,44 @@ namespace QLGDNganHang
 
         private void btnReload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            btnClear.PerformClick();
+            this.clickReload = true;
+            SaveSortState();
 
             dtCustomer = Program.ExecStoredProcedureReturnTable("Select CMND from dbo.V_DanhSachKhachHang_NganHang");
             dtAccountOrigin = Program.ExecStoredProcedureReturnTable("Select SOTK, CMND, HOTEN, SODU from dbo.V_TaiKhoanKhachHang");
 
-            btnShowAll.PerformClick();
+            loadDataTable(cbxCustomer.Text);
+
+            if (currentRow >= 0 && currentRow < data.Rows.Count)
+            {
+                data.CurrentCell = data.Rows[currentRow].Cells[0];
+            }
+            ApplySortState();
+            this.clickReload = false;
         }
 
+        private void SaveSortState()
+        {
+            if (data.SortedColumn != null)
+            {
+                sortedColumnName = data.SortedColumn.Name;
+                sortedOrder = data.SortOrder;
+            }
+            else
+            {
+                sortedColumnName = null;
+            }
+        }
+
+        private void ApplySortState()
+        {
+            if (!string.IsNullOrEmpty(sortedColumnName))
+            {
+                DataGridViewColumn sortedColumn = data.Columns[sortedColumnName];
+                ListSortDirection direction = sortedOrder == System.Windows.Forms.SortOrder.Ascending ? ListSortDirection.Ascending : ListSortDirection.Descending;
+                data.Sort(sortedColumn, direction);
+            }
+        }
         private void btnExit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (!string.IsNullOrEmpty(txtAccount.Text))
@@ -268,11 +324,13 @@ namespace QLGDNganHang
                 if (MessageBox.Show("Do you want to exit?\nYour incomplete transaction will be deleted!", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                 {
                     this.Close();
+                    this.DialogResult = DialogResult.Cancel;
                 }
             }
             else
             {
                 this.Close();
+                this.DialogResult = DialogResult.Cancel;
             }
         }
     }

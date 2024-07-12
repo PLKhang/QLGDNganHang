@@ -15,14 +15,35 @@ namespace QLGDNganHang
 {
     public partial class frmCustomers : Form
     {
+        //test current password to change
+        private SqlConnection tempConnection = new SqlConnection();
+
+        //login info: login name, username
+        private DataTable dt_login;
+
         private DataTable dtCustomerOrigin;
         private DataTable dtAccountOrigin;
         private DataTable dtCustomer;
         private DataTable dtAccount;
+        
+        //save current row, sort state to reload
+        private bool clickReload = false;
+        private int currentRow = 0;
+        private string sortedColumnName;
+        private System.Windows.Forms.SortOrder sortedOrder;
+
         private bool isOpenPanelAccount = false;
+        private bool isOpenPanelInfo = false;
+        private bool isOpenPanelLogin = false;
         private bool isEditCustomer = false;
         private bool isAddAccount = false;
-        
+
+        private bool isChangePassword = false;
+        private bool isCreateLogin = false;
+        private string currentLogin = Program.mLoginName;
+        private string currentPassword = Program.mPassword;
+        private bool checkPassword = false, checkNewPassword = false, checkConfirmPassword = false, checkLoginName = false;
+
         public frmCustomers()
         {
             InitializeComponent();
@@ -31,8 +52,15 @@ namespace QLGDNganHang
         private void frmCustomers_Load(object sender, EventArgs e)
         {
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            hidePanelAccount();
             unenablelEditCustomerInformation();
+            hidePanelAccount();
+            hidePanelLogin();
+            if (Program.mRole == "NganHang")
+            {
+                roleNganHang();
+            }
+
+            
 
             dtCustomerOrigin = Program.ExecStoredProcedureReturnTable("select CMND, HO, TEN, PHAI, SODT, MACN, NGAYCAP, DIACHI from dbo.V_DanhSachKhachHang_NganHang");
             dtAccountOrigin = Program.ExecStoredProcedureReturnTable("select SOTK, CMND, SODU from dbo.V_TaiKhoanKhachHang");
@@ -47,21 +75,46 @@ namespace QLGDNganHang
             cbxCMND.DisplayMember = "CMND";
             cbxCMND.ValueMember = "CMND";
 
+            List<string> gender = new List<string>() { "Nam", "Nữ" };
+            cbxGender.DataSource = gender;
+            cbxGender.DropDownStyle = ComboBoxStyle.DropDownList;
+
             btnShowAll.PerformClick();
         }
 
-        private void loadAccounts()
+        public int TryConnect(string loginName, string password)
         {
-
+            if (tempConnection != null && tempConnection.State == ConnectionState.Open)
+            {
+                tempConnection.Close();
+            }
+            try
+            {
+                string connectionString = "Data Source=" + Program.serverName + ";Initial Catalog=" + Program.databaseName + ";User ID=" + loginName + ";Password=" + password;
+                tempConnection.ConnectionString = connectionString;
+                tempConnection.Open();
+                return 1;
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+        
+        private void roleNganHang()
+        {
+            btnAdd.Enabled = btnAddAccount.Enabled = btnEdit.Enabled = btnDelete.Enabled = btnLoginInfo.Enabled
+                = btnTransfer.Enabled = btnTransaction.Enabled = btnUndo.Enabled = false;
         }
 
         private void showPanelAccount()
         {
             label5.Visible = label6.Visible = label7.Visible = label9.Visible = false;
             pickerDateIssue.Visible = cbxGender.Visible = txtPhone.Visible = txtAddress.Visible = false;
-
-            btnAdd.Enabled = btnEdit.Enabled = btnLoginInfo.Enabled = btnReload.Enabled = btnBankAccount.Enabled = false;
-
+            if (Program.mRole != "NganHang")
+            {
+                btnAdd.Enabled = btnEdit.Enabled = btnLoginInfo.Enabled = btnReload.Enabled = btnBankAccount.Enabled = false;
+            }
             pnlAccount.Visible = true;
             isOpenPanelAccount = true;
             unenabelEditAccount();
@@ -72,9 +125,10 @@ namespace QLGDNganHang
         {
             label5.Visible = label6.Visible = label7.Visible = label9.Visible = true;
             pickerDateIssue.Visible = cbxGender.Visible = txtPhone.Visible = txtAddress.Visible = true;
-            
-            btnAdd.Enabled = btnEdit.Enabled = btnLoginInfo.Enabled = btnReload.Enabled = btnBankAccount.Enabled = true;
-            
+            if (Program.mRole != "NganHang")
+            { 
+                btnAdd.Enabled = btnEdit.Enabled = btnLoginInfo.Enabled = btnReload.Enabled = btnBankAccount.Enabled = true;
+            }
             pnlAccount.Visible = false;
             isOpenPanelAccount = false;
         }
@@ -89,8 +143,8 @@ namespace QLGDNganHang
 
             try
             {
-                txtFirstName.Text = row.Cells["HO"].Value.ToString();
-                txtLastName.Text = row.Cells["TEN"].Value.ToString();
+                txtFirstName.Text = row.Cells["TEN"].Value.ToString();
+                txtLastName.Text = row.Cells["HO"].Value.ToString();
                 txtCMND.Text = row.Cells["CMND"].Value.ToString();
                 cbxGender.Text = row.Cells["PHAI"].Value.ToString();
                 txtPhone.Text = row.Cells["SODT"].Value.ToString();
@@ -160,41 +214,107 @@ namespace QLGDNganHang
         private void resetAccountInformation()
         {
             txtAccount.Text = "";
-            txtBalance.ResetText();
+            txtBalance.Value = 0;
         }
 
         private void enabelEditAccount()
         {
             isAddAccount = true;
-            txtAccount.ReadOnly = txtBalance.ReadOnly = false;
+
+            label8.Visible = label10.Visible = txtAccount.Visible = txtBalance.Visible = true;
 
             btnSaveAccount.Visible = btnCancelAccount.Visible = true;
 
-            btnTransfer.Enabled = btnAddAccount.Enabled = btnDeleteAccount.Enabled = btnTransaction.Enabled = btnReloadAccount.Enabled = false;
+            if (Program.mRole != "NganHang")
+            {
+                btnTransfer.Enabled = btnAddAccount.Enabled = btnDeleteAccount.Enabled = btnTransaction.Enabled = btnReloadAccount.Enabled = false;
+            }
 
             dataAccount.Enabled = false;
+        }
+
+        private void showPanelLogin()
+        {
+            btnAdd.Enabled = btnEdit.Enabled = btnLoginInfo.Enabled = btnReload.Enabled = btnBankAccount.Enabled = false;
+
+            pnlLogin.Visible = isOpenPanelLogin = true;
+            loadDataCustomer("", Program.branchID);
+        }
+
+        private void hidePanelLogin()
+        {
+            btnAdd.Enabled = btnEdit.Enabled = btnLoginInfo.Enabled = btnReload.Enabled = btnBankAccount.Enabled = true;
+
+            pnlLogin.Visible = isOpenPanelLogin = false;
+        }
+
+        private void createLoginAccount()
+        {
+            btnSaveLogin.Visible = btnCancelLogin.Visible = true;
+            txtLoginName.ReadOnly = false;
+
+            btnSaveLogin.Text = "CREATE";
+            lblLoginNote.Text = "CREATE LOGIN ACCOUNT FOR CUSTOMER";
+            lblNewPw.Text = "Password:";
+
+            txtNewPw.Text = txtConfirmNewPw.Text = lblConfirmPasswordError.Text = lblNewPasswordError.Text = "";
+
+            lblCrrPw.Visible = txtCurrentPw.Visible = false;
+
+            isCreateLogin = true; 
+            isChangePassword = false;
+        }
+
+        private void changeLoginPassword()
+        {
+            btnSaveLogin.Visible = btnCancelLogin.Visible = true;
+            btnSaveLogin.Text = "CHANGE";
+            txtLoginName.ReadOnly = true;
+
+            lblLoginNote.Text = "CHANGE PASSWORD FOR LOGIN ACCOUNT";
+            lblNewPw.Text = "New Password:";
+
+            txtNewPw.Text = txtConfirmNewPw.Text = lblConfirmPasswordError.Text = lblNewPasswordError.Text = "";
+
+            lblCrrPw.Visible = txtCurrentPw.Visible = true;
+
+            isChangePassword = true;
+            isCreateLogin = false;
         }
 
         private void unenabelEditAccount()
         {
             isAddAccount = false;
 
-            txtAccount.ReadOnly = txtBalance.ReadOnly = true;
+            label8.Visible = label10.Visible = txtAccount.Visible = txtBalance.Visible = false;
 
             btnSaveAccount.Visible = btnCancelAccount.Visible = false;
 
-            btnTransfer.Enabled = btnAddAccount.Enabled = btnDeleteAccount.Enabled = btnTransaction.Enabled = btnReloadAccount.Enabled = true;
+            if (Program.mRole != "NganHang")
+            {
+                btnTransfer.Enabled = btnAddAccount.Enabled = btnDeleteAccount.Enabled = btnTransaction.Enabled = btnReloadAccount.Enabled = true;
+            }
 
             dataAccount.Enabled = true;
         }
 
-        private void loadDataCustomer(string CMND = "")
+        private void loadDataCustomer(string CMND = "", string branch = "")
         {
             string filterExpression = "";
 
             if (!string.IsNullOrEmpty(CMND))
             {
                 filterExpression += $"CMND = '{CMND}'";
+            }
+
+            if (!string.IsNullOrEmpty(branch))
+            {
+                if (!string.IsNullOrEmpty(CMND))
+                {
+                    filterExpression += " AND ";
+                }
+
+                filterExpression += $"MACN = '{branch}'";
             }
 
             DataRow[] filteredRows = dtCustomerOrigin.Select(filterExpression);
@@ -204,7 +324,7 @@ namespace QLGDNganHang
             {
                 dtCustomer.ImportRow(row);
             }
-            Debug.WriteLine(filteredRows.Length);
+            
             loadCustomerGridView();
         }
 
@@ -219,8 +339,41 @@ namespace QLGDNganHang
             {
                 dtAccount.ImportRow(row);
             }
-            Debug.WriteLine("CMND:" + CMND + "|find: " + filteredRows.Length);
+            
             loadAccountGridView();
+        }
+
+        private void loadLoginInfo(string CMND)
+        {
+            if (string.IsNullOrEmpty(CMND))
+                return;
+
+            try
+            {
+                DataRow foundRow = null;
+                foreach (DataRow currentRow in dt_login.Rows)
+                {
+                    if (currentRow["UserName"].ToString() == CMND)
+                    {
+                        foundRow = currentRow;
+                        break;
+                    }
+                }
+                if (foundRow != null)
+                {
+                    changeLoginPassword();
+                    txtLoginName.Text = foundRow[0].ToString();
+                }
+                else
+                {
+                    createLoginAccount();
+                    txtLoginName.Text = "";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
         }
 
         private void loadCustomerGridView()
@@ -379,16 +532,51 @@ namespace QLGDNganHang
         private void btnLoginInfo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             // ------------------
+            showPanelLogin();
+            dt_login = Program.ExecStoredProcedureReturnTable("Select * from dbo.V_AllLoginName");
         }
 
         private void btnReload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            clickReload = true;
+            SaveSortState();
             dtCustomerOrigin = Program.ExecStoredProcedureReturnTable("select CMND, HO, TEN, PHAI, SODT, MACN, NGAYCAP, DIACHI from dbo.V_DanhSachKhachHang_NganHang");
-            
-            loadDataCustomer();
-            btnShowAll.PerformClick();
+            dt_login = Program.ExecStoredProcedureReturnTable("Select * from dbo.V_AllLoginName");
+
+            loadDataCustomer(cbxCMND.Text);
+
+            if (currentRow >= 0 && currentRow < data.Rows.Count)
+            {
+                data.CurrentCell = data.Rows[currentRow].Cells[0];
+            }
+
+            ApplySortState();
+            clickReload = false;
         }
 
+        private void SaveSortState()
+        {
+            if (data.SortedColumn != null)
+            {
+                sortedColumnName = data.SortedColumn.Name;
+                sortedOrder = data.SortOrder;
+            }
+            else
+            {
+                sortedColumnName = null;
+            }
+        }
+
+        private void ApplySortState()
+        {
+            if (!string.IsNullOrEmpty(sortedColumnName))
+            {
+                DataGridViewColumn sortedColumn = data.Columns[sortedColumnName];
+                ListSortDirection direction = sortedOrder == System.Windows.Forms.SortOrder.Ascending ? ListSortDirection.Ascending : ListSortDirection.Descending;
+                data.Sort(sortedColumn, direction);
+            }
+        }
+        
         private void btnUndo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             // pass
@@ -425,7 +613,7 @@ namespace QLGDNganHang
             string newCMND = txtCMND.Text;
             string newFname = txtFirstName.Text;
             string newLname = txtLastName.Text;
-            string newAddress = txtAccount.Text;
+            string newAddress = txtAddress.Text;
             string newPhone = txtPhone.Text;
             DateTime newDateIssue = pickerDateIssue.Value.Date;
             string newGender = cbxGender.Text;
@@ -440,6 +628,51 @@ namespace QLGDNganHang
                     new SqlParameter("PHAI", newGender),
                     new SqlParameter("NGAYCAP", newDateIssue),
                     new SqlParameter("DIACHI", newAddress));
+
+                switch (result)
+                {
+                    case 0:
+                        MessageBox.Show("Customer has been created!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        unenablelEditCustomerInformation();
+                        btnReload.PerformClick();
+                        break;
+                    case 1:
+                        MessageBox.Show("Can not create bank account!\nThis customer's CMND does not exist!", "ERROR!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                    default:
+                        MessageBox.Show("Some error in SqlServer!");
+                        break;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Can not create customer!\nError: " + ex.Message, "ERROR!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
+
+        private void updateCustomer(string oldCMND)
+        {
+            string newCMND = txtCMND.Text;
+            string newFname = txtFirstName.Text;
+            string newLname = txtLastName.Text;
+            string newAddress = txtAddress.Text;
+            string newPhone = txtPhone.Text;
+            DateTime newDateIssue = pickerDateIssue.Value.Date;
+            string newGender = cbxGender.Text;
+
+            try
+            {
+                int result = Program.ExecStoredProcedureReturnInt("sp_SuaThongTinKH",
+                    new SqlParameter("HO", newLname),
+                    new SqlParameter("TEN", newFname),
+                    new SqlParameter("DIACHI", newAddress),
+                    new SqlParameter("newCMND", newCMND),
+                    new SqlParameter("oldCMND", oldCMND),
+                    new SqlParameter("NGAYCAP", newDateIssue),
+                    new SqlParameter("SODT", newPhone),
+                    new SqlParameter("PHAI", newGender));
 
                 switch (result)
                 {
@@ -460,52 +693,7 @@ namespace QLGDNganHang
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Can not create bank account!\nError: " + ex.Message, "ERROR!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-        }
-
-        private void updateCustomer(string oldCMND)
-        {
-            string newCMND = txtCMND.Text;
-            string newFname = txtFirstName.Text;
-            string newLname = txtLastName.Text;
-            string newAddress = txtAccount.Text;
-            string newPhone = txtPhone.Text;
-            DateTime newDateIssue = pickerDateIssue.Value.Date;
-            string newGender = cbxGender.Text;
-
-            try
-            {
-                int result = Program.ExecStoredProcedureReturnInt("sp_SuaThongTinKH", new SqlParameter("oldCMND", oldCMND),
-                    new SqlParameter("newCMND", newCMND),
-                    new SqlParameter("HO", newLname),
-                    new SqlParameter("TEN", newFname),
-                    new SqlParameter("SODT", newPhone),
-                    new SqlParameter("PHAI", newGender),
-                    new SqlParameter("NGAYCAP", newDateIssue),
-                    new SqlParameter("DIACHI", newAddress));
-
-                switch (result)
-                {
-                    case 0:
-                        MessageBox.Show("This customer's information have been updated!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        isEditCustomer = false;
-                        unenabelEditAccount();
-                        btnReload.PerformClick();
-                        break;
-                    case 1:
-                        MessageBox.Show("Can not create bank account!\nThis customer's CMND does not exist!", "ERROR!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        break;
-                    default:
-                        MessageBox.Show("Some error in SqlServer!");
-                        break;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Can not create bank account!\nError: " + ex.Message, "ERROR!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Can not update information!\nError: " + ex.Message, "ERROR!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
         }
@@ -542,12 +730,42 @@ namespace QLGDNganHang
 
         private void btnTransfer_Click(object sender, EventArgs e)
         {
-            //----------------------------
+            DataGridViewRow row = null;
+
+            if (dataAccount.SelectedRows.Count > 0)
+            {
+                row = dataAccount.SelectedRows[0];
+            }
+
+            if (row == null)
+            {
+                MessageBox.Show("Click to an account before begin transfer!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            frmTransfer form = new frmTransfer(row.Cells["SOTK"].Value.ToString());
+            form.ShowDialog();
+
+            loadDataAccount(txtCMND.Text);
         }
 
         private void btnTransaction_Click(object sender, EventArgs e)
         {
-            //---------------------------
+            DataGridViewRow row = null;
+
+            if (dataAccount.SelectedRows.Count > 0)
+            {
+                row = dataAccount.SelectedRows[0];
+            }
+
+            if (row == null)
+            {
+                MessageBox.Show("Click to an account before begin transfer!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            frmTransaction form = new frmTransaction(row.Cells["SOTK"].Value.ToString());
+            form.ShowDialog();
+
+            loadDataAccount(txtCMND.Text);
         }
 
         private void btnDeleteAccount_Click(object sender, EventArgs e)
@@ -572,13 +790,19 @@ namespace QLGDNganHang
         private void btnShowAll_Click(object sender, EventArgs e)
         {
             cbxCMND.Text = "";
-            loadDataCustomer();
+            if (isOpenPanelLogin)
+            {
+                loadDataCustomer("", Program.branchID);
+            }
+            else 
+            { 
+                loadDataCustomer();
+            }
         }
 
         private void cbxCMND_SelectedIndexChanged(object sender, EventArgs e)
         {
             string CMND = cbxCMND.Text;
-            Debug.WriteLine("CMND: "+ CMND);
             loadDataCustomer(CMND); 
         }
 
@@ -601,6 +825,11 @@ namespace QLGDNganHang
             {
                 loadDataAccount(row.Cells["CMND"].Value.ToString());
             }
+
+            if (isOpenPanelLogin)
+            {
+                loadLoginInfo(row.Cells["CMND"].Value.ToString());
+            }
             loadCustomerInformation(row);
         }
 
@@ -613,6 +842,8 @@ namespace QLGDNganHang
             }
 
             loadAccountInformation(row);
+            if (!this.clickReload)
+                this.currentRow = data.Rows.IndexOf(row);
         }
 
         private void btnCancelAccount_Click(object sender, EventArgs e)
@@ -627,6 +858,14 @@ namespace QLGDNganHang
 
                     btnReloadAccount.PerformClick();
                 }
+            }
+            else
+            {
+                resetAccountInformation();
+                unenabelEditAccount();
+                data.Enabled = true;
+
+                btnReloadAccount.PerformClick();
             }
         }
 
@@ -664,6 +903,228 @@ namespace QLGDNganHang
                 MessageBox.Show("Can not create bank account!\nError: " + ex.Message, "ERROR!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+        }
+
+        private void btnSaveLogin_Click(object sender, EventArgs e)
+        {
+            string loginName = txtLoginName.Text;
+            string currentPassword = txtCurrentPw.Text;
+            string newPassword = txtNewPw.Text;
+            string confirmPassword = txtConfirmNewPw.Text;
+            string username = txtCMND.Text;
+
+            if (isChangePassword)
+            {
+                if (!(checkNewPassword && checkConfirmPassword))
+                {
+                    MessageBox.Show("Complete all password to continue!", "Fail!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                if (this.TryConnect(loginName, currentPassword) == 1)
+                {
+                    
+                    tempConnection.Close();
+                    Program.mLoginName = this.currentLogin;
+                    Program.mPassword = this.currentPassword;
+                    Program.Connect();
+
+                    string notification = $"Are you sure to change this account's password?\nLogin name: {loginName}\nUsername: {username}";
+                    if (MessageBox.Show(notification, "Confirm!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                    {
+                        Program.ExecStoredProcedureReturnDataReader($"EXEC ChangePassword '{loginName}', '{newPassword}'");
+                    }
+                    btnCancelLogin.PerformClick();
+                }
+                else
+                {
+                    MessageBox.Show("Your current password is incorrect", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                if (!(checkPassword && checkNewPassword && checkConfirmPassword && checkLoginName))
+                {
+                    MessageBox.Show("Complete all password to continue!", "Fail!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                loginName = txtLoginName.Text;
+                username = txtCMND.Text;
+                if (MessageBox.Show($"Do you want to create this login account?\nLoginName: {loginName}\nUsername: {username}", "CONFIRM!", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
+                {
+                    try
+                    {
+                        Program.CreateLoginToSystem(loginName, username, newPassword, "KhachHang");
+                        MessageBox.Show($"This login account has been created!\nLoginName: {loginName}\nUsername: {username}\n", "SUCCESS!", MessageBoxButtons.OK);
+
+                        //Refresh form
+                        dt_login.Rows.Add(loginName);
+                        btnCancelLogin.PerformClick();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Can not create login!\n" + ex.Message, "ERROR!", MessageBoxButtons.OK);
+                    }
+                }
+            }
+
+        }
+
+        private bool IsExistedLoginName(string loginName)
+        {
+            foreach (DataRow row in dt_login.Rows)
+            {
+                if (loginName.Equals(row["LoginName"].ToString()))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private void btnCancelLogin_Click(object sender, EventArgs e)
+        {
+            hidePanelLogin();
+            btnReload.PerformClick();
+        }
+
+        private void txtLoginName_TextChanged(object sender, EventArgs e)
+        {
+            if (isChangePassword)
+            {
+                lblLoginNameError.Text = "";
+                return;
+            }
+            if (txtLoginName.Text.Length == 0)
+            {
+                lblLoginNameError.ForeColor = Color.Red;
+                lblLoginNameError.Text = "Enter this area!";
+                checkLoginName = false;
+            }
+            else if (IsExistedLoginName(txtLoginName.Text))
+            {
+                lblLoginNameError.ForeColor = Color.Red;
+                lblLoginNameError.Text = "This login name have been existed!";
+                checkLoginName = false;
+            }
+            else
+            {
+                lblLoginNameError.ForeColor = Color.Green;
+                lblLoginNameError.Text = "✅";
+                checkLoginName = true;
+            }
+        }
+
+        private void txtCurrentPw_TextChanged(object sender, EventArgs e)
+        {
+            if (txtCurrentPw.Text.Length == 0)
+            {
+                lblPasswordError.ForeColor = Color.Red;
+                lblPasswordError.Text = "❎";
+                checkPassword = false;
+            }
+            else
+            {
+                lblPasswordError.ForeColor = Color.Green;
+                lblPasswordError.Text = "✅";
+                checkPassword = true;
+            }
+        }
+
+        private void txtNewPw_TextChanged(object sender, EventArgs e)
+        {
+            if (txtConfirmNewPw.Text.Length == 0)
+            {
+                lblConfirmPasswordError.ForeColor = Color.Red;
+                lblConfirmPasswordError.Text = "❎";
+                checkConfirmPassword = false;
+            }
+            else if (txtConfirmNewPw.Text != txtNewPw.Text)
+            {
+                lblConfirmPasswordError.ForeColor = Color.Red;
+                lblConfirmPasswordError.Text = "❎";
+                checkConfirmPassword = false;
+            }
+            else
+            {
+                lblConfirmPasswordError.ForeColor = Color.Green;
+                lblConfirmPasswordError.Text = "✅";
+                checkConfirmPassword = true;
+            }
+
+            if (txtNewPw.Text.Length == 0)
+            {
+                lblNewPasswordError.ForeColor = Color.Red;
+                lblNewPasswordError.Text = "❎";
+                checkNewPassword = false;
+            }
+            else
+            {
+                lblNewPasswordError.ForeColor = Color.Green;
+                lblNewPasswordError.Text = "✅";
+                checkNewPassword = true;
+            }
+        }
+
+        private void btnStatement_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow row = null;
+
+            if (dataAccount.SelectedRows.Count > 0)
+            {
+                row = dataAccount.SelectedRows[0];
+            }
+
+            if (row == null)
+            {
+                MessageBox.Show("Click to an account before begin statment!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            frptAccountStatement form = new frptAccountStatement(row.Cells["SOTK"].Value.ToString());
+            form.ShowDialog();
+
+            loadDataAccount(txtCMND.Text);
+        }
+
+        private void txtConfirmNewPw_TextChanged(object sender, EventArgs e)
+        {
+            if (txtNewPw.Text.Length == 0)
+            {
+                lblNewPasswordError.ForeColor = Color.Red;
+                lblNewPasswordError.Text = "❎";
+                checkNewPassword = false;
+            }
+            else
+            {
+                lblNewPasswordError.ForeColor = Color.Green;
+                lblNewPasswordError.Text = "✅";
+                checkNewPassword = true;
+            }
+
+            if (txtConfirmNewPw.Text.Length == 0)
+            {
+                lblConfirmPasswordError.ForeColor = Color.Red;
+                lblConfirmPasswordError.Text = "❎";
+                checkConfirmPassword = false;
+            }
+            else if (txtConfirmNewPw.Text != txtNewPw.Text)
+            {
+                lblConfirmPasswordError.ForeColor = Color.Red;
+                lblConfirmPasswordError.Text = "❎";
+                checkConfirmPassword = false;
+            }
+            else
+            {
+                lblConfirmPasswordError.ForeColor = Color.Green;
+                lblConfirmPasswordError.Text = "✅";
+                checkConfirmPassword = true;
+            }
+        }
+
+        private void txtCurrentPw_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Program.ValidateKeyPress(e.KeyChar))
+            { e.Handled = true; }
         }
     }
 }

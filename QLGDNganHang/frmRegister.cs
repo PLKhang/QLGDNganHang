@@ -41,7 +41,6 @@ namespace QLGDNganHang
         {
             this.WindowState = FormWindowState.Maximized;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            Debug.WriteLine("username: " + specialUsername);
 
             dt = Program.ExecStoredProcedureReturnTable("SELECT * FROM V_EX_LoginName");
             dtLoginName = Program.ExecStoredProcedureReturnTable("SELECT * FROM DBO.V_LOGINNAME");
@@ -109,6 +108,24 @@ namespace QLGDNganHang
 
         private void txtPassword_TextChanged(object sender, EventArgs e)
         {
+            if (txtConfirmPassword.Text.Length == 0)
+            {
+                lblConfirmPasswordError.ForeColor = Color.Red;
+                lblConfirmPasswordError.Text = "Enter this area!";
+                checkConfirmPassword = false;
+            }else if (txtConfirmPassword.Text != txtPassword.Text)
+            {
+                lblConfirmPasswordError.ForeColor = Color.Red;
+                lblConfirmPasswordError.Text = "You should enter the same Password";
+                checkConfirmPassword = false;
+            }
+            else
+            {
+                lblConfirmPasswordError.ForeColor = Color.Green;
+                lblConfirmPasswordError.Text = "✅";
+                checkConfirmPassword = true;
+            }
+
             if (txtPassword.Text.Length == 0)
             {
                 lblPasswordError.ForeColor = Color.Red;
@@ -155,6 +172,7 @@ namespace QLGDNganHang
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
+            this.DialogResult = DialogResult.Cancel;
         }
 
         private void btnShowPassword_Click(object sender, EventArgs e)
@@ -182,16 +200,17 @@ namespace QLGDNganHang
                     {
                         Program.CreateLoginToSystem(loginName, username, password, Program.mRole);
                         MessageBox.Show($"This login account has been created!\nLoginName: {loginName}\nUsername: {username}\n", "SUCCESS!", MessageBoxButtons.OK);
+                        if (isSpecialAccountCreate)
+                        {
+                            btnExit.PerformClick();
+                            return;
+                        }
                         
                         //Refresh form
                         dtLoginName.Rows.Add(loginName);
                         dt.Rows.RemoveAt(cbxUsername.SelectedIndex);
                         cbxUsername_SelectedIndexChanged(sender, new EventArgs());
                         txtLoginName.Text = txtPassword.Text = txtConfirmPassword.Text = "";
-                        if (isSpecialAccountCreate)
-                        {
-                            btnExit.PerformClick();
-                        }
                     }
                     catch (Exception ex)
                     {
